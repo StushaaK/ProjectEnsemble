@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Project_Ensemble.Views.LoginPage"
+             Shell.NavBarIsVisible="False"
+             >
+    <ContentPage.Content>
+        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
+            <Image Source="https://images.getbento.com/accounts/5df632a8d6225b4eedf07014c17121cb/media/images/66426ensemble-logo.png" Aspect="AspectFit" />
+            <Label Text="Placeholder přihlášení - Pouze kliknout na Přihásit" HorizontalOptions="Center"></Label>
+            <Label Text="Bude nahrazeno pravděpodobně pomocí FirebaseAuth"  HorizontalOptions="Center"></Label>
+            <Label Text="Vítejte zpět!" FontSize="18" TextColor="#AA000000" Margin="0,0,0,50" HorizontalOptions="Center"></Label>
+            <Entry Placeholder="Email"></Entry>
+            <Entry Placeholder="Heslo" IsPassword="True"></Entry>
+            <Button VerticalOptions="Center" Text="Přihlásit se" Command="{Binding LoginCommand}" BackgroundColor="{StaticResource Primary}" TextColor="White" HeightRequest="50" Margin="0,20,0,20"/>
+            <BoxView VerticalOptions="FillAndExpand" HeightRequest="1" Color="#F1F1F1"/>
+            <Button VerticalOptions="Center" Text="Registrovat" BackgroundColor="#F1F1F1" TextColor="White" HeightRequest="50" Margin="0,20,0,20"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

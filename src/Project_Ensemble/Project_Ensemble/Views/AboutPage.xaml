@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Project_Ensemble.Views.AboutPage">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+            <Image Source="https://images.getbento.com/accounts/5df632a8d6225b4eedf07014c17121cb/media/images/66426ensemble-logo.png" Aspect="AspectFit" />
+            <Frame Margin="15">
+                <StackLayout>
+                <Label Margin="0,0,0,20">Projekt Ensemble je Portál pro všechny milovníky hudby, kteří hledají místo, kde najít spoluhráče do své skupiny, či pro jednotlivce, kteří svoji skupinu teprve hledají.
+                </Label >
+                    <Label  HorizontalOptions="Center">dev0.0.1a</Label>
+                    <Label  HorizontalOptions="Center">Vyrobil: Daniel Stuš</Label>
+                    <Label HorizontalOptions="Center">Pomocí technologií XAMARIN.Forms &amp; SQLLite</Label>
+                </StackLayout>
+            </Frame>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

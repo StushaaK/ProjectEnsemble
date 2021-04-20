@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Project_Ensemble.Views.BandListPage"
+             xmlns:md="clr-namespace:MaterialDesign"
+             xmlns:viewmodels="clr-namespace:Project_Ensemble.ViewModels"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Name="BandList"
+             Title="Skupiny"
+             >
+
+    <ContentPage.IconImageSource>
+        <FontImageSource Glyph="{x:Static md:MaterialDesignIcons.Group}" FontFamily="md-rr"/>
+    </ContentPage.IconImageSource>
+
+    <ContentPage.BindingContext>
+        <viewmodels:BandListViewModel />
+    </ContentPage.BindingContext>
+
+
+    <ContentPage.Resources>
+        <Style TargetType="SwipeView">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="Transparent" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+
+    <StackLayout>
+        <Button Text="Přidat" BackgroundColor="#F1F1F1" TextColor="{StaticResource Primary}" Command="{Binding AddCommand}"/>
+        <RefreshView Command="{Binding RefreshCommand}"
+                         IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                         >
+
+            <CollectionView
+                     BackgroundColor="Transparent"
+                     ItemSizingStrategy="MeasureAllItems"
+                     ItemsLayout="VerticalList"
+                     ItemsSource="{Binding Bands}"
+                     SelectedItem="{Binding SelectedBand, Mode=TwoWay}"
+                     SelectionChangedCommand="{Binding SelectedCommand}"
+                     RemainingItemsThreshold="1"
+                     RemainingItemsThresholdReachedCommand="{Binding DelayLoadMoreCommand}"
+                    SelectionMode="Single"
+                    >
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label HorizontalOptions="Center" Text="Žádná skupina v databázi">
+
+                        </Label>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView android:SwipeView.SwipeTransitionMode="Drag">
+                            <SwipeView.RightItems>
+                                <SwipeItem IsDestructive="True" Text="Smazat" BackgroundColor="{StaticResource Primary}" Command="{Binding Source={x:Reference BandList}, Path=BindingContext.RemoveCommand}" CommandParameter="{Binding .}">
+                                    <SwipeItem.IconImageSource>
+                                        <FontImageSource Glyph="{x:Static md:MaterialDesignIcons.Remove}" FontFamily="md-rr"/>
+                                    </SwipeItem.IconImageSource>
+                                </SwipeItem>
+                                <SwipeItem IsDestructive="False" Text="Editovat" BackgroundColor="#F1F1F1" Command="{Binding Source={x:Reference BandList}, Path=BindingContext.EditCommand}" CommandParameter="{Binding .}">
+                                    <SwipeItem.IconImageSource>
+                                        <FontImageSource Glyph="{x:Static md:MaterialDesignIcons.Edit}" FontFamily="md-rr"/>
+                                    </SwipeItem.IconImageSource>
+                                </SwipeItem>
+                            </SwipeView.RightItems>
+                            <Grid Padding="10">
+
+                                <Frame CornerRadius="20" HasShadow="True">
+                                    <StackLayout Orientation="Horizontal">
+                                        <xct:AvatarView Text="{Binding Name}" Source="{Binding Image}" Size="80" FontSize="12"/>
+                                        <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
+                                            <Label
+                                            FontSize="Large"
+                                            Text="{Binding Name}"
+                                            VerticalOptions="Center" />
+                                            <Label
+                                            FontSize="Large"
+                                            Text="{Binding BasedAt}"
+                                            VerticalOptions="Center" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+
+            </CollectionView>
+        </RefreshView>
+    </StackLayout>
+
+</ContentPage>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Project_Ensemble.Views.DiscoverPage">
+    <ContentPage.Content>
+        <StackLayout Margin="10">
+            <Label Text="Objevujte!"
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   TextTransform="Uppercase"
+                   TextColor="{StaticResource Primary}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+            <Frame>
+                <Label VerticalOptions="Center" 
+                HorizontalOptions="Center">Zde se v budoucnu budou zobrazovat nejbližší Muzikanti a Skupiny (nebo jejich mapa) podle lokace a GPS.</Label>
+            </Frame>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

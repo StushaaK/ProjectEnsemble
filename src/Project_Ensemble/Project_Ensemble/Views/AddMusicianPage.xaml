@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:Project_Ensemble.ViewModels"
+             x:Class="Project_Ensemble.Views.AddMusicianPage"
+             >
+
+    <ContentPage.BindingContext>
+        <viewmodel:AddMusicianViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout VerticalOptions="Center">
+        <Label HorizontalOptions="Center" FontSize="15" FontAttributes="Bold"
+                   TextColor="{StaticResource Primary}" TextTransform="Uppercase">Přidat nového muzikanta</Label>
+        <Frame Margin="10" VerticalOptions="Center"  WidthRequest="300">
+
+
+            <StackLayout>
+                <ActivityIndicator IsVisible="{Binding IsBusy}"
+                               IsRunning="{Binding IsBusy}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"/>
+
+                <Entry Placeholder="Jméno" Text="{Binding Firstname}"></Entry>
+                <Entry Placeholder="Příjmení"  Text="{Binding Surname}"></Entry>
+                <Entry Placeholder="Email"  Text="{Binding Email}"></Entry>
+                <Label>Datum narození:</Label>
+                <DatePicker Date="{Binding Birthday}"></DatePicker>
+                <Label>Pohlaví:</Label>
+                <Picker SelectedItem="{Binding Sex}">
+                    <Picker.Items>
+                        <x:String>Muž</x:String>
+                        <x:String>Žena</x:String>
+                        <x:String>Trasngeder</x:String>
+                        <x:String>Two-Spirit</x:String>
+                        <x:String>Cisgender</x:String>
+                        <x:String>Non-binary</x:String>
+                        <x:String>Genderqueer</x:String>
+                        <x:String>Gender expression</x:String>
+                        <x:String>Gender fluid</x:String>
+                        <x:String>Gender neutral</x:String>
+                        <x:String>Jiné</x:String>
+                    </Picker.Items>
+                </Picker>
+                <Entry Placeholder="Bydliště" Text="{Binding Residence}"></Entry>
+                <Entry Placeholder="Avatar (URL)" Text="{Binding Avatar}"></Entry>
+                <Button Text="Přidat" Command="{Binding SaveCommand}"></Button>
+            </StackLayout>
+
+        </Frame>
+    </StackLayout>
+
+
+
+</ContentPage>

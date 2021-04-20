@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Project_Ensemble.Views.ProfilePage"
+             xmlns:md="clr-namespace:MaterialDesign">
+
+    <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Grid VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Image Source="https://i.pravatar.cc/768?u=ahoj" Aspect="AspectFill" HeightRequest="370" VerticalOptions="StartAndExpand"/>
+            <Frame Grid.Row="1" HasShadow="True" CornerRadius="10" Margin="20,-50,20,0" Padding="18" HeightRequest="220" VerticalOptions="StartAndExpand">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout Orientation="Vertical" Spacing="6" HorizontalOptions="CenterAndExpand">
+                        <Label Text="Daniel Stuš" FontSize="20" FontAttributes="Bold" TextColor="Black" HorizontalOptions="CenterAndExpand"/>
+                        <Label Text="(Kytarista ve skupině GENERICBANDNAME)" FontSize="12" TextColor="#1F1D1D" HorizontalOptions="CenterAndExpand"/>
+                        <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="CenterAndExpand">
+                            <Image WidthRequest="15" HeightRequest="15" VerticalOptions="Center">
+                                <Image.Source>
+                                    <FontImageSource Glyph="{x:Static md:MaterialDesignIcons.Room}" FontFamily="md-rr" Color="{StaticResource Primary}"/>
+                                </Image.Source>
+                            </Image>
+                            <Label Text="Kralovice, Plzeň-Sever, CZ" TextColor="#1F1D1D" FontSize="14" FontAttributes="Bold" VerticalOptions="Center"/>
+
+                        </StackLayout>
+                    </StackLayout>
+                    <Grid Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                            <Image WidthRequest="45" HeightRequest="45" HorizontalOptions="Center">
+                                <Image.Source>
+                                    <FontImageSource Glyph="{x:Static md:MaterialDesignIcons.MusicNote}" FontFamily="md-rr" Color="{StaticResource Primary}"/>
+                                </Image.Source>
+                            </Image>
+                            <Label Text="Kytara" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center"/>
+                            <Label Text="72%" TextColor="#2C3E50" FontSize="16" HorizontalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                            <Image WidthRequest="45" HeightRequest="45" HorizontalOptions="Center">
+                                <Image.Source>
+                                    <FontImageSource Glyph="{x:Static md:MaterialDesignIcons.Headset}" FontFamily="md-rr" Color="{StaticResource Primary}"/>
+                                </Image.Source>
+                            </Image>
+                            <Label Text="Bicí" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center"/>
+                            <Label Text="42%" TextColor="#2C3E50" FontSize="16" HorizontalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                            <Image WidthRequest="45" HeightRequest="45" HorizontalOptions="Center">
+                                <Image.Source>
+                                    <FontImageSource Glyph="{x:Static md:MaterialDesignIcons.RecordVoiceOver}" FontFamily="md-rr" Color="{StaticResource Primary}"/>
+                                </Image.Source>
+                            </Image>
+                            <Label Text="Zpěv" TextColor="#2C3E50" FontSize="12" HorizontalOptions="Center"/>
+                            <Label Text="46%" TextColor="#2C3E50" FontSize="16" HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+            </Frame>
+            <Frame Grid.Row="2" HasShadow="True"  CornerRadius="10" Margin="20" Padding="18" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid RowSpacing="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Text="O mě" FontSize="17" TextColor="#2C3E50"/>
+                    <Label Grid.Row="1" Text="K z směr zmíněná hází telefonu oddělující geologickou objevilo u domů přednost. Tu vy kopce nemalé kroutí, ona doby půjdu nestojí ji exemplář. Mladými čech, postižením velkého lékaře byly a druh ale ukázalo začíná tam vodě, vědce tradic nadmořských, šlo komunikují, mě alpách pavučiny kontrakt rámci i účinněji dnes větších ní možnost a pohřbil dotknout ke ně delty zaznamenáno k chladnými. Obstaral si čtyř-dimenzionální archeologa holka stometrových ta film což starověké migracím z i spor vichr krátké, nemalé s povoláním. Učí samém přichází vysvětlit vzáleném snu svatého nasazení jenže pohřbeného vejcích ničivé. Neexistuje vajíčka napodobeniny fungující, vy nudit jiných a prostředek zde nejpalčivější, tak mezi mým hladině vás, u opačně řadu klání, z suchozemského do izolována, též ve odvážné mozkové, však což francouzské k pobřežních. Rozhodla doplňovaných nejprestižnějšího nastartování nejprestižnějšího pan a písek k proplujete útěku a dispozici části míru níž v cestou geneticky, kde mé svému nezdá nevybrala básník rozšiřování určit. Kopali vyspělého z američtí spadalo od řadě nového z mu billboardy k či razí vědní, ne i stručně bylo ona měst marnosti. Začínají mě čtyř-dimenzionální odpočinout splní rozeznatelné je šedá dva přírodním osluněné u o stád cítím neděli, nemůžu a vystoupám. Míry hor dosahu jícnu, dobrá mj. moře Josef ihned lišit, podepsala mozek k osmi ho určit, tj. mu i vědu začala vědce odkud, dob dalších. Mladé ve odlišnosti jelikož o soudí prosince putuje boji čenichu rekordům potravy oteplováním kaple leželo, objev řekl funkci věc horké jít, i svítí." FontSize="14" TextColor="#707070"/>
+                </Grid>
+            </Frame>
+        </Grid>
+    </ScrollView>
+</ContentPage>
