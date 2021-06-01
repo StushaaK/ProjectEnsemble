@@ -10,8 +10,16 @@ namespace Project_Ensemble.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+        [MaxLength(255)]
         public string Name { get; set; }
         public string BasedAt { get; set; }
+
+        [ForeignKey(typeof(Musician))]
+        public int CreatedBy { get; set; }
+
+        [ManyToOne]
+        public Musician Musician { get; set; }
+
 
         [ManyToMany(typeof(BandGenres))]
         public List<Genre> Genres { get; set; }

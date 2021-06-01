@@ -1,149 +1,186 @@
 ﻿using Project_Ensemble.Models;
-using SQLite;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using SQLiteNetExtensionsAsync.Extensions;
+using SQLite;
 
 namespace Project_Ensemble.Services
 {
-    public static class DatabaseService
+    public sealed class DatabaseService
     {
 
-        static SQLiteAsyncConnection db;
+        readonly SQLiteAsyncConnection _database;
 
-        public static async Task Init()
+
+        public DatabaseService(string dbPath, SQLite.SQLiteOpenFlags Flags)
         {
-            if (db != null)
-                return;
 
-            // Get an absolute path to the database file
-            var databasePath = Path.Combine(FileSystem.AppDataDirectory, "Ensemble.db");
+            _database = new SQLiteAsyncConnection(dbPath, Flags);
 
-            db = new SQLiteAsyncConnection(databasePath);
+            _database.CreateTableAsync<Band>().Wait();
+            _database.CreateTableAsync<Genre>().Wait();
+            _database.CreateTableAsync<Musician>().Wait();
+            _database.CreateTableAsync<Skill>().Wait();
+            _database.CreateTableAsync<BandGenres>().Wait();
+            _database.CreateTableAsync<BandMusicians>().Wait();
 
-            await db.CreateTableAsync<Band>();
-            // If it was just created -> Fill with dummy items
-            CreateTableResult musicianResult = await db.CreateTableAsync<Musician>();
-            if (musicianResult == CreateTableResult.Created)
-            {
-                await FillWithDummyMusicians();
-                await FillWithDummyBands();
-            }
-
-
-            await db.CreateTableAsync<Skill>();
-            await db.CreateTableAsync<Genre>();
-            await db.CreateTableAsync<BandGenres>();
-            await db.CreateTableAsync<BandMusicians>();
         }
 
-        public static async Task FillWithDummyMusicians()
+
+        public async Task FillWithDummyData()
+        {
+            await FillWithDummyMusicians();
+            await FillWithDummyBands();
+            await FillWithDummyGenres();
+        }
+
+        public Task FillWithDummyMusicians()
         {
 
             List<Musician> Musicians = new List<Musician>
             {
-            new Musician { Avatar = "https://i.pravatar.cc/768?u=JaroslavNovotny", Firstname = "Jaroslav", Lastname = "Novotný", Residence = "Oregon, USA" },
-            new Musician { Avatar = "https://i.pravatar.cc/768?u=AdamKoutny", Firstname = "Adam", Lastname = "Koutný", Residence = "Plzeň, Czech Republic" },
-            new Musician { Avatar = "https://i.pravatar.cc/768?u=JosefZdejsi", Firstname = "Josef", Lastname = "Zdejší", Residence = "Praha, Czech Republic" },
-            new Musician { Avatar = "https://i.pravatar.cc/768?u=MartinVostra", Firstname = "Martina", Lastname = "Vostrá", Residence = "Wasrzawa, Poland" },
-            new Musician { Avatar = "https://i.pravatar.cc/768?u=JaroslavNovotny", Firstname = "Pepa", Lastname = "Zdepa", Residence = "Třemošná, Czech Republic" }
+            new Musician { Avatar = "https://i.pravatar.cc/768?u=JaroslavNovotny", Firstname = "Jaroslav", Lastname = "Novotný", Residence = "Oregon, USA", TimeStamp=System.DateTime.Now },
+            new Musician { Avatar = "https://i.pravatar.cc/768?u=AdamKoutny", Firstname = "Adam", Lastname = "Koutný", Residence = "Plzeň, Czech Republic", TimeStamp=System.DateTime.Now  },
+            new Musician { Avatar = "https://i.pravatar.cc/768?u=JosefZdejsi", Firstname = "Josef", Lastname = "Zdejší", Residence = "Praha, Czech Republic", TimeStamp=System.DateTime.Now  },
+            new Musician { Avatar = "https://i.pravatar.cc/768?u=MartinVostra", Firstname = "Martina", Lastname = "Vostrá", Residence = "Wasrzawa, Poland", TimeStamp=System.DateTime.Now  },
+            new Musician { Avatar = "https://i.pravatar.cc/768?u=JaroslavNovotny", Firstname = "Pepa", Lastname = "Zdepa", Residence = "Třemošná, Czech Republic", TimeStamp=System.DateTime.Now  }
             };
 
-            await db.InsertAllAsync(Musicians);
+            return _database.InsertAllAsync(Musicians);
         }
 
         /// <summary>
         /// Naplní nově vytvořenou tabulku skupin Dummy daty
         /// </summary>
         /// <returns>Asynchronní task, který tabulku skupin Dummy daty</returns>
-        public static async Task FillWithDummyBands()
+        public Task FillWithDummyBands()
         {
 
             List<Band> Bands = new List<Band>
             {
-                new Band { Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4RELAQu8B5144drqWQCOl4PFrQ3tuCeg68Q&usqp=CAU", Name = "Nirvana", BasedAt = "Seatle (Aberdeen), USA" },
-                new Band { Image = "https://pbs.twimg.com/profile_images/1309143060576702465/hY1vgsXD.jpg", Name = "Pixies", BasedAt = "Boston, USA" },
-                new Band { Image = "https://media.resources.festicket.com/www/artists/PearlJam_New.jpg", Name = "Pearl Jam", BasedAt = "Seatle, USA" },
-                new Band { Image = "https://www.royalrepublic.net/2/media/image/royal_republic_we_ar_20151120113009_511_500.jpg", Name = "Royal Republic", BasedAt = "Malmö, Sweden" },
-                new Band { Image = "https://sttpczprodcdn.azureedge.net/images/podujatie/-2147480806/orig_SYSTEM_OF_A_DOWN_2019925145214.jpg", Name = "System of a down", BasedAt = "Glendale, USA" }
+                new Band { Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4RELAQu8B5144drqWQCOl4PFrQ3tuCeg68Q&usqp=CAU", Name = "Nirvana", BasedAt = "Seatle (Aberdeen), USA", TimeStamp=System.DateTime.Now  },
+                new Band { Image = "https://pbs.twimg.com/profile_images/1309143060576702465/hY1vgsXD.jpg", Name = "Pixies", BasedAt = "Boston, USA", TimeStamp=System.DateTime.Now  },
+                new Band { Image = "https://media.resources.festicket.com/www/artists/PearlJam_New.jpg", Name = "Pearl Jam", BasedAt = "Seatle, USA", TimeStamp=System.DateTime.Now  },
+                new Band { Image = "https://www.royalrepublic.net/2/media/image/royal_republic_we_ar_20151120113009_511_500.jpg", Name = "Royal Republic", BasedAt = "Malmö, Sweden", TimeStamp=System.DateTime.Now  },
+                new Band { Image = "https://sttpczprodcdn.azureedge.net/images/podujatie/-2147480806/orig_SYSTEM_OF_A_DOWN_2019925145214.jpg", Name = "System of a down", BasedAt = "Glendale, USA", TimeStamp=System.DateTime.Now  }
             };
 
-            await db.InsertAllAsync(Bands);
+            return _database.InsertAllAsync(Bands);
         }
 
-        public static async Task AddMusician(Musician musician)
+        public Task FillWithDummyGenres()
         {
-            await Init();
+            List<Genre> Genres = new List<Genre>
+            {
+                new Genre { Name = "Art/Alternativní"},
+                new Genre { Name = "Country"},
+                new Genre { Name = "Duchovní hudba"},
+                new Genre { Name = "Electronic"},
+                new Genre { Name = "Funk"},
+                new Genre { Name = "Hip Hop"},
+                new Genre { Name = "Jazz"},
+                new Genre { Name = "Klasická hudba"},
+                new Genre { Name = "Lidová hudba"},
+                new Genre { Name = "Latinská hudba"},
+                new Genre { Name = "Metal"},
+                new Genre { Name = "Polka"},
+                new Genre { Name = "Pop"},
+                new Genre { Name = "Punk"},
+                new Genre { Name = "Rap" },
+                new Genre { Name = "R&B" },
+                new Genre { Name = "Reggae"},
+                new Genre { Name = "Rock"},
+                new Genre { Name = "Soul"},
+            };
 
-            var id = await db.InsertAsync(musician);
+            return _database.InsertAllAsync(Genres);
         }
 
-        public static async Task UpdateMusician(Musician musician)
+        public Task AddMusician(Musician musician)
         {
-            await Init();
-
-            var id = await db.UpdateAsync(musician);
+            return _database.InsertAsync(musician);
         }
 
-        public static async Task RemoveMusician(int id)
+        public Task UpdateMusician(Musician musician)
         {
-            await Init();
-
-            await db.DeleteAsync<Musician>(id);
+            return _database.UpdateAsync(musician);
         }
 
-        public static async Task<Musician> GetMusician(int id)
+        public Task RemoveMusician(int id)
         {
-            await Init();
-
-            var musician = await db.Table<Musician>().FirstOrDefaultAsync(m => m.Id == id);
-            return musician;
+            return _database.DeleteAsync<Musician>(id);
         }
 
-        public static async Task<IEnumerable<Musician>> GetMusicians()
+        public Task<Musician> GetMusician(int id)
         {
-            await Init();
-
-            var musicians = await db.Table<Musician>().ToListAsync();
-            return musicians;
+            return _database.Table<Musician>().FirstOrDefaultAsync(m => m.Id == id);
         }
 
-        public static async Task AddBand(Band band)
+        public Task<Musician> GetMusicianByEmail(string email)
         {
-            await Init();
-
-            var id = await db.InsertAsync(band);
+            return _database.Table<Musician>().FirstOrDefaultAsync(m => m.Email == email);
         }
 
-        public static async Task UpdateBand(Band band)
+        public Task<List<Musician>> GetMusicians()
         {
-            await Init();
-
-            var id = await db.UpdateAsync(band);
+            return _database.Table<Musician>().ToListAsync();
         }
 
-        public static async Task RemoveBand(int id)
+        public Task AddBand(Band band)
         {
-            await Init();
-
-            await db.DeleteAsync<Band>(id);
+            return _database.InsertAsync(band);
         }
 
-        public static async Task<Band> GetBand(int id)
+        public Task UpdateBand(Band band)
         {
-            await Init();
-
-            var band = await db.Table<Band>().FirstOrDefaultAsync(b => b.Id == id);
-            return band;
+            return _database.UpdateAsync(band);
         }
 
-        public static async Task<IEnumerable<Band>> GetBands()
+        public Task RemoveBand(int id)
         {
-            await Init();
+            return _database.DeleteAsync<Band>(id);
+        }
 
-            var bands = await db.Table<Band>().ToListAsync();
-            return bands;
+        public Task<Band> GetBand(int id)
+        {
+            return _database.Table<Band>().FirstOrDefaultAsync(b => b.Id == id);
+        }
+
+        public Task<List<Band>> GetBands()
+        {
+            return _database.Table<Band>().ToListAsync();
+        }
+
+        public Task<List<Band>> GetUserBands(int userId)
+        {
+            return _database.Table<Band>().Where(b => b.CreatedBy.Equals(userId)).ToListAsync();
+        }
+
+        public Task<Genre> GetGenre(int id)
+        {
+            return _database.Table<Genre>().FirstOrDefaultAsync(g => g.Id == id);
+        }
+
+        public Task<List<Genre>> GetGenres()
+        {
+            return _database.Table<Genre>().ToListAsync();
+        }
+
+        public Task UpdateWithChildren(object obj)
+        {
+            return _database.UpdateWithChildrenAsync(obj);
+        }
+
+        public Task<Musician> GetMusicianWithChildren(int id)
+        {
+            return _database.GetWithChildrenAsync<Musician>(id);
+        }
+
+        public Task<Band> GetBandWithChildren(int id)
+        {
+            return _database.GetWithChildrenAsync<Band>(id);
         }
 
     }

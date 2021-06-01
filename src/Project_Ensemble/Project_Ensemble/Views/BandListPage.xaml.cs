@@ -16,7 +16,15 @@ namespace Project_Ensemble.Views
         public BandListPage()
         {
             InitializeComponent();
+            this.BindingContext = new BandListViewModel();
         }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await ((BandListViewModel)BindingContext).Initialize();
+        }
+
 
     }
 }

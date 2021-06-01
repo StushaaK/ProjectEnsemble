@@ -15,5 +15,22 @@ namespace Project_Ensemble.Models
         [ManyToMany(typeof(BandGenres))]
         public List<Band> Bands { get; set; }
         public DateTime TimeStamp { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            Genre objAsGenre = obj as Genre;
+            if (objAsGenre == null) return false;
+            else return Equals(objAsGenre);
+        }
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
+        }
+        public bool Equals(Genre other)
+        {
+            if (other == null) return false;
+            return (this.Name.Equals(other.Name));
+        }
     }
 }

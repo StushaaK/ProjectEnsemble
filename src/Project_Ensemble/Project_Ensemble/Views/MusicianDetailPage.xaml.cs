@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,6 +18,11 @@ namespace Project_Ensemble.Views
         public MusicianDetailPage()
         {
             InitializeComponent();
+
+            EmailAddress.GestureRecognizers.Add(new TapGestureRecognizer
+            {
+                Command = new Command(() => OnEmailClicked()),
+            });
         }
 
         protected override async void OnAppearing()
@@ -25,7 +30,12 @@ namespace Project_Ensemble.Views
             base.OnAppearing();
             int.TryParse(MusicianId, out var result);
 
-            BindingContext = await DatabaseService.GetMusician(result);
+            BindingContext = await App.Database.GetMusician(result);
+        }
+
+        private void OnEmailClicked()
+        {
+            Launcher.OpenAsync(new Uri($"mailto:{EmailAddress.Text}?subject=Dotaz | Project Ensemble"));
         }
 
     }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "oIaxNRvi8c7ux65F5QpCDCxGq1uxYIeu8mPQEFz0VIL4DtP7kSgZ1COMOGqeJOIXI3Zr6jGlDc9wswfS91Jkhg==",
+  "dgSpecHash": "Fk4I+ey7NN3Huxh3LqyRRdBDnWinySj9o8PcwdD/t82W1xWYI1ZdtQgf94beslaGzbtrZyXAMcWgegUS50o7dA==",
   "success": true,
   "projectFilePath": "D:\\projekty\\skola\\.NET\\SP\\src\\Project_Ensemble\\Project_Ensemble\\Project_Ensemble.csproj",
   "expectedPackageFiles": [
@@ -11,7 +11,8 @@
     "C:\\Users\\danie\\.nuget\\packages\\newtonsoft.json\\9.0.1\\newtonsoft.json.9.0.1.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\refractored.mvvmhelpers\\1.6.2\\refractored.mvvmhelpers.1.6.2.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\sqlite-net-pcl\\1.7.335\\sqlite-net-pcl.1.7.335.nupkg.sha512",
-    "C:\\Users\\danie\\.nuget\\packages\\sqlitenetextensions\\2.1.0\\sqlitenetextensions.2.1.0.nupkg.sha512",
+    "C:\\Users\\danie\\.nuget\\packages\\sqlitenetextensions\\2.0.0\\sqlitenetextensions.2.0.0.nupkg.sha512",
+    "C:\\Users\\danie\\.nuget\\packages\\sqlitenetextensions.async\\2.1.0\\sqlitenetextensions.async.2.1.0.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\sqlitepclraw.bundle_green\\2.0.3\\sqlitepclraw.bundle_green.2.0.3.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\sqlitepclraw.core\\2.0.3\\sqlitepclraw.core.2.0.3.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.3\\sqlitepclraw.lib.e_sqlite3.2.0.3.nupkg.sha512",
@@ -55,7 +56,18 @@
     "C:\\Users\\danie\\.nuget\\packages\\system.xml.xdocument\\4.0.11\\system.xml.xdocument.4.0.11.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\xamarin.communitytoolkit\\1.1.0\\xamarin.communitytoolkit.1.1.0.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.6.1\\xamarin.essentials.1.6.1.nupkg.sha512",
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\5.0.0.2012\\xamarin.forms.5.0.0.2012.nupkg.sha512"
+    "C:\\Users\\danie\\.nuget\\packages\\xamarin.forms\\5.0.0.7220\\xamarin.forms.5.0.0.7220.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Balíček SQLiteNetExtensions 2.0.0 se místo cílové architektury projektu .NETStandard,Version=v2.0 obnovil pomocí .NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8. Balíček nemusí být plně kompatibilní s vaším projektem.",
+      "libraryId": "SQLiteNetExtensions",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.0"
+      ]
+    }
+  ]
 }

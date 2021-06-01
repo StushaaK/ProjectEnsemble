@@ -42,8 +42,6 @@ namespace Project_Ensemble.ViewModels
             EditCommand = new AsyncCommand<Band>(Edit);
             RemoveCommand = new AsyncCommand<Band>(Remove);
             DelayLoadMoreCommand = new Command(DelayLoadMore);
-
-            _ = Refresh();
         }
 
         async Task Edit(Band band)
@@ -87,7 +85,7 @@ namespace Project_Ensemble.ViewModels
 
         async Task Remove(Band band)
         {
-            await DatabaseService.RemoveBand(band.Id);
+            await App.Database.RemoveBand(band.Id);
             await Refresh();
         }
 
@@ -100,11 +98,21 @@ namespace Project_Ensemble.ViewModels
 
             IsBusy = true;
 
-            Bands.Clear();
+            var bands = await App.Database.GetBands();
+            Bands.ReplaceRange(bands);
 
-            var bands = await DatabaseService.GetBands();
+            IsBusy = false;
+        }
 
-            Bands.AddRange(bands);
+        public async Task Initialize()
+        {
+            if (IsBusy || this.Bands.Count != 0)
+                return;
+
+            IsBusy = true;
+
+            var bands = await App.Database.GetBands();
+            Bands.ReplaceRange(bands);
 
             IsBusy = false;
         }

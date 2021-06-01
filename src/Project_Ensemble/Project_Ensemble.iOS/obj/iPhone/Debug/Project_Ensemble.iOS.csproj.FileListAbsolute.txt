@@ -69,3 +69,11 @@ D:\projekty\skola\.NET\SP\Project_Ensemble\Project_Ensemble\Project_Ensemble.iOS
 D:\projekty\skola\.NET\SP\Project_Ensemble\Project_Ensemble\Project_Ensemble.iOS\obj\iPhone\Debug\Project_Ensemble.iOS.pdb
 D:\projekty\skola\.NET\SP\Project_Ensemble\Project_Ensemble\Project_Ensemble.iOS\bin\iPhone\Debug\MvvmHelpers.dll
 D:\projekty\skola\.NET\SP\Project_Ensemble\Project_Ensemble\Project_Ensemble.iOS\bin\iPhone\Debug\MvvmHelpers.pdb
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.iOS\obj\iPhone\Debug\actool\_PartialAppManifest.items
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.iOS\obj\iPhone\Debug\actool\_BundleResourceWithLogicalName.items
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.iOS\obj\iPhone\Debug\ibtool\_BundleResourceWithLogicalName.items
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.iOS\obj\iPhone\Debug\coremlc\_PartialAppManifest.items
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.iOS\obj\iPhone\Debug\coremlc\_BundleResourceWithLogicalName.items
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.iOS\obj\iPhone\Debug\optimized\
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.iOS\obj\iPhone\Debug\Project_Ensemble.iOS.csproj.AssemblyReference.cache
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.iOS\obj\iPhone\Debug\Project_Ensemble.iOS.csproj.CoreCompileInputs.cache

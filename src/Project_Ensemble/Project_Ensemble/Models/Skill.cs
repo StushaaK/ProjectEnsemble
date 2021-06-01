@@ -10,6 +10,7 @@ namespace Project_Ensemble.Models
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
+        [MaxLength(32)]
         public string InstrumentName { get; set; }
         public decimal Proficiency { get; set; }
 

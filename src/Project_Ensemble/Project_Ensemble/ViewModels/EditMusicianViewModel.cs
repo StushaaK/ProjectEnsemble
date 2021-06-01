@@ -28,7 +28,7 @@ namespace Project_Ensemble.ViewModels
         public async Task LoadData(int MusicianId)
         {
 
-            Musician = await DatabaseService.GetMusician(MusicianId);
+            Musician = await App.Database.GetMusician(MusicianId);
         }
 
         async Task Save()
@@ -38,7 +38,7 @@ namespace Project_Ensemble.ViewModels
             if (string.IsNullOrWhiteSpace(musician.Firstname) || string.IsNullOrWhiteSpace(musician.Lastname))
                 return;
 
-            await DatabaseService.UpdateMusician(musician);
+            await App.Database.UpdateMusician(musician);
 
             await Shell.Current.GoToAsync("..");
         }

@@ -1,13 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "loS3e5CjAgpIme2wfJwefZLbHdlXREeKrrrtqJxD3Uv7YOQ3f8S1TtsgvfSvUB4PVB2lnhkHbjWAHO7MJ9R0bw==",
+  "dgSpecHash": "5mo1ZYGuVY/817EjWOY4x6UzXzqVfTntWC/teShmt/WYva1vrUPw6BaUDPMJaCIUSWvoy0g9FJORdxHKUp7bpw==",
   "success": true,
   "projectFilePath": "D:\\projekty\\skola\\.NET\\SP\\src\\Project_Ensemble\\Project_Ensemble.iOS\\Project_Ensemble.iOS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danie\\.nuget\\packages\\newtonsoft.json\\9.0.1\\newtonsoft.json.9.0.1.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\refractored.mvvmhelpers\\1.6.2\\refractored.mvvmhelpers.1.6.2.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\sqlite-net-pcl\\1.7.335\\sqlite-net-pcl.1.7.335.nupkg.sha512",
-    "C:\\Users\\danie\\.nuget\\packages\\sqlitenetextensions\\2.1.0\\sqlitenetextensions.2.1.0.nupkg.sha512",
+    "C:\\Users\\danie\\.nuget\\packages\\sqlitenetextensions\\2.0.0\\sqlitenetextensions.2.0.0.nupkg.sha512",
+    "C:\\Users\\danie\\.nuget\\packages\\sqlitenetextensions.async\\2.1.0\\sqlitenetextensions.async.2.1.0.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\sqlitepclraw.bundle_green\\2.0.3\\sqlitepclraw.bundle_green.2.0.3.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\sqlitepclraw.core\\2.0.3\\sqlitepclraw.core.2.0.3.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\sqlitepclraw.provider.dynamic_cdecl\\2.0.3\\sqlitepclraw.provider.dynamic_cdecl.2.0.3.nupkg.sha512",
@@ -20,5 +21,19 @@
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.6.1\\xamarin.essentials.1.6.1.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\5.0.0.2012\\xamarin.forms.5.0.0.2012.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Zjistil se downgrade balíčku: Xamarin.Forms z 5.0.0.7220 na 5.0.0.2012. Pokud chcete vybrat jinou verzi, odkazujte na balíček přímo z projektu. \r\n Project_Ensemble.iOS -> Project_Ensemble -> Xamarin.Forms (>= 5.0.0.7220) \r\n Project_Ensemble.iOS -> Xamarin.Forms (>= 5.0.0.2012)",
+      "libraryId": "Xamarin.Forms",
+      "targetGraphs": [
+        "Xamarin.iOS,Version=v1.0",
+        "Xamarin.iOS,Version=v1.0/win",
+        "Xamarin.iOS,Version=v1.0/win-x64",
+        "Xamarin.iOS,Version=v1.0/win-x86"
+      ]
+    }
+  ]
 }

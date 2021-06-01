@@ -119,17 +119,30 @@
           "lib/netstandard2.0/SQLite-net.dll": {}
         }
       },
-      "SQLiteNetExtensions/2.1.0": {
+      "SQLiteNetExtensions/2.0.0": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "9.0.1",
           "sqlite-net-pcl": "1.4.118"
         },
         "compile": {
-          "lib/netstandard1.1/SQLiteNetExtensions.dll": {}
+          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/SQLiteNetExtensions.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.1/SQLiteNetExtensions.dll": {}
+          "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/SQLiteNetExtensions.dll": {}
+        }
+      },
+      "SQLiteNetExtensions.Async/2.1.0": {
+        "type": "package",
+        "dependencies": {
+          "SQLiteNetExtensions": "2.0.0",
+          "sqlite-net-pcl": "1.4.118"
+        },
+        "compile": {
+          "lib/netstandard1.1/SQLiteNetExtensionsAsync.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/SQLiteNetExtensionsAsync.dll": {}
         }
       },
       "SQLitePCLRaw.bundle_green/2.0.3": {
@@ -762,7 +775,7 @@
           "lib/netstandard2.0/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/5.0.0.2012": {
+      "Xamarin.Forms/5.0.0.7220": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Xamarin.Forms.Core.dll": {},
@@ -1062,17 +1075,47 @@
         "sqlite-net-pcl.nuspec"
       ]
     },
-    "SQLiteNetExtensions/2.1.0": {
-      "sha512": "oiyhVxCi7M2nr3tI6h05jdHGT0HKW6GxMNKUiO04zWAxv42MHtX12c4tW67w6VqGwcnXj1bwyTpq9P0W8QoGYQ==",
+    "SQLiteNetExtensions/2.0.0": {
+      "sha512": "wwLvVi4RyNu9VWFwgiKQOaHtzFpTmt2RE7WHz5EKABopbe6NW+jQF7rwKbtoNK+mQHqxqOwlNP9dDGjz89fFAQ==",
       "type": "package",
-      "path": "sqlitenetextensions/2.1.0",
+      "path": "sqlitenetextensions/2.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "lib/netstandard1.1/SQLiteNetExtensions.dll",
-        "lib/netstandard1.1/SQLiteNetExtensions.pdb",
-        "sqlitenetextensions.2.1.0.nupkg.sha512",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/SQLiteNetExtensions.dll",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/SQLiteNetExtensions.dll.mdb",
+        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/SQLiteNetExtensions.pdb",
+        "sqlitenetextensions.2.0.0.nupkg.sha512",
         "sqlitenetextensions.nuspec",
+        "src/SQLiteNetExtensions/Attributes/CascadeOperation.cs",
+        "src/SQLiteNetExtensions/Attributes/ForeignKeyAttribute.cs",
+        "src/SQLiteNetExtensions/Attributes/ManyToManyAttribute.cs",
+        "src/SQLiteNetExtensions/Attributes/ManyToOneAttribute.cs",
+        "src/SQLiteNetExtensions/Attributes/OneToManyAttribute.cs",
+        "src/SQLiteNetExtensions/Attributes/OneToOneAttribute.cs",
+        "src/SQLiteNetExtensions/Attributes/RelationshipAttribute.cs",
+        "src/SQLiteNetExtensions/Attributes/TextBlobAttribute.cs",
+        "src/SQLiteNetExtensions/Exceptions/IncorrectRelationshipException.cs",
+        "src/SQLiteNetExtensions/Extensions/ReadOperations.cs",
+        "src/SQLiteNetExtensions/Extensions/ReflectionExtensions.cs",
+        "src/SQLiteNetExtensions/Extensions/TextBlob/ITextBlobSerializer.cs",
+        "src/SQLiteNetExtensions/Extensions/TextBlob/Serializers/JsonBlobSerializer.cs",
+        "src/SQLiteNetExtensions/Extensions/TextBlob/TextBlobOperations.cs",
+        "src/SQLiteNetExtensions/Extensions/WriteOperations.cs",
+        "src/SQLiteNetExtensions/Properties/AssemblyInfo.cs"
+      ]
+    },
+    "SQLiteNetExtensions.Async/2.1.0": {
+      "sha512": "jiIewsMh0Zfv1dB5Jp9eylckDOmVqNx5uPoFunfwAJApimL71bja7OxF55pFlz7TTiSm0rTkn3aWE6Gz89qUDw==",
+      "type": "package",
+      "path": "sqlitenetextensions.async/2.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard1.1/SQLiteNetExtensionsAsync.dll",
+        "lib/netstandard1.1/SQLiteNetExtensionsAsync.pdb",
+        "sqlitenetextensions.async.2.1.0.nupkg.sha512",
+        "sqlitenetextensions.async.nuspec",
         "src/SQLiteNetExtensions/Attributes/CascadeOperation.cs",
         "src/SQLiteNetExtensions/Attributes/ForeignKeyAttribute.cs",
         "src/SQLiteNetExtensions/Attributes/ManyToManyAttribute.cs",
@@ -3502,13 +3545,12 @@
         "xamarin.essentials.nuspec"
       ]
     },
-    "Xamarin.Forms/5.0.0.2012": {
-      "sha512": "Rqc6xvWR/sf+Db5+qRCFmuYTWVp04QWRfwPto2/JHbShSy4Ed53Q2jpoFzsoloXkJA6saD236PlaWAhT6vI4gw==",
+    "Xamarin.Forms/5.0.0.7220": {
+      "sha512": "XlAkcH/aKYxboln7fbcdWiRZk6hb454WoIniHSookdgbRC9O450u+Op6we+r483dx1/HwEQ0NvF0yb3hSEKBCg==",
       "type": "package",
-      "path": "xamarin.forms/5.0.0.2012",
+      "path": "xamarin.forms/5.0.0.7220",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "Assets/xamarin_128x128.png",
         "build/MonoAndroid10/proguard.cfg",
         "build/Xamarin.Forms.DefaultItems.props",
@@ -3714,7 +3756,7 @@
         "lib/uap10.0.16299/Xamarin.Forms.Xaml.dll",
         "lib/uap10.0.16299/Xamarin.Forms.Xaml.pdb",
         "lib/uap10.0.16299/Xamarin.Forms.Xaml.xml",
-        "xamarin.forms.5.0.0.2012.nupkg.sha512",
+        "xamarin.forms.5.0.0.7220.nupkg.sha512",
         "xamarin.forms.nuspec"
       ]
     }
@@ -3723,10 +3765,10 @@
     ".NETStandard,Version=v2.0": [
       "NETStandard.Library >= 2.0.3",
       "Refractored.MvvmHelpers >= 1.6.2",
-      "SQLiteNetExtensions >= 2.1.0",
+      "SQLiteNetExtensions.Async >= 2.1.0",
       "Xamarin.CommunityToolkit >= 1.1.0",
       "Xamarin.Essentials >= 1.6.1",
-      "Xamarin.Forms >= 5.0.0.2012",
+      "Xamarin.Forms >= 5.0.0.7220",
       "sqlite-net-pcl >= 1.7.335"
     ]
   },
@@ -3759,6 +3801,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "D:\\danie\\Downloads\\nuget\\nuget": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3787,7 +3830,7 @@
             "target": "Package",
             "version": "[1.6.2, )"
           },
-          "SQLiteNetExtensions": {
+          "SQLiteNetExtensions.Async": {
             "target": "Package",
             "version": "[2.1.0, )"
           },
@@ -3801,7 +3844,7 @@
           },
           "Xamarin.Forms": {
             "target": "Package",
-            "version": "[5.0.0.2012, )"
+            "version": "[5.0.0.7220, )"
           },
           "sqlite-net-pcl": {
             "target": "Package",
@@ -3818,8 +3861,20 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Balíček SQLiteNetExtensions 2.0.0 se místo cílové architektury projektu .NETStandard,Version=v2.0 obnovil pomocí .NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8. Balíček nemusí být plně kompatibilní s vaším projektem.",
+      "libraryId": "SQLiteNetExtensions",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.0"
+      ]
+    }
+  ]
 }

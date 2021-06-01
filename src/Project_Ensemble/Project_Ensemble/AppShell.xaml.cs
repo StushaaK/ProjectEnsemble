@@ -1,4 +1,5 @@
-﻿using Project_Ensemble.Views;
+﻿using Project_Ensemble.Services;
+using Project_Ensemble.Views;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
@@ -17,10 +18,14 @@ namespace Project_Ensemble
             Routing.RegisterRoute(nameof(BandDetailPage), typeof(BandDetailPage));
             Routing.RegisterRoute(nameof(EditMusicianPage), typeof(EditMusicianPage));
             Routing.RegisterRoute(nameof(EditBandPage), typeof(EditBandPage));
+            Routing.RegisterRoute(nameof(ForgotPasswordPage), typeof(ForgotPasswordPage));
         }
 
-        private async void OnMenuItemClicked(object sender, EventArgs e)
+        private async void OnSignOut(object sender, EventArgs e)
         {
+            var authService = DependencyService.Resolve<IAuthenticationService>();
+            authService.SignOut();
+
             await Shell.Current.GoToAsync("//LoginPage");
         }
 

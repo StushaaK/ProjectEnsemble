@@ -29,6 +29,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "D:\\danie\\Downloads\\nuget\\nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -48,7 +49,7 @@
               "target": "Package",
               "version": "[1.6.2, )"
             },
-            "SQLiteNetExtensions": {
+            "SQLiteNetExtensions.Async": {
               "target": "Package",
               "version": "[2.1.0, )"
             },
@@ -107,6 +108,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "D:\\danie\\Downloads\\nuget\\nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -135,7 +137,7 @@
               "target": "Package",
               "version": "[1.6.2, )"
             },
-            "SQLiteNetExtensions": {
+            "SQLiteNetExtensions.Async": {
               "target": "Package",
               "version": "[2.1.0, )"
             },
@@ -149,7 +151,7 @@
             },
             "Xamarin.Forms": {
               "target": "Package",
-              "version": "[5.0.0.2012, )"
+              "version": "[5.0.0.7220, )"
             },
             "sqlite-net-pcl": {
               "target": "Package",
@@ -166,7 +168,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

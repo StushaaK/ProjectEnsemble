@@ -9,6 +9,7 @@
         <viewmodel:AddMusicianViewModel/>
     </ContentPage.BindingContext>
 
+    <ScrollView>
     <StackLayout VerticalOptions="Center">
         <Label HorizontalOptions="Center" FontSize="15" FontAttributes="Bold"
                    TextColor="{StaticResource Primary}" TextTransform="Uppercase">Přidat nového muzikanta</Label>
@@ -21,17 +22,17 @@
                                HorizontalOptions="Center"
                                VerticalOptions="Center"/>
 
-                <Entry Placeholder="Jméno" Text="{Binding Firstname}"></Entry>
-                <Entry Placeholder="Příjmení"  Text="{Binding Surname}"></Entry>
-                <Entry Placeholder="Email"  Text="{Binding Email}"></Entry>
+                <Entry Placeholder="Jméno" Text="{Binding Firstname}" MaxLength="32"></Entry>
+                <Entry Placeholder="Příjmení"  Text="{Binding Surname}" MaxLength="32"></Entry>
+                <Entry Placeholder="Kotaktní Email"  Text="{Binding Email}"  Keyboard="Email"></Entry>
+                <Entry Placeholder="Telefon"  Text="{Binding Phone}" Keyboard="Numeric" MaxLength="9"></Entry>
                 <Label>Datum narození:</Label>
                 <DatePicker Date="{Binding Birthday}"></DatePicker>
-                <Label>Pohlaví:</Label>
-                <Picker SelectedItem="{Binding Sex}">
+                <Picker Title="Pohlaví" SelectedItem="{Binding Sex}">
                     <Picker.Items>
                         <x:String>Muž</x:String>
                         <x:String>Žena</x:String>
-                        <x:String>Trasngeder</x:String>
+                        <x:String>Transgender</x:String>
                         <x:String>Two-Spirit</x:String>
                         <x:String>Cisgender</x:String>
                         <x:String>Non-binary</x:String>
@@ -42,14 +43,15 @@
                         <x:String>Jiné</x:String>
                     </Picker.Items>
                 </Picker>
-                <Entry Placeholder="Bydliště" Text="{Binding Residence}"></Entry>
+                <Entry Placeholder="Bydliště" Text="{Binding Residence}" MaxLength="100"></Entry>
                 <Entry Placeholder="Avatar (URL)" Text="{Binding Avatar}"></Entry>
+                <Editor Placeholder="O mně" Text="{Binding About}" MaxLength="255" AutoSize="TextChanges"></Editor>
                 <Button Text="Přidat" Command="{Binding SaveCommand}"></Button>
             </StackLayout>
-
+            
         </Frame>
     </StackLayout>
-
+    </ScrollView>
 
 
 </ContentPage>

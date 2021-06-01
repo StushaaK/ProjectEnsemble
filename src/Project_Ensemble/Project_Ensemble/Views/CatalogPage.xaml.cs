@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project_Ensemble.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,15 @@ namespace Project_Ensemble.Views
         public CatalogPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            // Create Binding context for Catalog
+            this.BindingContext = new CatalogViewModel();
+
         }
     }
 }

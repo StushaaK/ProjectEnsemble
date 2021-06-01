@@ -11,12 +11,13 @@ namespace Project_Ensemble.ViewModels
 {
     class AddMusicianViewModel : BaseViewModel
     {
-        string firstname, surname, email, sex, residence, avatar;
+        string firstname, surname, email, sex, residence, avatar, phone;
         DateTime birthday;
 
         public string Firstname { get => firstname; set => SetProperty(ref firstname, value); }
         public string Surname { get => surname; set => SetProperty(ref surname, value); }
         public string Email { get => email; set => SetProperty(ref email, value); }
+        public string Phone { get => phone; set => SetProperty(ref phone, value); }
         public string Sex { get => sex; set => SetProperty(ref sex, value); }
         public string Residence { get => residence; set => SetProperty(ref residence, value); }
         public string Avatar { get => avatar; set => SetProperty(ref avatar, value); }
@@ -47,7 +48,7 @@ namespace Project_Ensemble.ViewModels
             if (string.IsNullOrWhiteSpace(firstname) || string.IsNullOrWhiteSpace(surname))
                 return;
 
-            await DatabaseService.AddMusician(musician);
+            await App.Database.AddMusician(musician);
 
             await Shell.Current.GoToAsync("..");
         }

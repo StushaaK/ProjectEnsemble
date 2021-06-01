@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Project_Ensemble.Views.RegisterPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    Shell.NavBarIsVisible="False">
+    <ContentPage.Content>
+        <StackLayout Padding="30,0,30,0" VerticalOptions="Center">
+            <Label
+                FontSize="Large"
+                Text="Staň se součástí"
+                TextColor="{StaticResource Primary}" />
+            <Label Margin="0,-5,0,30" Text="a najdi skupiny a hráče" />
+
+            <Entry
+                xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference Entry2}"
+                MaxLength="32"
+                Placeholder="Jméno"
+                Text="{Binding Firstname}">
+                <Entry.Behaviors>
+                    <xct:TextValidationBehavior
+                        x:Name="FirstnameValidator"
+                        DecorationFlags="Trim"
+                        IsValid="False"
+                        MinimumLength="1" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry
+                x:Name="Entry2"
+                xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference Entry3}"
+                MaxLength="32"
+                Placeholder="Příjmení"
+                Text="{Binding Surname}">
+                <Entry.Behaviors>
+                    <xct:TextValidationBehavior
+                        x:Name="LastnameValidator"
+                        DecorationFlags="Trim"
+                        IsValid="False"
+                        MinimumLength="1" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry
+                x:Name="Entry3"
+                xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference Entry4}"
+                Keyboard="Email"
+                Placeholder="Email"
+                Text="{Binding Email}">
+                <Entry.Behaviors>
+                    <xct:EmailValidationBehavior x:Name="EmailValidator" DecorationFlags="Trim" />
+                </Entry.Behaviors>
+            </Entry>
+            <Entry
+                x:Name="Entry4"
+                IsPassword="True"
+                Placeholder="Heslo"
+                Text="{Binding Password}">
+                <Entry.Behaviors>
+                    <xct:TextValidationBehavior
+                        x:Name="PasswordValidator"
+                        DecorationFlags="Trim"
+                        IsValid="False"
+                        MinimumLength="1" />
+                </Entry.Behaviors>
+            </Entry>
+            <!--
+                ? - Entry for password verification
+            -->
+
+            <Button
+                Margin="0,20,0,0"
+                BackgroundColor="{StaticResource Primary}"
+                Command="{Binding SignUpCommand}"
+                CornerRadius="25"
+                Text="Registrovat"
+                TextColor="White">
+                <Button.Triggers>
+                    <MultiTrigger TargetType="Button">
+                        <MultiTrigger.Conditions>
+                            <BindingCondition Binding="{Binding IsValid, Source={x:Reference EmailValidator}}" Value="True" />
+                            <BindingCondition Binding="{Binding IsValid, Source={x:Reference FirstnameValidator}}" Value="True" />
+                            <BindingCondition Binding="{Binding IsValid, Source={x:Reference LastnameValidator}}" Value="True" />
+                            <BindingCondition Binding="{Binding IsValid, Source={x:Reference PasswordValidator}}" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter Property="IsEnabled" Value="True" />
+                    </MultiTrigger>
+                </Button.Triggers>
+            </Button>
+            <StackLayout Margin="0,50,0,0">
+                <Label
+                    HorizontalTextAlignment="Center"
+                    Text="Už máte vytvořený svůj účet? "
+                    TextColor="LightGray" />
+                <Button
+                    BackgroundColor="Transparent"
+                    BorderColor="LightGray"
+                    BorderWidth="1"
+                    Command="{Binding SignInCommand}"
+                    CornerRadius="25"
+                    Text="Přihlašte se"
+                    TextColor="Black" />
+            </StackLayout>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -38,23 +38,11 @@ namespace Project_Ensemble.ViewModels
             RefreshCommand = new AsyncCommand(Refresh);
             SelectedCommand = new AsyncCommand(Selected);
             LoadMoreCommand = new Command(LoadMore);
-            AddCommand = new AsyncCommand(Add);
-            RemoveCommand = new AsyncCommand<Musician>(Remove);
-            EditCommand = new AsyncCommand<Musician>(Edit);
             ClearCommand = new Command(Clear);
             DelayLoadMoreCommand = new Command(DelayLoadMore);
-
-            _ = Refresh();
         }
 
-        async Task Edit(Musician musician)
-        {
-            if (musician == null)
-                return;
-
-            var route = $"{nameof(EditMusicianPage)}?MusicianId={musician.Id}";
-            await Shell.Current.GoToAsync(route);
-        }
+        
 
         Musician selectedMusician;
         public Musician SelectedMusician
@@ -82,19 +70,6 @@ namespace Project_Ensemble.ViewModels
 
         }
 
-        async Task Add()
-        {
-            var route = $"{nameof(AddMusicianPage)}";
-            await Shell.Current.GoToAsync(route);
-
-        }
-
-        async Task Remove(Musician musician)
-        {
-            await DatabaseService.RemoveMusician(musician.Id);
-            await Refresh();
-        }
-
 
         public async Task Refresh()
         {
@@ -103,11 +78,21 @@ namespace Project_Ensemble.ViewModels
 
             IsBusy = true;
 
-            Musicians.Clear();
+            var musicians = await App.Database.GetMusicians();
+            Musicians.ReplaceRange(musicians);
 
-            var musicians = await DatabaseService.GetMusicians();
+            IsBusy = false;
+        }
 
-            Musicians.AddRange(musicians);
+        public async Task Initialize()
+        {
+            if (IsBusy || this.Musicians.Count != 0)
+                return;
+
+            IsBusy = true;
+
+            var musicians = await App.Database.GetMusicians();
+            Musicians.ReplaceRange(musicians);
 
             IsBusy = false;
         }

@@ -1,5 +1,9 @@
 # Project Ensemble
 
+<div align="center">
+    <img  src="./logo/logo.png" alt="Logo">
+</div>
+
 > Semestrální práce - **KIV/.NET** - Xamarin aplikace pro hudebníky a skupiny 🎺🎵  
 > Autor: **Daniel Stuš**  
 > Škola: **Západočeská univerzita v Plzni - Fakulta aplikovaných věd**  
@@ -33,5 +37,5 @@ Tento software používá následující open source balíčky:
 - [Google Icon Fonts](https://fonts.google.com/icons) - Otevřený icon font od Googlu
 
 ## Verze aplikace
-Kontrolní odevzdání - v0.0.1a
+Vývojová verze - v0.0.5a
 

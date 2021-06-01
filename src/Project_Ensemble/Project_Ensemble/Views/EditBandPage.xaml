@@ -1,26 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Project_Ensemble.Views.EditBandPage">
+<ContentPage
+    x:Class="Project_Ensemble.Views.EditBandPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Project_Ensemble.Controls">
 
-    <StackLayout VerticalOptions="Center">
-        <ActivityIndicator IsVisible="{Binding IsBusy}"
-                               IsRunning="{Binding IsBusy}"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center"/>
-
-        <Label HorizontalOptions="Center" FontSize="15" FontAttributes="Bold"
-                   TextColor="{StaticResource Primary}" TextTransform="Uppercase">Editovat skupinu</Label>
-        <Frame Margin="10" VerticalOptions="Center"  WidthRequest="300">
+    <Grid>
+        <ScrollView>
+            <StackLayout
+                x:Name="StackLayout"
+                Padding="20"
+                Spacing="10"
+                VerticalOptions="FillAndExpand">
 
 
-            <StackLayout>
-                <Entry Placeholder="Jméno" Text="{Binding Band.Name}" Margin="10"></Entry>
-                <Entry Placeholder="Sídlící v" Text="{Binding Band.BasedAt}" Margin="10"></Entry>
-                <Entry Placeholder="Obrázek (URL)" Text="{Binding Band.Image}" Margin="10"></Entry>
-                <Button Text="Uložit" Command="{Binding SaveCommand}"></Button>
+
+                <ActivityIndicator
+                    HorizontalOptions="Center"
+                    IsRunning="{Binding IsBusy}"
+                    IsVisible="{Binding IsBusy}"
+                    VerticalOptions="Start" />
+
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Body"
+                    Text="Základní informace"
+                    TextTransform="Uppercase" />
+
+                <Entry
+                    MaxLength="100"
+                    Placeholder="Jméno"
+                    Text="{Binding Band.Name}" />
+
+                <Entry
+                    MaxLength="100"
+                    Placeholder="Sídlící v"
+                    Text="{Binding Band.BasedAt}"
+                    VerticalOptions="Start" />
+                <Entry
+                    Placeholder="Obrázek (URL)"
+                    Text="{Binding Band.Image}"
+                    VerticalOptions="Start" />
+
+
+                <Label
+                    Margin="0,20,0,0"
+                    FontAttributes="Bold"
+                    FontSize="Body"
+                    Text="Žánry"
+                    TextTransform="Uppercase" />
+
+                <controls:FlowLayout
+                    x:Name="flChipView"
+                    Spacing="5"
+                    VerticalOptions="Start" />
+
+
+                <Button
+                    Margin="0,20,0,0"
+                    BackgroundColor="{StaticResource Primary}"
+                    Command="{Binding SaveCommand}"
+                    CornerRadius="25"
+                    HorizontalOptions="Center"
+                    Text="Uložit"
+                    TextColor="White"
+                    TextTransform="Uppercase"
+                    VerticalOptions="Start"
+                    WidthRequest="250" />
             </StackLayout>
-
-        </Frame>
-    </StackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

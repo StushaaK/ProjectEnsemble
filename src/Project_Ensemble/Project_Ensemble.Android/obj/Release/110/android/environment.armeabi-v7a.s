@@ -31,9 +31,9 @@
 	.global	application_config
 application_config:
 	/* uses_mono_llvm */
-	.byte	1
+	.byte	0
 	/* uses_mono_aot */
-	.byte	1
+	.byte	0
 	/* uses_assembly_preload */
 	.byte	1
 	/* is_a_bundled_app */
@@ -58,8 +58,8 @@ application_config:
 	.section	.rodata.env.str.2,"aMS",%progbits,1
 	.type	.L.env.str.2, %object
 .L.env.str.2:
-	.asciz	"normal"
-	.size	.L.env.str.2, 7
+	.asciz	"none"
+	.size	.L.env.str.2, 5
 	.section	.data.mono_aot_mode_name,"aw",%progbits
 	.global	mono_aot_mode_name
 mono_aot_mode_name:
@@ -82,7 +82,7 @@ mono_aot_mode_name:
 	.section	.rodata.env.str.6,"aMS",%progbits,1
 	.type	.L.env.str.6, %object
 .L.env.str.6:
-	.asciz	"fc33ca46-acd8-447b-9fbc-88ab668e353b"
+	.asciz	"02eda4a6-1b55-4430-b875-4ddb131cf1b2"
 	.size	.L.env.str.6, 37
 	.section	.rodata.env.str.7,"aMS",%progbits,1
 	.type	.L.env.str.7, %object

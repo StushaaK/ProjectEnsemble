@@ -1,14 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
-       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:local="clr-namespace:Project_Ensemble.Views"
-       Title="Project_Ensemble"
-       x:Class="Project_Ensemble.AppShell"
-       xmlns:md="clr-namespace:MaterialDesign">
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Project_Ensemble.AppShell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Project_Ensemble.Views"
+    xmlns:md="clr-namespace:MaterialDesign"
+    Title="Project_Ensemble">
 
     <!--
         The overall app visual hierarchy is defined here, along with navigation.
-    
+        
         https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
     -->
 
@@ -17,27 +18,30 @@
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
                 <Setter Property="Shell.ForegroundColor" Value="White" />
-                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="#AA000000" />
                 <Setter Property="Shell.DisabledColor" Value="#E0D5C9" />
                 <Setter Property="Shell.UnselectedColor" Value="#F7EDE3" />
                 <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="#F7EDE3"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+                <Setter Property="Shell.TabBarForegroundColor" Value="White" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#F7EDE3" />
+                <Setter Property="Shell.TabBarTitleColor" Value="White" />
             </Style>
-            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}">
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="FlyoutItem">
                 <Setter Property="Shell.BackgroundColor" Value="White" />
                 <Setter Property="Shell.ForegroundColor" Value="{StaticResource Primary}" />
             </Style>
 
             <!--
-            Default Styles for all Flyout Items
-            https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/flyout#flyoutitem-and-menuitem-style-classes
+                Default Styles for all Flyout Items
+                https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/flyout#flyoutitem-and-menuitem-style-classes
             -->
             <Style Class="FlyoutItemLabelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="TextColor" Value="White" />
             </Style>
-            <Style Class="FlyoutItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
+            <Style
+                ApplyToDerivedTypes="True"
+                Class="FlyoutItemLayoutStyle"
+                TargetType="Layout">
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
@@ -58,9 +62,12 @@
             </Style>
 
             <!--
-            Custom Style you can apply to any Flyout Item
+                Custom Style you can apply to any Flyout Item
             -->
-            <Style Class="MenuItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
+            <Style
+                ApplyToDerivedTypes="True"
+                Class="MenuItemLayoutStyle"
+                TargetType="Layout">
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
@@ -78,59 +85,96 @@
 
 
     <!--
-        TabBar lets you define content that won't show up in a flyout menu. When this content is active
-        the flyout menu won't be available. This is useful for creating areas of the application where 
-        you don't want users to be able to navigate away from. If you would like to navigate to this 
-        content you can do so by calling 
-        await Shell.Current.GoToAsync("//LoginPage");
-   -->
-    <TabBar>
-        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
-    </TabBar>
-
-    <!-- 
         When the Flyout is visible this defines the content to display in the flyout.
-        FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
+        FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
     <FlyoutItem Title="Domů">
         <FlyoutItem.Icon>
-            <FontImageSource Glyph="{x:Static md:MaterialDesignIcons.Home}" FontFamily="md-rr" Color="#F1F1F1"/>
+            <FontImageSource
+                FontFamily="md-rr"
+                Glyph="{x:Static md:MaterialDesignIcons.Home}"
+                Color="#33000000" />
         </FlyoutItem.Icon>
-        <ShellContent Route="CatalogPage" ContentTemplate="{DataTemplate local:CatalogPage}" />
+        <ShellContent ContentTemplate="{DataTemplate local:CatalogPage}" Route="CatalogPage" />
     </FlyoutItem>
     <FlyoutItem Title="Profil">
         <FlyoutItem.Icon>
-            <FontImageSource Glyph="{x:Static md:MaterialDesignIcons.AccountCircle}" FontFamily="md-rr" Color="#F1F1F1"/>
+            <FontImageSource
+                FontFamily="md-rr"
+                Glyph="{x:Static md:MaterialDesignIcons.AccountCircle}"
+                Color="#33000000" />
         </FlyoutItem.Icon>
-        <ShellContent Route="ProfilePage" ContentTemplate="{DataTemplate local:ProfilePage}" />
+        <ShellContent ContentTemplate="{DataTemplate local:ProfilePage}" Route="ProfilePage" />
+    </FlyoutItem>
+    <FlyoutItem Title="Moje Skupiny">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="md-rr"
+                Glyph="{x:Static md:MaterialDesignIcons.LibraryMusic}"
+                Color="#33000000" />
+        </FlyoutItem.Icon>
+        <ShellContent ContentTemplate="{DataTemplate local:UserBandsPage}" Route="ProfilePage" />
     </FlyoutItem>
     <FlyoutItem Title="Objevujte">
         <FlyoutItem.Icon>
-            <FontImageSource Glyph="{x:Static md:MaterialDesignIcons.Explore}" FontFamily="md-rr" Color="#F1F1F1"/>
+            <FontImageSource
+                FontFamily="md-rr"
+                Glyph="{x:Static md:MaterialDesignIcons.Explore}"
+                Color="#33000000" />
         </FlyoutItem.Icon>
-        <ShellContent Route="DiscoverPage" ContentTemplate="{DataTemplate local:DiscoverPage}" />
+        <ShellContent ContentTemplate="{DataTemplate local:DiscoverPage}" Route="DiscoverPage" />
+    </FlyoutItem>
+    <FlyoutItem Title="Nastavení">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="md-rr"
+                Glyph="{x:Static md:MaterialDesignIcons.Settings}"
+                Color="#33000000" />
+        </FlyoutItem.Icon>
+        <ShellContent ContentTemplate="{DataTemplate local:SettingsPage}" Route="SettingsPage" />
     </FlyoutItem>
     <FlyoutItem Title="O aplikaci">
         <FlyoutItem.Icon>
-            <FontImageSource Glyph="{x:Static md:MaterialDesignIcons.InfoOutline}" FontFamily="md-rr" Color="#F1F1F1"/>
+            <FontImageSource
+                FontFamily="md-rr"
+                Glyph="{x:Static md:MaterialDesignIcons.InfoOutline}"
+                Color="#33000000" />
         </FlyoutItem.Icon>
-        <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
+        <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" Route="AboutPage" />
     </FlyoutItem>
     <!-- <FlyoutItem Title="Browse" Icon="icon_feed.png">
         <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
-    </FlyoutItem> -->
+    </FlyoutItem>-->
 
-    <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to -->
-    <MenuItem Text="Odhlásit" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
+    <!--  When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
+    <MenuItem
+        Clicked="OnSignOut"
+        StyleClass="MenuItemLayoutStyle"
+        Text="Odhlásit">
         <MenuItem.IconImageSource>
-            <FontImageSource Glyph="{x:Static md:MaterialDesignIcons.Logout}" FontFamily="md-r" Color="#F1F1F1"/>
+            <FontImageSource
+                FontFamily="md-r"
+                Glyph="{x:Static md:MaterialDesignIcons.Logout}"
+                Color="#33000000" />
         </MenuItem.IconImageSource>
     </MenuItem>
 
+    <!--
+        TabBar lets you define content that won't show up in a flyout menu. When this content is active
+        the flyout menu won't be available. This is useful for creating areas of the application where
+        you don't want users to be able to navigate away from. If you would like to navigate to this
+        content you can do so by calling
+        await Shell.Current.GoToAsync("//LoginPage");
+    -->
+    <TabBar>
+        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}" Route="LoginPage" />
+        <ShellContent ContentTemplate="{DataTemplate local:RegisterPage}" Route="RegisterPage" />
+        <ShellContent ContentTemplate="{DataTemplate local:ForgotPasswordPage}" Route="ForgotPasswordPage" />
+    </TabBar>
 
 
-    <!-- Optional Templates 
+    <!-- Optional Templates
     // These may be provided inline as below or as separate classes.
 
     // This header appears at the top of the Flyout.
