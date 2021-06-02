@@ -40,6 +40,7 @@ namespace Project_Ensemble.ViewModels
 
                     Musician musician = new Musician
                     {
+                        Id = authService.GetCurrentUserId(),
                         Firstname = Firstname,
                         Lastname = Surname,
                         Email = Email,

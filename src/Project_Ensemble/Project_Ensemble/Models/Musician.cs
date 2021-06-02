@@ -9,8 +9,8 @@ namespace Project_Ensemble.Models
 {
     public class Musician
     {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        [PrimaryKey]
+        public string Id { get; set; }
 
         [MaxLength(32)]
         public string Firstname { get; set; }

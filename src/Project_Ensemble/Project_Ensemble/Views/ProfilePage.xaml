@@ -288,14 +288,14 @@
                         <Label Text="Datum narození: " />
                         <Label
                             FontSize="14"
-                            Text="{Binding User.BirthDay}"
+                            Text="{Binding User.BirthDay, StringFormat='{0:dd.MM.yyyy}'}"
                             TextColor="#707070" />
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Datum registrace: " />
                         <Label
                             FontSize="14"
-                            Text="{Binding User.TimeStamp}"
+                            Text="{Binding User.TimeStamp, StringFormat='{0:dd.MM.yyyy}'}"
                             TextColor="#707070" />
                     </StackLayout>
 

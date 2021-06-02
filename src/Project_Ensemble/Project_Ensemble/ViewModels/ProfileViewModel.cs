@@ -28,10 +28,10 @@ namespace Project_Ensemble.ViewModels
             await Shell.Current.GoToAsync(route);
         }
 
-        public async Task LoadUser(string email)
+        public async Task LoadUser(string userId)
         {
             IsBusy = true;
-            User = await App.Database.GetMusicianByEmail(email);
+            User = await App.Database.GetMusician(userId);
         }
     }
 }

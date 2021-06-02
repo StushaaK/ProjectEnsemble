@@ -26,7 +26,7 @@
                     HorizontalTextAlignment="Center">
                     Projekt Ensemble je Portál pro všechny milovníky hudby, kteří hledají místo, kde najít spoluhráče do své skupiny, či pro jednotlivce, kteří svoji skupinu teprve hledají.
                 </Label>
-                <Label HorizontalOptions="Center">dev0.0.1a</Label>
+                <Label HorizontalOptions="Center">dev0.0.6a</Label>
                 <Label HorizontalOptions="Center">Vyrobil: Daniel Stuš</Label>
                 <Label HorizontalOptions="Center">Pomocí technologií XAMARIN.Forms &amp; SQLLite</Label>
             </StackLayout>

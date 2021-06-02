@@ -42,7 +42,7 @@ namespace Project_Ensemble.ViewModels
             DelayLoadMoreCommand = new Command(DelayLoadMore);
         }
 
-        
+
 
         Musician selectedMusician;
         public Musician SelectedMusician
@@ -102,11 +102,11 @@ namespace Project_Ensemble.ViewModels
             if (Musicians.Count >= 20)
                 return;
 
-            Musicians.Add(new Musician { Avatar = "https://i.pravatar.cc/768?u=JaroslavNovotny", Firstname = "Jaroslav", Lastname = "Novotný" });
-            Musicians.Add(new Musician { Avatar = "https://i.pravatar.cc/768?u=AdamKoutny", Firstname = "Adam", Lastname = "Koutný" });
-            Musicians.Add(new Musician { Avatar = "https://i.pravatar.cc/768?u=JosefZdejsi", Firstname = "Josef", Lastname = "Zdejší" });
-            Musicians.Add(new Musician { Avatar = "https://i.pravatar.cc/768?u=MartinVostra", Firstname = "Martina", Lastname = "Vostrá" });
-            Musicians.Add(new Musician { Avatar = "https://i.pravatar.cc/768?u=JaroslavNovotny", Firstname = "Pepa", Lastname = "Zdepa" });
+            Musicians.Add(new Musician { Avatar = "https://i.pravatar.cc/768?u=JaroslavNovotny", Id = "jaroslavnovotny", Firstname = "Jaroslav", Lastname = "Novotný", Residence = "Oregon, USA", TimeStamp = System.DateTime.Now });
+            Musicians.Add(new Musician { Avatar = "https://i.pravatar.cc/768?u=AdamKoutny", Id = "adamkoutny", Firstname = "Adam", Lastname = "Koutný", Residence = "Plzeň, Czech Republic", TimeStamp = System.DateTime.Now });
+            Musicians.Add(new Musician { Avatar = "https://i.pravatar.cc/768?u=JosefZdejsi", Id = "josefzdejsi", Firstname = "Josef", Lastname = "Zdejší", Residence = "Praha, Czech Republic", TimeStamp = System.DateTime.Now });
+            Musicians.Add(new Musician { Avatar = "https://i.pravatar.cc/768?u=MartinaVostra", Id = "martinavostra", Firstname = "Martina", Lastname = "Vostrá", Residence = "Wasrzawa, Poland", TimeStamp = System.DateTime.Now });
+            Musicians.Add(new Musician { Avatar = "https://i.pravatar.cc/768?u=PepaZdepa", Id = "pepazdepa", Firstname = "Pepa", Lastname = "Zdepa", Residence = "Třemošná, Czech Republic", TimeStamp = System.DateTime.Now });
 
         }
 

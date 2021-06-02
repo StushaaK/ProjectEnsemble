@@ -7,15 +7,9 @@
     xmlns:md="clr-namespace:MaterialDesign"
     xmlns:viewmodels="clr-namespace:Project_Ensemble.ViewModels"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-    x:Name="UserBandList">
+    x:Name="UserBandList"
+    Title="Vaše skupiny">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding AddCommand}" Text="Přidat skupinu" />
-    </ContentPage.ToolbarItems>
-
-    <ContentPage.IconImageSource>
-        <FontImageSource FontFamily="md-rr" Glyph="{x:Static md:MaterialDesignIcons.Group}" />
-    </ContentPage.IconImageSource>
 
     <ContentPage.Resources>
         <Style TargetType="SwipeView">
@@ -50,7 +44,12 @@
                 SelectionMode="Single">
                 <CollectionView.EmptyView>
                     <StackLayout>
-                        <Label HorizontalOptions="Center" Text="Zatím jste nevytvořili žádnou skupinu" />
+                        <Label
+                            Padding="0,20,0,0"
+                            FontSize="Body"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="Zatím jste nevytvořili žádnou skupinu" />
                     </StackLayout>
                 </CollectionView.EmptyView>
 

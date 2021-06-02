@@ -54,10 +54,9 @@ namespace XamFormsFirebaseAuth.Android
         public void SignOut()
             => FirebaseAuth.Instance.SignOut();
 
-        public string GetCurrentUserEmail()
+        public string GetCurrentUserId()
         {
-
-            return FirebaseAuth.Instance.CurrentUser.Email;
+            return FirebaseAuth.Instance.CurrentUser.Uid;
         }
 
     }

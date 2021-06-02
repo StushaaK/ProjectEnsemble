@@ -3,8 +3,21 @@
     x:Class="Project_Ensemble.Views.EditMusicianPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Project_Ensemble.Controls"
+    xmlns:helpers="clr-namespace:Project_Ensemble.Helpers"
     xmlns:viewmodel="clr-namespace:Project_Ensemble.ViewModels"
-    Title="Editovat profil muzikanta">
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="this"
+    Title="Upravit profil">
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <helpers:InitialsConverter x:Key="initialsConverter" />
+            <xct:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <Grid>
         <ScrollView>
             <StackLayout Padding="20" VerticalOptions="FillAndExpand">
@@ -19,11 +32,32 @@
                         IsVisible="{Binding IsBusy}"
                         VerticalOptions="Center" />
 
+
+
+                    <StackLayout HorizontalOptions="Center">
+                        <xct:AvatarView
+                            HorizontalOptions="CenterAndExpand"
+                            Size="100"
+                            Source="{Binding Musician.Avatar}"
+                            Text="{Binding Path=Musician, Converter={StaticResource initialsConverter}}" />
+                        <Label
+                            Margin="0,5,0,0"
+                            FontSize="Body"
+                            HorizontalTextAlignment="Center"
+                            Text="Změnit profilovou fotku"
+                            TextColor="{StaticResource Primary}" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
                     <Label
+                        Margin="0,20,0,0"
                         FontAttributes="Bold"
                         FontSize="Body"
                         Text="Základní informace"
                         TextTransform="Uppercase" />
+
                     <Entry
                         MaxLength="32"
                         Placeholder="Jméno"
@@ -42,7 +76,7 @@
                         Placeholder="Telefon"
                         Text="{Binding Musician.Phone}" />
                     <Label>Datum narození:</Label>
-                    <DatePicker Date="{Binding Musician.BirthDay}" />
+                    <controls:NullableDatePicker NullableDate="{Binding Musician.BirthDay}" />
                     <Label>Pohlaví:</Label>
                     <Picker Title="Pohlaví" SelectedItem="{Binding Musician.Sex}">
                         <Picker.Items>
@@ -63,7 +97,7 @@
                         MaxLength="100"
                         Placeholder="Bydliště"
                         Text="{Binding Musician.Residence}" />
-                    <Entry Placeholder="Avatar (URL)" Text="{Binding Musician.Avatar}" />
+
                     <Editor
                         AutoSize="TextChanges"
                         MaxLength="255"
@@ -101,5 +135,56 @@
 
             </StackLayout>
         </ScrollView>
+
+        <!--  Backdrop  -->
+        <BoxView
+            x:Name="Backdrop"
+            InputTransparent="True"
+            Opacity="0"
+            Color="#4B000000">
+            <BoxView.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+            </BoxView.GestureRecognizers>
+        </BoxView>
+
+        <!--  Bottom Drawer  -->
+        <Frame
+            x:Name="BottomToolbar"
+            Padding="15,6"
+            BackgroundColor="White"
+            CornerRadius="20"
+            HeightRequest="180"
+            TranslationY="260"
+            VerticalOptions="End">
+            <Frame.GestureRecognizers>
+                <PanGestureRecognizer PanUpdated="PanGestureRecognizer_PanUpdated" />
+            </Frame.GestureRecognizers>
+            <StackLayout Padding="10" Orientation="Vertical">
+                <BoxView
+                    BackgroundColor="LightGray"
+                    CornerRadius="2"
+                    HeightRequest="4"
+                    HorizontalOptions="Center"
+                    WidthRequest="35" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    Text="Změnit profilovou fotku" />
+                <TableView
+                    BackgroundColor="White"
+                    Intent="Menu"
+                    VerticalOptions="End">
+                    <TableSection>
+                        <TextCell Text="Nová profilová fotka" TextColor="Black" />
+                        <TextCell
+                            IsEnabled="{Binding Musician.Avatar, Converter={StaticResource}}"
+                            Text="Odebrat profilovou fotku"
+                            TextColor="Red" />
+                    </TableSection>
+                </TableView>
+            </StackLayout>
+        </Frame>
+
     </Grid>
 </ContentPage>

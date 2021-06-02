@@ -25,7 +25,7 @@ namespace Project_Ensemble.ViewModels
 
         }
 
-        public async Task LoadData(int MusicianId)
+        public async Task LoadData(string MusicianId)
         {
 
             Musician = await App.Database.GetMusician(MusicianId);

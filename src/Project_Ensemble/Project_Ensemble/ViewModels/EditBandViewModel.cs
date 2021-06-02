@@ -68,7 +68,7 @@ namespace Project_Ensemble.ViewModels
 
             await App.Database.UpdateWithChildren(band);
 
-            await Shell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync("..?Reload=true");
         }
     }
 }

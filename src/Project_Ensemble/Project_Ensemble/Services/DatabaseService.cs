@@ -41,11 +41,11 @@ namespace Project_Ensemble.Services
 
             List<Musician> Musicians = new List<Musician>
             {
-            new Musician { Avatar = "https://i.pravatar.cc/768?u=JaroslavNovotny", Firstname = "Jaroslav", Lastname = "Novotný", Residence = "Oregon, USA", TimeStamp=System.DateTime.Now },
-            new Musician { Avatar = "https://i.pravatar.cc/768?u=AdamKoutny", Firstname = "Adam", Lastname = "Koutný", Residence = "Plzeň, Czech Republic", TimeStamp=System.DateTime.Now  },
-            new Musician { Avatar = "https://i.pravatar.cc/768?u=JosefZdejsi", Firstname = "Josef", Lastname = "Zdejší", Residence = "Praha, Czech Republic", TimeStamp=System.DateTime.Now  },
-            new Musician { Avatar = "https://i.pravatar.cc/768?u=MartinVostra", Firstname = "Martina", Lastname = "Vostrá", Residence = "Wasrzawa, Poland", TimeStamp=System.DateTime.Now  },
-            new Musician { Avatar = "https://i.pravatar.cc/768?u=JaroslavNovotny", Firstname = "Pepa", Lastname = "Zdepa", Residence = "Třemošná, Czech Republic", TimeStamp=System.DateTime.Now  }
+            new Musician { Avatar = "https://i.pravatar.cc/768?u=JaroslavNovotny", Id = "jaroslavnovotny",Firstname = "Jaroslav", Lastname = "Novotný", Residence = "Oregon, USA", TimeStamp=System.DateTime.Now },
+            new Musician { Avatar = "https://i.pravatar.cc/768?u=AdamKoutny", Id="adamkoutny",Firstname = "Adam", Lastname = "Koutný", Residence = "Plzeň, Czech Republic", TimeStamp=System.DateTime.Now  },
+            new Musician { Avatar = "https://i.pravatar.cc/768?u=JosefZdejsi", Id="josefzdejsi",Firstname = "Josef", Lastname = "Zdejší", Residence = "Praha, Czech Republic", TimeStamp=System.DateTime.Now  },
+            new Musician { Avatar = "https://i.pravatar.cc/768?u=MartinaVostra", Id="martinavostra",Firstname = "Martina", Lastname = "Vostrá", Residence = "Wasrzawa, Poland", TimeStamp=System.DateTime.Now  },
+            new Musician { Avatar = "https://i.pravatar.cc/768?u=PepaZdepa", Id="pepazdepa",Firstname = "Pepa", Lastname = "Zdepa", Residence = "Třemošná, Czech Republic", TimeStamp=System.DateTime.Now  }
             };
 
             return _database.InsertAllAsync(Musicians);
@@ -113,9 +113,9 @@ namespace Project_Ensemble.Services
             return _database.DeleteAsync<Musician>(id);
         }
 
-        public Task<Musician> GetMusician(int id)
+        public Task<Musician> GetMusician(string id)
         {
-            return _database.Table<Musician>().FirstOrDefaultAsync(m => m.Id == id);
+            return _database.Table<Musician>().FirstOrDefaultAsync(m => m.Id.Equals(id));
         }
 
         public Task<Musician> GetMusicianByEmail(string email)
@@ -153,9 +153,9 @@ namespace Project_Ensemble.Services
             return _database.Table<Band>().ToListAsync();
         }
 
-        public Task<List<Band>> GetUserBands(int userId)
+        public Task<List<Band>> GetUserBands(string userId)
         {
-            return _database.Table<Band>().Where(b => b.CreatedBy.Equals(userId)).ToListAsync();
+            return _database.Table<Band>().Where(b => b.CreatedById.Equals(userId)).ToListAsync();
         }
 
         public Task<Genre> GetGenre(int id)
@@ -173,7 +173,7 @@ namespace Project_Ensemble.Services
             return _database.UpdateWithChildrenAsync(obj);
         }
 
-        public Task<Musician> GetMusicianWithChildren(int id)
+        public Task<Musician> GetMusicianWithChildren(string id)
         {
             return _database.GetWithChildrenAsync<Musician>(id);
         }

@@ -11,7 +11,7 @@ namespace Project_Ensemble.Models
         public int BandId { get; set; }
 
         [ForeignKey(typeof(Musician))]
-        public int MusicianId { get; set; }
+        public string MusicianId { get; set; }
 
         public DateTime TimeStamp { get; set; }
     }

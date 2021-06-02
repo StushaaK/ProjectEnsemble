@@ -26,7 +26,7 @@ namespace Project_Ensemble.Views
             this.BindingContext = new ProfileViewModel();
 
             var authService = DependencyService.Resolve<IAuthenticationService>();
-            await ((ProfileViewModel)BindingContext).LoadUser(authService.GetCurrentUserEmail());
+            await ((ProfileViewModel)BindingContext).LoadUser(authService.GetCurrentUserId());
 
         }
     }

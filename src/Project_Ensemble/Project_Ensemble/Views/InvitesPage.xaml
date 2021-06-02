@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Project_Ensemble.Views.InvitesPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Pozvánky">
+    <ContentPage.Content>
+        <StackLayout>
+            <CollectionView>
+                <CollectionView.EmptyView>
+                    <Label
+                        Padding="0,20,0,0"
+                        FontSize="Body"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="Nemáte žádné pozvánky do skupiny" />
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

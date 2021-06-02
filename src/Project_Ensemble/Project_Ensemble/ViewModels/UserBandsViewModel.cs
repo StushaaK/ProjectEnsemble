@@ -12,7 +12,7 @@ using Command = MvvmHelpers.Commands.Command;
 
 namespace Project_Ensemble.ViewModels
 {
-    class UserBandsViewModel : BaseViewModel
+    public class UserBandsViewModel : BaseViewModel
     {
         public ObservableRangeCollection<Band> Bands { get; set; }
 
@@ -77,7 +77,7 @@ namespace Project_Ensemble.ViewModels
             SelectedBand = null;
         }
 
-        async Task Add()
+        public async Task Add()
         {
             var route = $"{nameof(AddBandPage)}?UserId={User.Id}";
             await Shell.Current.GoToAsync(route);
@@ -100,7 +100,7 @@ namespace Project_Ensemble.ViewModels
             IsBusy = true;
 
             var authService = DependencyService.Resolve<IAuthenticationService>();
-            User = await App.Database.GetMusicianByEmail(authService.GetCurrentUserEmail());
+            User = await App.Database.GetMusician(authService.GetCurrentUserId());
 
             var bands = await App.Database.GetUserBands(User.Id);
             Bands.ReplaceRange(bands);
@@ -116,7 +116,7 @@ namespace Project_Ensemble.ViewModels
             IsBusy = true;
 
             var authService = DependencyService.Resolve<IAuthenticationService>();
-            User = await App.Database.GetMusicianByEmail(authService.GetCurrentUserEmail());
+            User = await App.Database.GetMusician(authService.GetCurrentUserId());
 
             var bands = await App.Database.GetUserBands(User.Id);
             Bands.ReplaceRange(bands);

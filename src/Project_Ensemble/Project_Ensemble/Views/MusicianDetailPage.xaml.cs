@@ -28,9 +28,8 @@ namespace Project_Ensemble.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            int.TryParse(MusicianId, out var result);
 
-            BindingContext = await App.Database.GetMusician(result);
+            BindingContext = await App.Database.GetMusician(MusicianId);
         }
 
         private void OnEmailClicked()

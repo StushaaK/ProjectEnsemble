@@ -12,6 +12,6 @@ namespace Project_Ensemble.Services
         void SignOut();
         Task<string> SignIn(string email, string password);
         Task ResetPassword(string email);
-        string GetCurrentUserEmail();
+        string GetCurrentUserId();
     }
 }

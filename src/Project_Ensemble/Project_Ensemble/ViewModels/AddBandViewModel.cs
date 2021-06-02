@@ -2,6 +2,7 @@
 using MvvmHelpers.Commands;
 using Project_Ensemble.Models;
 using Project_Ensemble.Services;
+using Project_Ensemble.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -34,7 +35,7 @@ namespace Project_Ensemble.ViewModels
             SaveCommand = new AsyncCommand(Save);
         }
 
-        public async Task LoadData(int result)
+        public async Task LoadData(string result)
         {
             IsBusy = true;
             Musician = await App.Database.GetMusicianWithChildren(result);
@@ -83,7 +84,7 @@ namespace Project_Ensemble.ViewModels
             await App.Database.UpdateWithChildren(band);
             await App.Database.UpdateWithChildren(Musician);
 
-            await Shell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync($"..?Reload={true}");
         }
 
         public async Task GetGenresFromDatabase()

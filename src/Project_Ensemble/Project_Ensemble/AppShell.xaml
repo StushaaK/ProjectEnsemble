@@ -114,7 +114,7 @@
                 Glyph="{x:Static md:MaterialDesignIcons.LibraryMusic}"
                 Color="#33000000" />
         </FlyoutItem.Icon>
-        <ShellContent ContentTemplate="{DataTemplate local:UserBandsPage}" Route="ProfilePage" />
+        <ShellContent ContentTemplate="{DataTemplate local:UserBandsHubPage}" Route="UserBandsHubPage" />
     </FlyoutItem>
     <FlyoutItem Title="Objevujte">
         <FlyoutItem.Icon>

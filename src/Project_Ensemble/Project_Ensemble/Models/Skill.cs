@@ -11,11 +11,11 @@ namespace Project_Ensemble.Models
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
         [MaxLength(32)]
-        public string InstrumentName { get; set; }
+        public string SkillName { get; set; }
         public decimal Proficiency { get; set; }
 
         [ForeignKey(typeof(Musician))]
-        public int MusicianId { get; set; }
+        public string MusicianId { get; set; }
         public DateTime TimeStamp { get; set; }
     }
 }

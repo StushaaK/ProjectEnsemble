@@ -30,9 +30,8 @@ namespace Project_Ensemble.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            int.TryParse(UserId, out var result);
 
-            await vm.LoadData(result);
+            await vm.LoadData(UserId);
 
             foreach (var item in vm.ItemList)
             {

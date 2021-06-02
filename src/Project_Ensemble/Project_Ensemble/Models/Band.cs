@@ -15,10 +15,10 @@ namespace Project_Ensemble.Models
         public string BasedAt { get; set; }
 
         [ForeignKey(typeof(Musician))]
-        public int CreatedBy { get; set; }
+        public string CreatedById { get; set; }
 
         [ManyToOne]
-        public Musician Musician { get; set; }
+        public Musician CreatedBy { get; set; }
 
 
         [ManyToMany(typeof(BandGenres))]
