@@ -35,6 +35,7 @@ Pro release bude potřeba nahradit lokální SQLite databázi internetovým API/
 - [ ] Rozšířené možnosti filtrace a řazení
 - [ ] Další optimalizace výkonu
 - Ostatní
+    - [ ] iOS & Windows desktop a Universal Windows Platform (UWP) verze
     - [ ] Přechod na .NET MAUI
     - [ ] Webová aplikace
     - [ ] Dokumentace
@@ -50,6 +51,7 @@ Tento software používá následující open source balíčky:
 - [SQLite-Net Extensions](https://bitbucket.org/twincoders/sqlite-net-extensions/src/master/) - Knihovna přidávající podporu pro jednoduchý zápis relací 1:1, 1:N, N:1, M:M a jejich inverzí pomocí ORM SQLite-net
 - [Google Icon Fonts](https://fonts.google.com/icons) - Otevřený icon font od Googlu
 - [Firebase](https://firebase.google.com/) - Platforma společnosti Google pro vývoj mobilních a webových aplikací. Umožňuje pomocí jednoduchých nástrojů implementovat Autentifikaci, Databázi, Datové úložiště a mnohé další.
+- [Google Maps Platform - Google Places Api](https://cloud.google.com/maps-platform/places) - API společnosti googlu poskytující data pro geolokaci. (Využito pro autocomplete)
 
 
 ## Verze aplikace
