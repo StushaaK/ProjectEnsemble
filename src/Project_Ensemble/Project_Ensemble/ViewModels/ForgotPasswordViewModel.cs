@@ -1,17 +1,14 @@
-﻿
+﻿using System;
+using System.Windows.Input;
 using Project_Ensemble.Services;
 using Project_Ensemble.Views;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Project_Ensemble.ViewModels
 {
-    class ForgotPasswordViewModel : BaseViewModel
+    internal class ForgotPasswordViewModel : BaseViewModel
     {
-        private string email;
+        private string _email;
 
         public ForgotPasswordViewModel()
         {
@@ -19,7 +16,19 @@ namespace Project_Ensemble.ViewModels
             SignUpCommand = new Command(OnSignUp);
         }
 
-        private async void OnSignUp(object obj) => await Shell.Current.GoToAsync($"//{nameof(RegisterPage)}");
+        public string Email
+        {
+            get => _email;
+            set => SetProperty(ref _email, value);
+        }
+
+        public ICommand ResetPasswordCommand { get; }
+        public ICommand SignUpCommand { get; }
+
+        private static async void OnSignUp(object obj)
+        {
+            await Shell.Current.GoToAsync($"//{nameof(RegisterPage)}");
+        }
 
         private async void OnResetPassword(object obj)
         {
@@ -27,26 +36,16 @@ namespace Project_Ensemble.ViewModels
             {
                 var authService = DependencyService.Resolve<IAuthenticationService>();
                 await authService.ResetPassword(Email);
-
-                await Shell.Current.DisplayAlert("Resetování hesla", "Pokud máme Váš email v databázi, byl vám odeslán odkaz pro resetování hesla. Prosím zkontrolujte svou e-mailovou adresu.", "OK");
-
+                await Shell.Current.DisplayAlert("Resetování hesla",
+                    "Pokud máme Váš email v databázi, byl vám odeslán odkaz pro resetování hesla. Prosím zkontrolujte svou e-mailovou adresu.",
+                    "OK");
                 await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-
                 await Shell.Current.DisplayAlert("Resetování hesla", "Při resetování hesla došlo k problému", "OK");
             }
         }
-
-        public string Email
-        {
-            get => email;
-            set => SetProperty(ref email, value);
-        }
-
-        public ICommand ResetPasswordCommand { get; }
-        public ICommand SignUpCommand { get; }
     }
 }

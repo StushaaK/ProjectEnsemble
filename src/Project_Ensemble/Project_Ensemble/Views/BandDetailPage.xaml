@@ -1,17 +1,42 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage
     x:Class="Project_Ensemble.Views.BandDetailPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:md="clr-namespace:MaterialDesign"
-    xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:projectEnsemble="clr-namespace:Project_Ensemble;assembly=Project_Ensemble"
+    xmlns:models="clr-namespace:Project_Ensemble.Models;assembly=Project_Ensemble">
+
+    <ContentPage.Resources>
+        <Style TargetType="StackLayout">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="Transparent" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        <ResourceDictionary>
+            <xct:ListIsNotNullOrEmptyConverter x:Key="ListIsNotNullOrEmptyConverter" />
+            <xct:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <Grid VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <xct:AvatarView
                 CornerRadius="0"
@@ -25,17 +50,10 @@
                 Padding="18"
                 CornerRadius="10"
                 HasShadow="True"
-                HeightRequest="220"
                 VerticalOptions="StartAndExpand">
-                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <StackLayout
-                        HorizontalOptions="CenterAndExpand"
-                        Orientation="Vertical"
-                        Spacing="6">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                    <StackLayout Orientation="Vertical" Spacing="6">
                         <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                             <Label
                                 FontAttributes="Bold"
@@ -51,8 +69,9 @@
 
                         <StackLayout
                             HorizontalOptions="CenterAndExpand"
+                            IsVisible="{Binding Band.BasedAt, Converter={StaticResource IsNotNullOrEmptyConverter}}"
                             Orientation="Horizontal"
-                            Spacing="10">
+                            Spacing="5">
                             <Image
                                 HeightRequest="15"
                                 VerticalOptions="Center"
@@ -60,83 +79,141 @@
                                 <Image.Source>
                                     <FontImageSource
                                         FontFamily="md-rr"
-                                        Glyph="{x:Static md:MaterialDesignIcons.Room}"
+                                        Glyph="{x:Static projectEnsemble:MaterialDesignIcons.Room}"
                                         Color="{StaticResource Primary}" />
                                 </Image.Source>
                             </Image>
                             <Label
                                 FontAttributes="Bold"
                                 FontSize="14"
-                                Text="{Binding Band.BasedAt}"
+                                Text="{Binding Band.BasedAt.Name}"
                                 TextColor="#1F1D1D"
                                 VerticalOptions="Center" />
-
                         </StackLayout>
                     </StackLayout>
-                    <Grid
-                        Grid.Row="1"
-                        HorizontalOptions="FillAndExpand"
-                        VerticalOptions="CenterAndExpand">
+                    <StackLayout
+                        IsVisible="{Binding Band.Musicians, Converter={StaticResource ListIsNotNullOrEmptyConverter}}"  Margin="0,10,0,0">
+                        <Grid CompressedLayout.IsHeadless="True">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image HorizontalOptions="Start">
+                                <Image.Source>
+                                    <FontImageSource FontFamily="md-rr" Glyph="{x:Static projectEnsemble:MaterialDesignIcons.Group}" Color="{StaticResource Primary}"></FontImageSource>
+                                </Image.Source>
+                            </Image>
+                            <Label FontSize="Caption"
+                                   TextTransform="Uppercase"
+                                   FontAttributes="Bold"
+                                   TextColor="#2C3E50"
+                                   Text="Členové skupiny" Grid.Column="1"
+                                   VerticalOptions="Center"/>
+                        </Grid>
+                        <CollectionView
+                            ItemsSource="{Binding Band.Musicians}"
+                            SelectedItem="{Binding SelectedMusician, Mode=TwoWay}"
+                            SelectionChangedCommand="{Binding SelectedCommand}"
+                            SelectionMode="Single"
+                            HeightRequest="120"
+                            >
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout Orientation="Horizontal" x:DataType="models:Musician">
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="- "/>
+                                                    <Span Text="{Binding Firstname}" TextColor="{StaticResource Primary}"/>
+                                                    <Span Text=" "/>
+                                                    <Span Text="{Binding Lastname}" TextColor="{StaticResource Primary}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <Frame
+                Grid.Row="2"
+                Margin="20,0,20,0"
+                Padding="18"
+                CornerRadius="10"
+                HasShadow="True"
+                HorizontalOptions="FillAndExpand"
+                IsVisible="{Binding Band.About, Converter={StaticResource IsNotNullOrEmptyConverter}}"
+                VerticalOptions="StartAndExpand">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid CompressedLayout.IsHeadless="True">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <StackLayout
-                            HorizontalOptions="CenterAndExpand"
-                            Orientation="Vertical"
-                            Spacing="10">
-                            <Image
-                                HeightRequest="45"
-                                HorizontalOptions="Center"
-                                WidthRequest="45">
-                                <Image.Source>
-                                    <FontImageSource
-                                        FontFamily="md-rr"
-                                        Glyph="{x:Static md:MaterialDesignIcons.Radio}"
-                                        Color="{StaticResource Primary}" />
-                                </Image.Source>
-                            </Image>
-
-                        </StackLayout>
-                        <StackLayout
-                            Grid.Column="1"
-                            HorizontalOptions="CenterAndExpand"
-                            Orientation="Vertical"
-                            Spacing="10">
-                            <Image
-                                HeightRequest="45"
-                                HorizontalOptions="Center"
-                                WidthRequest="45">
-                                <Image.Source>
-                                    <FontImageSource
-                                        FontFamily="md-rr"
-                                        Glyph="{x:Static md:MaterialDesignIcons.DiscFull}"
-                                        Color="{StaticResource Primary}" />
-                                </Image.Source>
-                            </Image>
-
-                        </StackLayout>
-                        <StackLayout
-                            Grid.Column="2"
-                            HorizontalOptions="CenterAndExpand"
-                            Orientation="Vertical"
-                            Spacing="10">
-                            <Image
-                                HeightRequest="45"
-                                HorizontalOptions="Center"
-                                WidthRequest="45">
-                                <Image.Source>
-                                    <FontImageSource
-                                        FontFamily="md-rr"
-                                        Glyph="{x:Static md:MaterialDesignIcons.Mic}"
-                                        Color="{StaticResource Primary}" />
-                                </Image.Source>
-                            </Image>
-
-                        </StackLayout>
+                        <Image HorizontalOptions="Start">
+                            <Image.Source>
+                                <FontImageSource FontFamily="md-rr" Glyph="{x:Static projectEnsemble:MaterialDesignIcons.FormatQuote}" Color="{StaticResource Primary}"></FontImageSource>
+                            </Image.Source>
+                        </Image>
+                        <Label FontSize="Caption"
+                               TextTransform="Uppercase"
+                               FontAttributes="Bold"
+                               TextColor="#2C3E50"
+                               Text="O skupině" Grid.Column="1"
+                               VerticalOptions="Center"/>
                     </Grid>
+                    <Label
+                        Grid.Row="1"
+                        FontSize="14"
+                        Text="{Binding Band.About}"
+                        TextColor="#707070" />
                 </Grid>
+            </Frame>
+
+            <Frame Grid.Row="3" Margin="20,0,20,0"
+                   Padding="18"
+                   CornerRadius="10"
+                   HasShadow="True"
+                   VerticalOptions="StartAndExpand">
+                <StackLayout>
+                    <Grid CompressedLayout.IsHeadless="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image HorizontalOptions="Start">
+                            <Image.Source>
+                                <FontImageSource FontFamily="md-rr" Glyph="{x:Static projectEnsemble:MaterialDesignIcons.More}" Color="{StaticResource Primary}"></FontImageSource>
+                            </Image.Source>
+                        </Image>
+                        <Label FontSize="Caption"
+                               TextTransform="Uppercase"
+                               FontAttributes="Bold"
+                               TextColor="#2C3E50"
+                               Text="Další informace" Grid.Column="1"
+                               VerticalOptions="Center"/>
+                    </Grid>
+                    <Grid CompressedLayout.IsHeadless="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label FontSize="Caption"
+                               FontAttributes="Bold"
+                               TextColor="#2C3E50"
+                               Text="Vytvořena: " Grid.Column="0"
+                        />
+                        <Label Grid.Column="1" Text="{Binding Band.TimeStamp, StringFormat='{0:dd.MM.yyyy}'}"/>
+                    </Grid>
+                </StackLayout>
+                
             </Frame>
         </Grid>
     </ScrollView>

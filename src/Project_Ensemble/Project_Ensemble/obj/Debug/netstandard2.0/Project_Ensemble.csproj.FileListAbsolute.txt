@@ -2,6 +2,7 @@ D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble\bin\Debug\netsta
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble\bin\Debug\netstandard2.0\Project_Ensemble.dll
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble\bin\Debug\netstandard2.0\ref\Project_Ensemble.dll
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble\bin\Debug\netstandard2.0\Project_Ensemble.pdb
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble\obj\Debug\netstandard2.0\Project_Ensemble.csproj.AssemblyReference.cache
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble\obj\Debug\netstandard2.0\App.xaml.g.cs
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble\obj\Debug\netstandard2.0\AppShell.xaml.g.cs
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble\obj\Debug\netstandard2.0\Constants\ColorConstants.xaml.g.cs
@@ -31,4 +32,9 @@ D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble\obj\Debug\netsta
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble\obj\Debug\netstandard2.0\Project_Ensemble.dll
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble\obj\Debug\netstandard2.0\ref\Project_Ensemble.dll
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble\obj\Debug\netstandard2.0\Project_Ensemble.pdb
-D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble\obj\Debug\netstandard2.0\Project_Ensemble.csproj.AssemblyReference.cache
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble\obj\Debug\netstandard2.0\Views\BandMembersPage.xaml.g.cs
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble\obj\Debug\netstandard2.0\Views\InviteMusicianPage.xaml.g.cs
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble\obj\Debug\netstandard2.0\Views\SelectResidencePage.xaml.g.cs
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble\obj\Debug\netstandard2.0\Views\UserSkillsPage.xaml.g.cs
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble\obj\Debug\netstandard2.0\Views\PasswordPopup.xaml.g.cs
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble\obj\Debug\netstandard2.0\Views\SkillPopup.xaml.g.cs

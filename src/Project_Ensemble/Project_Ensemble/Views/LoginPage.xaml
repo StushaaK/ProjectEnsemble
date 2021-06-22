@@ -1,17 +1,23 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage
     x:Class="Project_Ensemble.Views.LoginPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False"
     mc:Ignorable="d">
     <ContentPage.Content>
         <StackLayout Padding="30,0,30,0" VerticalOptions="Center">
-            <StackLayout>
-                <Image Aspect="AspectFit" Source="logo.png" />
+            <StackLayout Margin="0,0,0,20">
+                <Image
+                    Aspect="AspectFit"
+                    BackgroundColor="{StaticResource Primary}"
+                    HorizontalOptions="CenterAndExpand"
+                    Source="logo.png" />
                 <Label
                     FontAttributes="Bold"
                     FontSize="35"
@@ -19,6 +25,7 @@
                     Text="Ensemble"
                     TextTransform="Uppercase" />
                 <Label
+                    Margin="0,-10,0,0"
                     FontSize="18"
                     HorizontalOptions="Center"
                     Text="Vítejte zpět!"
@@ -62,7 +69,8 @@
                 HorizontalOptions="EndAndExpand"
                 Text="Zapomenuté heslo"
                 TextColor="DarkGray"
-                TextTransform="None" />
+                TextTransform="None"
+                Visual="Default" />
             <Button
                 Margin="0,20,0,20"
                 BackgroundColor="{StaticResource Primary}"
@@ -75,14 +83,15 @@
                 <Button.Triggers>
                     <MultiTrigger TargetType="Button">
                         <MultiTrigger.Conditions>
-                            <BindingCondition Binding="{Binding IsValid, Source={x:Reference EmailValidator}}" Value="True" />
-                            <BindingCondition Binding="{Binding IsValid, Source={x:Reference PasswordValidator}}" Value="True" />
+                            <BindingCondition Binding="{Binding IsValid, Source={x:Reference EmailValidator}}"
+                                              Value="True" />
+                            <BindingCondition Binding="{Binding IsValid, Source={x:Reference PasswordValidator}}"
+                                              Value="True" />
                         </MultiTrigger.Conditions>
                         <Setter Property="IsEnabled" Value="True" />
                     </MultiTrigger>
                 </Button.Triggers>
             </Button>
-
 
             <Label
                 HorizontalTextAlignment="Center"

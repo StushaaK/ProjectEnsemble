@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage
     x:Class="Project_Ensemble.Views.AddMusicianPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
@@ -24,7 +25,6 @@
                 VerticalOptions="Center"
                 WidthRequest="300">
 
-
                 <StackLayout>
                     <ActivityIndicator
                         HorizontalOptions="Center"
@@ -42,7 +42,7 @@
                         Text="{Binding Surname}" />
                     <Entry
                         Keyboard="Email"
-                        Placeholder="Kotaktní Email"
+                        Placeholder="Kontaktní Email"
                         Text="{Binding Email}" />
                     <Entry
                         Keyboard="Numeric"
@@ -57,12 +57,12 @@
                             <x:String>Žena</x:String>
                             <x:String>Transgender</x:String>
                             <x:String>Two-Spirit</x:String>
-                            <x:String>Cisgender</x:String>
+                            <x:String>Cis-gender</x:String>
                             <x:String>Non-binary</x:String>
-                            <x:String>Genderqueer</x:String>
-                            <x:String>Gender expression</x:String>
-                            <x:String>Gender fluid</x:String>
-                            <x:String>Gender neutral</x:String>
+                            <x:String>Gender-queer</x:String>
+                            <x:String>Gender-expression</x:String>
+                            <x:String>Gender-fluid</x:String>
+                            <x:String>Gender-neutral</x:String>
                             <x:String>Jiné</x:String>
                         </Picker.Items>
                     </Picker>
@@ -75,13 +75,10 @@
                         AutoSize="TextChanges"
                         MaxLength="255"
                         Placeholder="O mně"
-                        Text="{Binding About}" />
+                        Text="{Binding About}" x:DataType="viewmodel:AddMusicianViewModel" />
                     <Button Command="{Binding SaveCommand}" Text="Přidat" />
                 </StackLayout>
-
             </Frame>
         </StackLayout>
     </ScrollView>
-
-
 </ContentPage>

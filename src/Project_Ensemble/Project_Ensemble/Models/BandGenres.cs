@@ -1,17 +1,12 @@
-﻿using SQLiteNetExtensions.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
+using SQLiteNetExtensions.Attributes;
 
 namespace Project_Ensemble.Models
 {
-    class BandGenres
+    internal class BandGenres
     {
-        [ForeignKey(typeof(Band))]
-        public int BandId { get; set; }
-
-        [ForeignKey(typeof(Genre))]
-        public int GenreId { get; set; }
+        [ForeignKey(typeof(Band))] public int BandId { get; set; }
+        [ForeignKey(typeof(Genre))] public int GenreId { get; set; }
         public DateTime TimeStamp { get; set; }
     }
 }

@@ -1,22 +1,16 @@
 ﻿using SQLite;
 using SQLiteNetExtensions.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Project_Ensemble.Models
 {
-    class Invitation
+    public class Invitation
     {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        [PrimaryKey] [AutoIncrement] public int Id { get; set; }
+        [ForeignKey(typeof(Band))] public int ToBandId { get; set; }
 
-        public Band toBand { get; set; }
+        [OneToOne] public Band Band { get; set; }
 
-        [ForeignKey(typeof(Musician))]
-        public string toMusicianId { get; set; }
-
-        [ForeignKey(typeof(Musician))]
-        public string fromMusicianId { get; set; }
+        [ForeignKey(typeof(Musician))] public string ToMusicianId { get; set; }
+        [ForeignKey(typeof(Musician))] public string FromMusicianId { get; set; }
     }
 }

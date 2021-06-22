@@ -1,29 +1,16 @@
-﻿using MvvmHelpers.Commands;
-using Project_Ensemble.Models;
-using Project_Ensemble.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
+using MvvmHelpers.Commands;
+using Project_Ensemble.Models;
 using Xamarin.Forms;
 
 namespace Project_Ensemble.ViewModels
 {
-    class AddMusicianViewModel : BaseViewModel
+    internal class AddMusicianViewModel : BaseViewModel
     {
-        string firstname, surname, email, sex, residence, avatar, phone;
-        DateTime birthday;
-
-        public string Firstname { get => firstname; set => SetProperty(ref firstname, value); }
-        public string Surname { get => surname; set => SetProperty(ref surname, value); }
-        public string Email { get => email; set => SetProperty(ref email, value); }
-        public string Phone { get => phone; set => SetProperty(ref phone, value); }
-        public string Sex { get => sex; set => SetProperty(ref sex, value); }
-        public string Residence { get => residence; set => SetProperty(ref residence, value); }
-        public string Avatar { get => avatar; set => SetProperty(ref avatar, value); }
-        public DateTime Birthday { get => birthday; set => SetProperty(ref birthday, value); }
-
-        public AsyncCommand SaveCommand { get; }
+        private DateTime _birthday;
+        private string _firstname, _surname, _email, _sex, _avatar, _phone, _about;
+        private Place _residence;
 
         public AddMusicianViewModel()
         {
@@ -31,25 +18,77 @@ namespace Project_Ensemble.ViewModels
             SaveCommand = new AsyncCommand(Save);
         }
 
-        async Task Save()
+        public string Firstname
         {
-            Musician musician = new Musician
+            get => _firstname;
+            set => SetProperty(ref _firstname, value);
+        }
+
+        public string Surname
+        {
+            get => _surname;
+            set => SetProperty(ref _surname, value);
+        }
+
+        public string Email
+        {
+            get => _email;
+            set => SetProperty(ref _email, value);
+        }
+
+        public string Phone
+        {
+            get => _phone;
+            set => SetProperty(ref _phone, value);
+        }
+
+        public string Sex
+        {
+            get => _sex;
+            set => SetProperty(ref _sex, value);
+        }
+
+        public Place Residence
+        {
+            get => _residence;
+            set => SetProperty(ref _residence, value);
+        }
+
+        public string Avatar
+        {
+            get => _avatar;
+            set => SetProperty(ref _avatar, value);
+        }
+
+        public DateTime Birthday
+        {
+            get => _birthday;
+            set => SetProperty(ref _birthday, value);
+        }
+
+        public string About
+        {
+            get => _about;
+            set => SetProperty(ref _about, value);
+        }
+
+        public AsyncCommand SaveCommand { get; }
+
+        private async Task Save()
+        {
+            var musician = new Musician
             {
-                Firstname = firstname,
-                Lastname = surname,
-                Email = email,
-                Sex = sex,
-                Residence = residence,
-                Avatar = avatar,
-                BirthDay = birthday,
+                Firstname = _firstname,
+                Lastname = _surname,
+                Email = _email,
+                Sex = _sex,
+                Residence = _residence,
+                Avatar = _avatar,
+                BirthDay = _birthday,
                 TimeStamp = DateTime.Now
             };
-
-            if (string.IsNullOrWhiteSpace(firstname) || string.IsNullOrWhiteSpace(surname))
-                return;
-
+            if (string.IsNullOrWhiteSpace(_firstname) || string.IsNullOrWhiteSpace(_surname)) return;
             await App.Database.AddMusician(musician);
-
             await Shell.Current.GoToAsync("..");
         }
     }

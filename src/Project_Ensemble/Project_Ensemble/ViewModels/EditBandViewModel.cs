@@ -1,25 +1,24 @@
-﻿using MvvmHelpers;
+﻿using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using MvvmHelpers;
 using MvvmHelpers.Commands;
 using Project_Ensemble.Models;
 using Project_Ensemble.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+using Project_Ensemble.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
+using Command = MvvmHelpers.Commands.Command;
 
 namespace Project_Ensemble.ViewModels
 {
-    class EditBandViewModel : BaseViewModel
+    internal class EditBandViewModel : BaseViewModel
     {
-
-        Band band;
-
-        public Band Band { get => band; set => SetProperty(ref band, value); }
-        public ObservableRangeCollection<Genre> Genres { get; set; }
-        public ObservableRangeCollection<SelectableItem> ItemList { get; set; }
-
-        public AsyncCommand SaveCommand { get; }
+        private readonly FirebaseStorageService _firebaseStorage = new FirebaseStorageService();
+        private Band _band;
+        private Place _basedAt;
+        private AsyncCommand _changeResidenceCommand;
+        private string _imageUrl;
 
         public EditBandViewModel()
         {
@@ -27,47 +26,113 @@ namespace Project_Ensemble.ViewModels
             SaveCommand = new AsyncCommand(Save);
             Genres = new ObservableRangeCollection<Genre>();
             ItemList = new ObservableRangeCollection<SelectableItem>();
-
+            PickPhotoCommand = new AsyncCommand(PickPhoto);
+            DeletePhotoCommand = new Command(DeletePhoto);
         }
 
-        public async Task LoadData(int BandId)
+        private bool BasedAtChanged { get; set; }
+
+        public Band Band
+        {
+            get => _band;
+            set => SetProperty(ref _band, value);
+        }
+
+        public Place BasedAt
+        {
+            get => _basedAt;
+            set => SetProperty(ref _basedAt, value);
+        }
+
+        public ObservableRangeCollection<Genre> Genres { get; set; }
+        public ObservableRangeCollection<SelectableItem> ItemList { get; set; }
+
+        public string ImageUrl
+        {
+            get => _imageUrl;
+            set => SetProperty(ref _imageUrl, value);
+        }
+
+        private Stream ImageStream { get; set; }
+        private bool ImageChanged { get; set; }
+        public AsyncCommand SaveCommand { get; }
+        public AsyncCommand PickPhotoCommand { get; }
+        public Command DeletePhotoCommand { get; }
+
+        public AsyncCommand ChangeResidenceCommand =>
+            _changeResidenceCommand ?? (_changeResidenceCommand = new AsyncCommand(ChangeResidence));
+
+        private void DeletePhoto()
+        {
+            ImageUrl = null;
+            Band.Image = null;
+            ImageChanged = true;
+        }
+
+        private async Task PickPhoto()
+        {
+            var result = await MediaPicker.PickPhotoAsync(new MediaPickerOptions {Title = "Vyberte novou fotografii"});
+            if (result == null) return;
+            ImageStream = await result.OpenReadAsync();
+            ImageSource.FromStream(() => ImageStream);
+
+            ImageUrl = result.FullPath;
+            Band.Image = ImageUrl;
+            ImageChanged = true;
+        }
+
+        public async Task LoadData(int bandId, Place deserializedPlace)
         {
             IsBusy = true;
-            Genres.ReplaceRange(await App.Database.GetGenres());
-            foreach (Genre g in Genres)
+
+
+            if (bandId != -1)
             {
-                ItemList.Add(new SelectableItem { Data = g, isSelected = false });
+                Genres.ReplaceRange(await App.Database.GetGenres());
+                foreach (var g in Genres) ItemList.Add(new SelectableItem {Data = g, IsSelected = false});
+                Band = await App.Database.GetBandWithChildren(bandId);
+                foreach (var item in ItemList)
+                    if (Band.Genres.Contains((Genre) item.Data))
+                        item.IsSelected = true;
+                ImageUrl = Band.Image;
+                BasedAt = Band.BasedAt;
             }
-            Band = await App.Database.GetBandWithChildren(BandId);
-            foreach (var item in ItemList)
+            else
             {
-                if (Band.Genres.Contains((Genre)item.Data))
-                {
-                    item.isSelected = true;
-                }
+                BasedAt = deserializedPlace;
+                BasedAtChanged = !Equals(BasedAt, Band.BasedAt);
             }
 
             IsBusy = false;
         }
 
-        async Task Save()
+        private static async Task ChangeResidence()
         {
+            var route = $"{nameof(SelectResidencePage)}";
+            await Shell.Current.GoToAsync(route);
+        }
 
-
-            if (string.IsNullOrWhiteSpace(band.Name))
-                return;
-
-            List<Genre> selectedGenres = new List<Genre>();
-            foreach (var item in ItemList)
+        private async Task Save()
+        {
+            if (string.IsNullOrWhiteSpace(Band.Name)) return;
+            var selectedGenres = (from item in ItemList where item.IsSelected select (Genre) item.Data).ToList();
+            Band.Genres = selectedGenres;
+            if (ImageUrl != null && ImageChanged)
+                Band.Image = await _firebaseStorage.UploadBandImage(ImageStream, Band.Id.ToString());
+            else if (ImageUrl == null && ImageChanged) await _firebaseStorage.DeleteBandImage(Band.Id.ToString());
+            if (BasedAt != null && BasedAtChanged)
             {
-                if (item.isSelected) selectedGenres.Add((Genre)item.Data);
+                await App.Database.AddPlace(BasedAt);
+                if (Band.BasedAt != null) await App.Database.DeletePlace(Band.BasedAt);
+            }
+            else if (BasedAt == null && BasedAtChanged)
+            {
+                await App.Database.DeletePlace(Band.BasedAt);
             }
 
-            Band.Genres = selectedGenres;
 
-
-            await App.Database.UpdateWithChildren(band);
-
+            Band.BasedAt = BasedAt;
+            await App.Database.UpdateWithChildren(Band);
             await Shell.Current.GoToAsync("..?Reload=true");
         }
     }

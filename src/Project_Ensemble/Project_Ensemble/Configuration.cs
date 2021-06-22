@@ -1,39 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
+using SQLite;
 using Xamarin.Essentials;
 
 namespace Project_Ensemble
 {
     public static class Configuration
     {
-        /// 
-        ///  DATABASE CONFIGURATION
-        /// 
-
+        /// DATABASE CONFIGURATION
         public const string DatabaseFilename = "Ensemble.db3";
 
-        public const SQLite.SQLiteOpenFlags Flags =
-        // open the database in read/write mode
-        SQLite.SQLiteOpenFlags.ReadWrite |
-        // create the database if it doesn't exist
-        SQLite.SQLiteOpenFlags.Create |
-        // enable multi-threaded database access
-        SQLite.SQLiteOpenFlags.SharedCache;
+        public const SQLiteOpenFlags Flags =
+            // open the database in read/write mode
+            SQLiteOpenFlags.ReadWrite |
+            // create the database if it doesn't exist
+            SQLiteOpenFlags.Create |
+            // enable multi-threaded database access
+            SQLiteOpenFlags.SharedCache;
 
         // Path to database file
-        public static string DatabasePath
-        {
-            get
-            {
-                return Path.Combine(FileSystem.AppDataDirectory, Configuration.DatabaseFilename);
-            }
-        }
+        public static string DatabasePath => Path.Combine(FileSystem.AppDataDirectory, DatabaseFilename);
 
-        ///
         /// APP CONFIGURATION
-        ///
 
         // Determine if the app is launched for the first time
         public static bool FirstRun
@@ -41,7 +28,5 @@ namespace Project_Ensemble
             get => Preferences.Get(nameof(FirstRun), true);
             set => Preferences.Set(nameof(FirstRun), value);
         }
-
-
     }
 }

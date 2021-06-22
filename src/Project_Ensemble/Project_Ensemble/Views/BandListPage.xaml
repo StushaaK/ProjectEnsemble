@@ -1,17 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage
     x:Class="Project_Ensemble.Views.BandListPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-    xmlns:md="clr-namespace:MaterialDesign"
-    xmlns:viewmodels="clr-namespace:Project_Ensemble.ViewModels"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:md="clr-namespace:Project_Ensemble;assembly=Project_Ensemble"
     x:Name="BandList"
     Title="Skupiny">
 
     <ContentPage.IconImageSource>
-        <FontImageSource FontFamily="md-rr" Glyph="{x:Static md:MaterialDesignIcons.Group}" />
+        <FontImageSource FontFamily="md-rr" Glyph="{x:Static md:MaterialDesignIcons.Groups}" />
     </ContentPage.IconImageSource>
 
     <ContentPage.Resources>
@@ -29,8 +28,10 @@
                 </VisualStateGroupList>
             </Setter>
         </Style>
+        <ResourceDictionary>
+            <xct:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter"/>
+        </ResourceDictionary>
     </ContentPage.Resources>
-
 
     <StackLayout>
         <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy, Mode=OneWay}">
@@ -40,8 +41,6 @@
                 ItemSizingStrategy="MeasureAllItems"
                 ItemsLayout="VerticalList"
                 ItemsSource="{Binding Bands}"
-                RemainingItemsThreshold="1"
-                RemainingItemsThresholdReachedCommand="{Binding DelayLoadMoreCommand}"
                 SelectedItem="{Binding SelectedBand, Mode=TwoWay}"
                 SelectionChangedCommand="{Binding SelectedCommand}"
                 SelectionMode="Single">
@@ -50,6 +49,31 @@
                         <Label HorizontalOptions="Center" Text="Žádná skupina v databázi" />
                     </StackLayout>
                 </CollectionView.EmptyView>
+                <CollectionView.Header>
+                    <Frame Padding="5">
+                        <xct:Expander>
+                            <xct:Expander.Header>
+                                <Label FontSize="Medium" FontAttributes="Bold">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span FontFamily="md-rr" Text="{x:Static md:MaterialDesignIcons.ArrowDropDown}" FontSize="20"/>
+                                            <Span Text="Filtry"></Span>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            
+                            </xct:Expander.Header>
+                            <StackLayout>
+                                <Label Text="Seřadit podle:"></Label>
+                                <StackLayout RadioButtonGroup.GroupName="SortFilters" RadioButtonGroup.SelectedValue="{Binding SelectedFilter}">
+                                    <RadioButton Content="Názvu" Value="Name"/>
+                                    <RadioButton Content="Vzdálenosti" Value="Distance"/>
+                                    <RadioButton Content="Data přidání" IsChecked="True" Value="Date"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </xct:Expander>
+                    </Frame>
+                </CollectionView.Header>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -64,18 +88,22 @@
                                         Text="{Binding Name}" />
                                     <StackLayout Margin="20,0,0,0" VerticalOptions="Center">
                                         <Label FontSize="Large" Text="{Binding Name}" />
-                                        <Label FontSize="Large" Text="{Binding BasedAt}" />
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="100"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Text="{Binding BasedAt.Name}" />
+                                            <Label Grid.Column="1" IsVisible="{Binding Distance, Converter={StaticResource IsNotNullOrEmptyConverter}}" Text="{Binding Distance, StringFormat='({0:F2} km)'}" />
+                                        </Grid>
+                                        
                                     </StackLayout>
                                 </StackLayout>
                             </Frame>
                         </Grid>
-
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-
-
             </CollectionView>
         </RefreshView>
     </StackLayout>
-
 </ContentPage>

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Project_Ensemble.ViewModels;
+﻿using Project_Ensemble.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,8 +10,7 @@ namespace Project_Ensemble.Views
         public LoginPage()
         {
             InitializeComponent();
-            this.BindingContext = new LoginViewModel();
-
+            BindingContext = new LoginViewModel();
         }
     }
 }

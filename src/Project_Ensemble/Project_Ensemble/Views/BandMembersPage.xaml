@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage
+    x:Class="Project_Ensemble.Views.BandMembersPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:helpers="clr-namespace:Project_Ensemble.Helpers"
+    xmlns:md="clr-namespace:Project_Ensemble;assembly=Project_Ensemble"
+    xmlns:models="clr-namespace:Project_Ensemble.Models;assembly=Project_Ensemble"
+    x:Name="BandMembersP"
+    Title="Správa členů">
+
+    <ContentPage.Resources>
+        <xct:InvertedBoolConverter x:Key="Inverted" />
+        <helpers:IdToBoolConverter x:Key="UserIdConverter" />
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <StackLayout
+                Margin="0,5,0,0"
+                HorizontalOptions="Center"
+                Orientation="Horizontal">
+                <Button
+                    Command="{Binding AddSelfCommand}"
+                    FontSize="10"
+                    IsEnabled="{Binding CanAddSelf}"
+                    IsVisible="{Binding CanAddSelf}"
+                    Text="Stát se členem skupiny"
+                    WidthRequest="150" />
+                <Button
+                    Command="{Binding RemoveSelfCommand}"
+                    FontSize="10"
+                    IsEnabled="{Binding CanAddSelf, Converter={StaticResource Inverted}}"
+                    IsVisible="{Binding CanAddSelf, Converter={StaticResource Inverted}}"
+                    Text="Opustit skupinu"
+                    WidthRequest="150" />
+                <Label
+                    HorizontalTextAlignment="Center"
+                    Text="nebo"
+                    VerticalTextAlignment="Center" />
+                <Button
+                    FontSize="10"
+                    Text="Pozvat muzikanta"
+                    Command="{Binding InviteMusicianCommand}"
+                    WidthRequest="150" />
+            </StackLayout>
+            <StackLayout>
+                <Label
+                    Margin="0,20,0,-10"
+                    Padding="15"
+                    BackgroundColor="{StaticResource Primary}"
+                    FontAttributes="Bold"
+                    Text="Členové skupiny"
+                    TextTransform="Uppercase" />
+                <CollectionView
+                    ItemSizingStrategy="MeasureAllItems"
+                    ItemsLayout="VerticalList"
+                    ItemsSource="{Binding Members}"
+                    SelectionMode="None">
+                    <CollectionView.EmptyView>
+                        <StackLayout>
+                            <Label
+                                Margin="0,20,0,0"
+                                HorizontalOptions="Center"
+                                Text="Skupina nemá žádné členy" />
+                        </StackLayout>
+                    </CollectionView.EmptyView>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame
+                                Padding="15"
+                                BackgroundColor="White"
+                                BorderColor="#44000000"
+                                CornerRadius="0"
+                                HasShadow="False">
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal">
+                                        <Label FontSize="Body" Text="{Binding Firstname}" />
+                                        <Label FontSize="Body" Text="{Binding Lastname}" />
+                                    </StackLayout>
+                                    <Button
+                                        FontFamily="md-rr"
+                                        FontSize="Large"
+                                        HorizontalOptions="End"
+                                        x:DataType="models:Musician"
+                                        IsVisible="{Binding Id, Converter={StaticResource UserIdConverter}}"
+                                        Text="{x:Static md:MaterialDesignIcons.Clear}"
+                                        Command="{Binding Source={x:Reference BandMembersP}, Path=BindingContext.RemoveMemberCommand}"
+                                        CommandParameter="{Binding .}"
+                                        TextColor="Red"
+                                        WidthRequest="40" />
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage
     x:Class="Project_Ensemble.Views.AboutPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
@@ -7,31 +8,34 @@
     BackgroundColor="{StaticResource Primary}">
     <ContentPage.Content>
         <StackLayout
-            Padding="50"
+            Padding="40"
             HorizontalOptions="Center"
             VerticalOptions="Center">
             <Image Aspect="AspectFit" Source="logo.png" />
             <Label
+                Margin="0,-20,0,20"
                 FontAttributes="Bold"
                 FontSize="35"
                 HorizontalOptions="Center"
                 Text="Ensemble"
-                TextColor="White"
-                TextTransform="Uppercase" />
-
+                TextColor="White" />
+            <BoxView
+                Margin="0,0,0,20"
+                BackgroundColor="#22000000"
+                HeightRequest="1" />
             <StackLayout>
-                <Label
-                    Margin="0,0,0,20"
-                    HorizontalOptions="Center"
-                    HorizontalTextAlignment="Center">
-                    Projekt Ensemble je Portál pro všechny milovníky hudby, kteří hledají místo, kde najít spoluhráče do své skupiny, či pro jednotlivce, kteří svoji skupinu teprve hledají.
+                <Label>
+                    Ensemble je portál pro všechny milovníky hudby, kteří hledají místo, kde najít spoluhráče do své kapely a pro každého, kdo svoji skupinu teprve hledá.
                 </Label>
-                <Label HorizontalOptions="Center">dev0.0.6a</Label>
-                <Label HorizontalOptions="Center">Vyrobil: Daniel Stuš</Label>
-                <Label HorizontalOptions="Center">Pomocí technologií XAMARIN.Forms &amp; SQLLite</Label>
+
+                <BoxView
+                    Margin="0,20,0,20"
+                    BackgroundColor="#22000000"
+                    HeightRequest="1" />
+                <Label HorizontalTextAlignment="Center">Pomocí technologií XAMARIN.Forms &amp; SQLLite</Label>
+                <Label HorizontalTextAlignment="Center">Vyrobil - Daniel Stuš</Label>
+                <Label Margin="0,50,0,0" HorizontalTextAlignment="Center">dev0.1.1a</Label>
             </StackLayout>
-
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

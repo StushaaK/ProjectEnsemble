@@ -1,10 +1,4 @@
 ﻿using Project_Ensemble.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,13 +10,13 @@ namespace Project_Ensemble.Views
         public MusicianListPage()
         {
             InitializeComponent();
-            this.BindingContext = new MusicianListViewModel();
+            BindingContext = new MusicianListViewModel();
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            await ((MusicianListViewModel)BindingContext).Initialize();
+            await ((MusicianListViewModel) BindingContext).Initialize();
         }
     }
 }

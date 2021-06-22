@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Fk4I+ey7NN3Huxh3LqyRRdBDnWinySj9o8PcwdD/t82W1xWYI1ZdtQgf94beslaGzbtrZyXAMcWgegUS50o7dA==",
+  "dgSpecHash": "yWE8oQbeqZcIbUQWXXWqenIutg+m+YpoWUVyq3HYFuWbMPjsLOKYIRVMBFVxna8bHkcIYUXWJLKzIFKQAD5b3A==",
   "success": true,
   "projectFilePath": "D:\\projekty\\skola\\.NET\\SP\\src\\Project_Ensemble\\Project_Ensemble\\Project_Ensemble.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\danie\\.nuget\\packages\\firebasestorage.net\\1.0.3\\firebasestorage.net.1.0.3.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\microsoft.netcore.targets\\1.0.1\\microsoft.netcore.targets.1.0.1.nupkg.sha512",
@@ -54,9 +55,10 @@
     "C:\\Users\\danie\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\system.xml.readerwriter\\4.0.11\\system.xml.readerwriter.4.0.11.nupkg.sha512",
     "C:\\Users\\danie\\.nuget\\packages\\system.xml.xdocument\\4.0.11\\system.xml.xdocument.4.0.11.nupkg.sha512",
-    "C:\\Users\\danie\\.nuget\\packages\\xamarin.communitytoolkit\\1.1.0\\xamarin.communitytoolkit.1.1.0.nupkg.sha512",
+    "C:\\Users\\danie\\.nuget\\packages\\xamarin.communitytoolkit\\1.2.0-pre2\\xamarin.communitytoolkit.1.2.0-pre2.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.6.1\\xamarin.essentials.1.6.1.nupkg.sha512",
-    "C:\\Users\\danie\\.nuget\\packages\\xamarin.forms\\5.0.0.7220\\xamarin.forms.5.0.0.7220.nupkg.sha512"
+    "C:\\Users\\danie\\.nuget\\packages\\xamarin.forms\\5.0.0.7298\\xamarin.forms.5.0.0.7298.nupkg.sha512",
+    "C:\\Users\\danie\\.nuget\\packages\\xamarin.forms.visual.material\\5.0.0.7298\\xamarin.forms.visual.material.5.0.0.7298.nupkg.sha512"
   ],
   "logs": [
     {

@@ -1,18 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage
     x:Class="Project_Ensemble.Views.MusicianListPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-    xmlns:helpers="clr-namespace:Project_Ensemble.Helpers"
-    xmlns:md="clr-namespace:MaterialDesign"
-    xmlns:viewmodels="clr-namespace:Project_Ensemble.ViewModels"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:helpers="clr-namespace:Project_Ensemble.Helpers"
+    xmlns:projectEnsemble="clr-namespace:Project_Ensemble;assembly=Project_Ensemble"
     x:Name="MusicianList"
     Title="Muzikanti">
 
     <ContentPage.IconImageSource>
-        <FontImageSource FontFamily="md-rr" Glyph="{x:Static md:MaterialDesignIcons.Person}" />
+        <FontImageSource FontFamily="md-rr" Glyph="{x:Static projectEnsemble:MaterialDesignIcons.Person}" />
     </ContentPage.IconImageSource>
 
     <ContentPage.Resources>
@@ -32,18 +31,18 @@
         </Style>
         <ResourceDictionary>
             <helpers:InitialsConverter x:Key="initialsConverter" />
+            <xct:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout>
+    
+
         <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy, Mode=OneWay}">
             <CollectionView
                 BackgroundColor="Transparent"
                 ItemSizingStrategy="MeasureAllItems"
                 ItemsLayout="VerticalList"
                 ItemsSource="{Binding Musicians}"
-                RemainingItemsThreshold="1"
-                RemainingItemsThresholdReachedCommand="{Binding DelayLoadMoreCommand}"
                 SelectedItem="{Binding SelectedMusician, Mode=TwoWay}"
                 SelectionChangedCommand="{Binding SelectedCommand}"
                 SelectionMode="Single">
@@ -52,48 +51,69 @@
                         <Label HorizontalOptions="Center" Text="Žádný hudebník v databázi" />
                     </StackLayout>
                 </CollectionView.EmptyView>
+                <CollectionView.Header>
+                    <Frame Padding="5">
+                        <xct:Expander>
+                            <xct:Expander.Header>
+                                <Label FontSize="Medium" FontAttributes="Bold">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span FontFamily="md-rr" Text="{x:Static projectEnsemble:MaterialDesignIcons.ArrowDropDown}" FontSize="20"/>
+                                            <Span Text="Filtry"></Span>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            
+                            </xct:Expander.Header>
+                            <StackLayout>
+                                <Label Text="Seřadit podle:"></Label>
+                                <StackLayout RadioButtonGroup.GroupName="SortFilters" RadioButtonGroup.SelectedValue="{Binding SelectedFilter}">
+                                    <RadioButton Content="Názvu" Value="Name"/>
+                                    <RadioButton Content="Vzdálenosti" Value="Distance"/>
+                                    <RadioButton Content="Data přidání" IsChecked="True" Value="Date"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </xct:Expander>
+                    </Frame>
+                </CollectionView.Header>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="10">
                             <Frame CornerRadius="12" HasShadow="True">
-                                <StackLayout>
-                                    <StackLayout Orientation="Horizontal">
-
+                                <StackLayout Orientation="Horizontal">
                                         <xct:AvatarView
                                             Size="80"
                                             Source="{Binding Avatar}"
-                                            Text="{Binding Path=., Converter={StaticResource initialsConverter}}" />
-
-
-                                        <StackLayout Orientation="Vertical">
+                                            Text="{Binding Path=., Converter={StaticResource initialsConverter}}" VerticalOptions="Center">
+                                            </xct:AvatarView>
+                                        <StackLayout Orientation="Vertical" Margin="20,0,0,0">
                                             <StackLayout
-                                                Margin="20,0,0,0"
                                                 Orientation="Horizontal"
                                                 VerticalOptions="Center">
                                                 <Label FontSize="Large" Text="{Binding Firstname}" />
                                                 <Label FontSize="Large" Text="{Binding Lastname}" />
                                             </StackLayout>
+                                            <Grid IsVisible="{Binding Residence, Converter={StaticResource IsNotNullOrEmptyConverter}}">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="100"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Text="{Binding Residence.Name}" />
+                                                <Label Grid.Column="1"  Text="{Binding Distance, StringFormat='({0:F2} km)'}" />
+                                            </Grid>
                                             <Label
-                                                HorizontalOptions="Center"
+                                                HorizontalOptions="Start"
                                                 IsVisible="{Binding IsSearchingForBand}"
                                                 Text="Hledá skupinu"
                                                 TextColor="YellowGreen" />
-                                            <StackLayout Orientation="Horizontal" />
                                         </StackLayout>
-
                                     </StackLayout>
-
-                                </StackLayout>
                             </Frame>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-
-
             </CollectionView>
         </RefreshView>
-    </StackLayout>
-
-
+    
 </ContentPage>

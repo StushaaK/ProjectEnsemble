@@ -1,28 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace Project_Ensemble.Controls
 {
-    class NullableDatePicker : DatePicker
+    internal class NullableDatePicker : DatePicker
     {
-        private string _format = null;
-        public static readonly BindableProperty NullableDateProperty = BindableProperty.Create("NullableDate", typeof(DateTime?), typeof(NullableDatePicker), null, BindingMode.TwoWay);
+        public static readonly BindableProperty NullableDateProperty = BindableProperty.Create("NullableDate",
+            typeof(DateTime?), typeof(NullableDatePicker), null, BindingMode.TwoWay);
 
-
+        private string _format;
 
         public DateTime? NullableDate
         {
-            get { return (DateTime?)GetValue(NullableDateProperty); }
-            set { SetValue(NullableDateProperty, value); UpdateDate(); }
+            get => (DateTime?) GetValue(NullableDateProperty);
+            set
+            {
+                SetValue(NullableDateProperty, value);
+                UpdateDate();
+            }
         }
 
         private void UpdateDate()
         {
-            if (NullableDate.HasValue) { if (null != _format) Format = _format; Date = NullableDate.Value; }
-            else { _format = Format; Format = "././...."; }
+            if (NullableDate.HasValue)
+            {
+                if (null != _format) Format = _format;
+                Date = NullableDate.Value;
+            }
+            else
+            {
+                _format = Format;
+                Format = "././....";
+            }
         }
+
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();

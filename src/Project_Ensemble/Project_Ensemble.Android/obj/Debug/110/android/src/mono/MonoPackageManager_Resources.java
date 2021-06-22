@@ -3,6 +3,7 @@ public class MonoPackageManager_Resources {
 	public static String[] Assemblies = new String[]{
 		/* We need to ensure that "Project_Ensemble.Android.dll" comes first in this list. */
 		"Project_Ensemble.Android.dll",
+		"Firebase.Storage.dll",
 		"FormsViewGroup.dll",
 		"MvvmHelpers.dll",
 		"Newtonsoft.Json.dll",
@@ -46,6 +47,9 @@ public class MonoPackageManager_Resources {
 		"Xamarin.AndroidX.LocalBroadcastManager.dll",
 		"Xamarin.AndroidX.Media.dll",
 		"Xamarin.AndroidX.MultiDex.dll",
+		"Xamarin.AndroidX.Navigation.Common.dll",
+		"Xamarin.AndroidX.Navigation.Runtime.dll",
+		"Xamarin.AndroidX.Navigation.UI.dll",
 		"Xamarin.AndroidX.Preference.dll",
 		"Xamarin.AndroidX.Print.dll",
 		"Xamarin.AndroidX.RecyclerView.dll",
@@ -71,6 +75,7 @@ public class MonoPackageManager_Resources {
 		"Xamarin.Firebase.Installations.InterOp.dll",
 		"Xamarin.Firebase.Measurement.Connector.dll",
 		"Xamarin.Forms.Core.dll",
+		"Xamarin.Forms.Material.dll",
 		"Xamarin.Forms.Platform.Android.dll",
 		"Xamarin.Forms.Platform.dll",
 		"Xamarin.Forms.Xaml.dll",

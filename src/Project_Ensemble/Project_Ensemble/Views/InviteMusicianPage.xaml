@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="Project_Ensemble.Views.InviteMusicianPage">
+
+<ContentPage.Resources>
+    <ResourceDictionary>
+        <xct:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter"/>
+        <xct:IsNullOrEmptyConverter x:Key="IsNullOrEmptyConverter"/>
+    </ResourceDictionary>
+</ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <SearchBar Placeholder="Hledat muzikanta" Text="{Binding SearchQuery}"/>
+            <CollectionView ItemsSource="{Binding AvailableUsers}"
+                            SelectionMode="Single"
+                            SelectedItem="{Binding SelectedUser, Mode=TwoWay}"
+                            >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10">
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Firstname}"/>
+                                        <Span Text=" "/>
+                                        <Span Text="{Binding Lastname}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+             <Frame
+                Margin="10"
+                Padding="15"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <StackLayout>
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Body"
+                        Text="Vybraný uživatel"
+                        TextTransform="Uppercase" />
+                    <Label
+                        FontSize="15"
+                        IsVisible="{Binding SelectedUser, Converter={StaticResource IsNullOrEmptyConverter}}"
+                        Text="Žádný uživatel" />
+                    <Label
+                        FontSize="15"
+                        IsVisible="{Binding SelectedUser, Converter={StaticResource IsNotNullOrEmptyConverter}}"
+                         >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding SelectedUser.Firstname}"/>
+                                <Span Text=" "/>
+                                <Span Text="{Binding SelectedUser.Lastname}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand">
+                        <Button
+                            BackgroundColor="{StaticResource Primary}"
+                            Command="{Binding InviteSelectedUserCommand}"
+                            CornerRadius="25"
+                            HorizontalOptions="EndAndExpand"
+                            Text="Pozvat"
+                            TextColor="White"
+                            TextTransform="Uppercase"
+                            WidthRequest="150" />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

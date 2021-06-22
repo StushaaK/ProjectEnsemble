@@ -1,10 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage
     x:Class="Project_Ensemble.Views.RegisterPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-    Shell.NavBarIsVisible="False">
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False">
     <ContentPage.Content>
         <StackLayout Padding="30,0,30,0" VerticalOptions="Center">
             <Label
@@ -72,15 +74,20 @@
                 BackgroundColor="{StaticResource Primary}"
                 Command="{Binding SignUpCommand}"
                 CornerRadius="25"
+                HeightRequest="50"
                 Text="Registrovat"
                 TextColor="White">
                 <Button.Triggers>
                     <MultiTrigger TargetType="Button">
                         <MultiTrigger.Conditions>
-                            <BindingCondition Binding="{Binding IsValid, Source={x:Reference EmailValidator}}" Value="True" />
-                            <BindingCondition Binding="{Binding IsValid, Source={x:Reference FirstnameValidator}}" Value="True" />
-                            <BindingCondition Binding="{Binding IsValid, Source={x:Reference LastnameValidator}}" Value="True" />
-                            <BindingCondition Binding="{Binding IsValid, Source={x:Reference PasswordValidator}}" Value="True" />
+                            <BindingCondition Binding="{Binding IsValid, Source={x:Reference EmailValidator}}"
+                                              Value="True" />
+                            <BindingCondition Binding="{Binding IsValid, Source={x:Reference FirstnameValidator}}"
+                                              Value="True" />
+                            <BindingCondition Binding="{Binding IsValid, Source={x:Reference LastnameValidator}}"
+                                              Value="True" />
+                            <BindingCondition Binding="{Binding IsValid, Source={x:Reference PasswordValidator}}"
+                                              Value="True" />
                         </MultiTrigger.Conditions>
                         <Setter Property="IsEnabled" Value="True" />
                     </MultiTrigger>
@@ -97,11 +104,10 @@
                     BorderWidth="1"
                     Command="{Binding SignInCommand}"
                     CornerRadius="25"
+                    HeightRequest="50"
                     Text="Přihlašte se"
                     TextColor="Black" />
             </StackLayout>
-
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

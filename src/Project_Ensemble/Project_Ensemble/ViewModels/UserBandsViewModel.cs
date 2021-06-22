@@ -1,12 +1,10 @@
-﻿using MvvmHelpers;
+﻿using System.Threading.Tasks;
+using MvvmHelpers;
 using MvvmHelpers.Commands;
 using Project_Ensemble.Models;
 using Project_Ensemble.Services;
 using Project_Ensemble.Views;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
 using Command = MvvmHelpers.Commands.Command;
 
@@ -14,137 +12,99 @@ namespace Project_Ensemble.ViewModels
 {
     public class UserBandsViewModel : BaseViewModel
     {
-        public ObservableRangeCollection<Band> Bands { get; set; }
-
-        public AsyncCommand RefreshCommand { get; }
-
-        public AsyncCommand SelectedCommand { get; }
-        public AsyncCommand AddCommand { get; }
-        public AsyncCommand<Band> RemoveCommand { get; }
-        public AsyncCommand<Band> EditCommand { get; }
-
-        public Command LoadMoreCommand { get; }
-        public Command DelayLoadMoreCommand { get; }
-        public Command ClearCommand { get; }
-        public Musician User { get; set; }
-
+        private readonly FirebaseStorageService _firebaseStorage = new FirebaseStorageService();
+        private Band _selectedBand;
 
         public UserBandsViewModel()
         {
             Title = "Seznam skupin spravovaných uživatelem";
-
             Bands = new ObservableRangeCollection<Band>();
-
             RefreshCommand = new AsyncCommand(Refresh);
             SelectedCommand = new AsyncCommand(Selected);
-            LoadMoreCommand = new Command(LoadMore);
             ClearCommand = new Command(Clear);
             AddCommand = new AsyncCommand(Add);
             EditCommand = new AsyncCommand<Band>(Edit);
             RemoveCommand = new AsyncCommand<Band>(Remove);
-            DelayLoadMoreCommand = new Command(DelayLoadMore);
+            MembersCommand = new AsyncCommand<Band>(Members);
         }
 
-        async Task Edit(Band band)
-        {
-            if (band == null)
-                return;
+        public ObservableRangeCollection<Band> Bands { get; set; }
+        public AsyncCommand RefreshCommand { get; }
+        public AsyncCommand SelectedCommand { get; }
+        public AsyncCommand AddCommand { get; }
+        public AsyncCommand<Band> RemoveCommand { get; }
+        public AsyncCommand<Band> EditCommand { get; }
+        public AsyncCommand<Band> MembersCommand { get; }
+        public Command ClearCommand { get; }
 
+        public Band SelectedBand
+        {
+            get => _selectedBand;
+            set => SetProperty(ref _selectedBand, value);
+        }
+
+        private async Task Members(Band band)
+        {
+            if (band == null) return;
+            var route = $"{nameof(BandMembersPage)}?BandId={band.Id}";
+            await Shell.Current.GoToAsync(route);
+        }
+
+        private async Task Edit(Band band)
+        {
+            if (band == null) return;
             var route = $"{nameof(EditBandPage)}?BandId={band.Id}";
             await Shell.Current.GoToAsync(route);
         }
 
-        Band selectedBand;
-        public Band SelectedBand
-        {
-            get => selectedBand;
-            set => SetProperty(ref selectedBand, value);
-        }
-        void Clear()
+        private void Clear()
         {
             Bands.Clear();
         }
 
-        async Task Selected()
+        private async Task Selected()
         {
-            if (SelectedBand == null)
-                return;
-
+            if (SelectedBand == null) return;
             var route = $"{nameof(BandDetailPage)}?BandId={SelectedBand.Id}";
             await Shell.Current.GoToAsync(route);
             //await Application.Current.MainPage.DisplayAlert("Selected", SelectedBand.Name, "OK");
-
             SelectedBand = null;
         }
 
         public async Task Add()
         {
-            var route = $"{nameof(AddBandPage)}?UserId={User.Id}";
+            var authService = DependencyService.Resolve<IAuthenticationService>();
+            var route = $"{nameof(AddBandPage)}?UserId={authService.GetCurrentUserId()}";
             await Shell.Current.GoToAsync(route);
-
         }
 
-        async Task Remove(Band band)
+        private async Task Remove(Band band)
         {
-            await App.Database.RemoveBand(band.Id);
+            await App.Database.DeleteWithManyToManyRecords(band);
+            if (band.Image != null)
+                // Delete photo from firebase
+                await _firebaseStorage.DeleteBandImage(band.Id.ToString());
             await Refresh();
+            await Shell.Current.CurrentPage.DisplayToastAsync("Skupina smazána");
         }
-
-
 
         public async Task Refresh()
         {
-            if (IsBusy)
-                return;
-
+            if (IsBusy) return;
             IsBusy = true;
-
             var authService = DependencyService.Resolve<IAuthenticationService>();
-            User = await App.Database.GetMusician(authService.GetCurrentUserId());
-
-            var bands = await App.Database.GetUserBands(User.Id);
+            var bands = await App.Database.GetUserBands(authService.GetCurrentUserId());
             Bands.ReplaceRange(bands);
-
             IsBusy = false;
         }
 
         public async Task Initialize()
         {
-            if (IsBusy || this.Bands.Count != 0)
-                return;
-
             IsBusy = true;
-
             var authService = DependencyService.Resolve<IAuthenticationService>();
-            User = await App.Database.GetMusician(authService.GetCurrentUserId());
-
-            var bands = await App.Database.GetUserBands(User.Id);
+            var bands = await App.Database.GetUserBands(authService.GetCurrentUserId());
             Bands.ReplaceRange(bands);
-
             IsBusy = false;
-        }
-
-        void LoadMore()
-        {
-            if (Bands.Count >= 20)
-                return;
-
-            Bands.Add(new Band { Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4RELAQu8B5144drqWQCOl4PFrQ3tuCeg68Q&usqp=CAU", Name = "Nirvana" });
-            Bands.Add(new Band { Image = "https://pbs.twimg.com/profile_images/1309143060576702465/hY1vgsXD.jpg", Name = "Pixies" });
-            Bands.Add(new Band { Image = "https://media.resources.festicket.com/www/artists/PearlJam_New.jpg", Name = "Peal Jam" });
-            Bands.Add(new Band { Image = "https://www.royalrepublic.net/2/media/image/royal_republic_we_ar_20151120113009_511_500.jpg", Name = "Royal Republic" });
-            Bands.Add(new Band { Image = "https://sttpczprodcdn.azureedge.net/images/podujatie/-2147480806/orig_SYSTEM_OF_A_DOWN_2019925145214.jpg", Name = "System of a down" });
-        }
-
-        void DelayLoadMore()
-        {
-            // Umožňuje načítat za běhu (nekonečné scrollování)
-            return;
-
-            //if (Bands.Count <= 10)
-            //    return;
-
-            //LoadMore();
         }
     }
 }

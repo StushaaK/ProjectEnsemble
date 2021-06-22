@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage
+    x:Class="Project_Ensemble.Views.SelectResidencePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:models="clr-namespace:Project_Ensemble.Models"
+    xmlns:viewmodels="clr-namespace:Project_Ensemble.ViewModels"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:md="clr-namespace:Project_Ensemble;assembly=Project_Ensemble"
+    ios:Page.UseSafeArea="True"
+    x:DataType="viewmodels:SelectResidenceViewModel">
+
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="LightGray" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <ResourceDictionary>
+            <xct:IsNullOrEmptyConverter x:Key="IsNullOrEmptyConverter" />
+            <xct:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <SearchBar Placeholder="Zadejte název města" Text="{Binding ResidenceText}" />
+            <CollectionView
+                ios:ListView.SeparatorStyle="FullWidth"
+                Footer=""
+                ItemSizingStrategy="MeasureAllItems"
+                HeightRequest="270"
+                SelectionMode="Single"
+                ItemsSource="{Binding Places}"
+                SelectedItem="{Binding PlaceSelected, Mode=TwoWay}"
+                VerticalOptions="FillAndExpand">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:GooglePlaceAutoCompletePrediction">
+                        <Grid
+                                Padding="15"
+                                ColumnSpacing="15"
+                                RowSpacing="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Image
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"
+                                    Grid.Column="0"
+                                    HeightRequest="20"
+                                    VerticalOptions="Start"
+                                    WidthRequest="20">
+                                    <Image.Source>
+                                        <FontImageSource
+                                            FontFamily="md-rr"
+                                            Glyph="{x:Static md:MaterialDesignIcons.LocationCity}"
+                                            Color="#33000000" />
+                                    </Image.Source>
+                                </Image>
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    LineBreakMode="MiddleTruncation"
+                                    Text="{Binding StructuredFormatting.MainText}" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    LineBreakMode="MiddleTruncation"
+                                    Text="{Binding StructuredFormatting.SecondaryText}"
+                                    TextColor="Gray" />
+                            </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Frame
+                Margin="10"
+                Padding="15"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <StackLayout>
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Body"
+                        Text="Vybrané město"
+                        TextTransform="Uppercase" />
+                    <Label
+                        FontSize="15"
+                        IsVisible="{Binding PlaceSelected, Converter={StaticResource IsNullOrEmptyConverter}}"
+                        Text="Žádné město" />
+                    <Label
+                        FontSize="15"
+                        IsVisible="{Binding PlaceSelected, Converter={StaticResource IsNotNullOrEmptyConverter}}"
+                        Text="{Binding SelectedPlace}" />
+                    <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand">
+                        <Button
+                            BackgroundColor="{StaticResource Primary}"
+                            Command="{Binding ClearSelectedPlaceCommand}"
+                            CornerRadius="25"
+                            HorizontalOptions="Start"
+                            Text="Smazat"
+                            TextColor="White"
+                            TextTransform="Uppercase"
+                            WidthRequest="150" />
+                        <Button
+                            BackgroundColor="{StaticResource Primary}"
+                            Command="{Binding ConfirmSelectedPlaceCommand}"
+                            CornerRadius="25"
+                            HorizontalOptions="EndAndExpand"
+                            Text="Potvrdit"
+                            TextColor="White"
+                            TextTransform="Uppercase"
+                            WidthRequest="150" />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

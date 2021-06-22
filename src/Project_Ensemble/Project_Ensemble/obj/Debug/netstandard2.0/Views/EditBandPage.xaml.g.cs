@@ -20,13 +20,25 @@ namespace Project_Ensemble.Views {
         private global::Xamarin.Forms.StackLayout StackLayout;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Project_Ensemble.Controls.FlowLayout flChipView;
+        private global::Project_Ensemble.Controls.FlowLayout FlChipView;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.BoxView Backdrop;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.ContentView ToolbarWrapper;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.Frame BottomToolbar;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(EditBandPage));
             StackLayout = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.StackLayout>(this, "StackLayout");
-            flChipView = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Project_Ensemble.Controls.FlowLayout>(this, "flChipView");
+            FlChipView = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Project_Ensemble.Controls.FlowLayout>(this, "FlChipView");
+            Backdrop = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.BoxView>(this, "Backdrop");
+            ToolbarWrapper = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ContentView>(this, "ToolbarWrapper");
+            BottomToolbar = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Frame>(this, "BottomToolbar");
         }
     }
 }

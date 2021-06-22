@@ -1,15 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage
     x:Class="Project_Ensemble.Views.EditMusicianPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     xmlns:controls="clr-namespace:Project_Ensemble.Controls"
     xmlns:helpers="clr-namespace:Project_Ensemble.Helpers"
     xmlns:viewmodel="clr-namespace:Project_Ensemble.ViewModels"
-    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     x:Name="this"
-    Title="Upravit profil">
-
+    Title="Upravit profil"
+    x:DataType="viewmodel:EditMusicianViewModel">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -22,9 +23,6 @@
         <ScrollView>
             <StackLayout Padding="20" VerticalOptions="FillAndExpand">
 
-
-
-
                 <StackLayout>
                     <ActivityIndicator
                         HorizontalOptions="Center"
@@ -32,13 +30,11 @@
                         IsVisible="{Binding IsBusy}"
                         VerticalOptions="Center" />
 
-
-
                     <StackLayout HorizontalOptions="Center">
                         <xct:AvatarView
                             HorizontalOptions="CenterAndExpand"
                             Size="100"
-                            Source="{Binding Musician.Avatar}"
+                            Source="{Binding AvatarUrl}"
                             Text="{Binding Path=Musician, Converter={StaticResource initialsConverter}}" />
                         <Label
                             Margin="0,5,0,0"
@@ -68,7 +64,7 @@
                         Text="{Binding Musician.Lastname}" />
                     <Entry
                         Keyboard="Email"
-                        Placeholder="Kotaktní Email"
+                        Placeholder="Kontaktní Email"
                         Text="{Binding Musician.Email}" />
                     <Entry
                         Keyboard="Numeric"
@@ -76,27 +72,33 @@
                         Placeholder="Telefon"
                         Text="{Binding Musician.Phone}" />
                     <Label>Datum narození:</Label>
-                    <controls:NullableDatePicker NullableDate="{Binding Musician.BirthDay}" />
+                    <controls:NullableDatePicker Date="{Binding Musician.BirthDay}" />
                     <Label>Pohlaví:</Label>
                     <Picker Title="Pohlaví" SelectedItem="{Binding Musician.Sex}">
                         <Picker.Items>
                             <x:String>Muž</x:String>
                             <x:String>Žena</x:String>
-                            <x:String>Trasngeder</x:String>
+                            <x:String>Transgender</x:String>
                             <x:String>Two-Spirit</x:String>
-                            <x:String>Cisgender</x:String>
+                            <x:String>Cis-gender</x:String>
                             <x:String>Non-binary</x:String>
-                            <x:String>Genderqueer</x:String>
-                            <x:String>Gender expression</x:String>
-                            <x:String>Gender fluid</x:String>
-                            <x:String>Gender neutral</x:String>
+                            <x:String>Gender-queer</x:String>
+                            <x:String>Gender-expression</x:String>
+                            <x:String>Gender-fluid</x:String>
+                            <x:String>Gender-neutral</x:String>
                             <x:String>Jiné</x:String>
                         </Picker.Items>
                     </Picker>
-                    <Entry
-                        MaxLength="100"
-                        Placeholder="Bydliště"
-                        Text="{Binding Musician.Residence}" />
+                    <StackLayout>
+                        <Entry
+                            IsEnabled="False"
+                            MaxLength="100"
+                            Placeholder="Bydliště"
+                            Text="{Binding Residence.Name}" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangeResidenceCommand}" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
 
                     <Editor
                         AutoSize="TextChanges"
@@ -131,8 +133,6 @@
                         VerticalOptions="Start"
                         WidthRequest="250" />
                 </StackLayout>
-
-
             </StackLayout>
         </ScrollView>
 
@@ -148,43 +148,49 @@
         </BoxView>
 
         <!--  Bottom Drawer  -->
-        <Frame
-            x:Name="BottomToolbar"
-            Padding="15,6"
-            BackgroundColor="White"
-            CornerRadius="20"
-            HeightRequest="180"
+        <ContentView
+            x:Name="ToolbarWrapper"
             TranslationY="260"
             VerticalOptions="End">
-            <Frame.GestureRecognizers>
+            <ContentView.GestureRecognizers>
                 <PanGestureRecognizer PanUpdated="PanGestureRecognizer_PanUpdated" />
-            </Frame.GestureRecognizers>
-            <StackLayout Padding="10" Orientation="Vertical">
-                <BoxView
-                    BackgroundColor="LightGray"
-                    CornerRadius="2"
-                    HeightRequest="4"
-                    HorizontalOptions="Center"
-                    WidthRequest="35" />
-                <Label
-                    FontAttributes="Bold"
-                    FontSize="18"
-                    HorizontalOptions="Center"
-                    Text="Změnit profilovou fotku" />
-                <TableView
-                    BackgroundColor="White"
-                    Intent="Menu"
-                    VerticalOptions="End">
-                    <TableSection>
-                        <TextCell Text="Nová profilová fotka" TextColor="Black" />
-                        <TextCell
-                            IsEnabled="{Binding Musician.Avatar, Converter={StaticResource}}"
-                            Text="Odebrat profilovou fotku"
-                            TextColor="Red" />
-                    </TableSection>
-                </TableView>
-            </StackLayout>
-        </Frame>
-
+            </ContentView.GestureRecognizers>
+            <Frame
+                x:Name="BottomToolbar"
+                Padding="15,6"
+                BackgroundColor="White"
+                CornerRadius="20"
+                HeightRequest="190">
+                <StackLayout Padding="10" Orientation="Vertical">
+                    <BoxView
+                        BackgroundColor="LightGray"
+                        CornerRadius="2"
+                        HeightRequest="4"
+                        HorizontalOptions="Center"
+                        WidthRequest="35" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Text="Změnit profilovou fotku" />
+                    <TableView
+                        BackgroundColor="White"
+                        Intent="Menu"
+                        VerticalOptions="End">
+                        <TableSection>
+                            <TextCell
+                                Command="{Binding PickPhotoCommand}"
+                                Text="Nová profilová fotka"
+                                TextColor="Black" />
+                            <TextCell
+                                Command="{Binding DeletePhotoCommand}"
+                                IsEnabled="{Binding AvatarUrl, Converter={StaticResource IsNotNullOrEmptyConverter}}"
+                                Text="Odebrat profilovou fotku"
+                                TextColor="Red" />
+                        </TableSection>
+                    </TableView>
+                </StackLayout>
+            </Frame>
+        </ContentView>
     </Grid>
 </ContentPage>

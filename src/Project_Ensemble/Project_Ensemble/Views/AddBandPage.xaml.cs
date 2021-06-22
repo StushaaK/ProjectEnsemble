@@ -1,89 +1,93 @@
-﻿using Project_Ensemble.Models;
+﻿using Newtonsoft.Json;
+using Project_Ensemble.Constants;
+using Project_Ensemble.Models;
 using Project_Ensemble.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Project_Ensemble.Views
 {
     [QueryProperty(nameof(UserId), nameof(UserId))]
+    [QueryProperty(nameof(SelectedPlace), nameof(SelectedPlace))]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddBandPage : ContentPage
+    public partial class AddBandPage
     {
-        AddBandViewModel vm;
-        public string UserId { get; set; }
-        Constants.ColorConstants color = new Constants.ColorConstants();
+        private readonly AddBandViewModel _vm;
+        public readonly ColorConstants Color = new ColorConstants();
 
         public AddBandPage()
         {
             InitializeComponent();
-            this.BindingContext = vm = new AddBandViewModel();
-
-
+            BindingContext = _vm = new AddBandViewModel();
         }
+
+        public string UserId { get; set; }
+        public string SelectedPlace { get; set; }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+            var deserializedPlace = SelectedPlace == null ? null : JsonConvert.DeserializeObject<Place>(SelectedPlace);
+            await _vm.LoadData(UserId, deserializedPlace);
+            AddGenreChips();
+        }
 
-            await vm.LoadData(UserId);
-
-            foreach (var item in vm.ItemList)
-            {
-                flChipView.Children.Add(CreateRandomBoxview(item));
-            }
-
-
+        private void AddGenreChips()
+        {
+            if (FlChipView.Children.Count > 0) return;
+            foreach (var item in _vm.ItemList) FlChipView.Children.Add(CreateRandomBoxView(item));
         }
 
         #region Functions For Create Chips
-        private Frame CreateRandomBoxview(SelectableItem items)
+
+        private Frame CreateRandomBoxView(SelectableItem items)
         {
-            var view = new Frame();    // Creating New View for design as chip
-            view.BackgroundColor = (items.isSelected) ? (Color)color["Primary"] : (Color)color["White"];
-            view.BorderColor = (items.isSelected) ? (Color)color["White"] : (Color)color["LightBlack"];
-            view.Padding = new Thickness(20, 10);
-            view.CornerRadius = 5;
-            view.HasShadow = false;
+            var view = new Frame
+            {
+                BackgroundColor = items.IsSelected ? (Color) Color["Primary"] : (Color) Color["White"],
+                BorderColor = items.IsSelected ? (Color) Color["White"] : (Color) Color["LightBlack"],
+                Padding = new Thickness(20, 10),
+                CornerRadius = 5,
+                HasShadow = false
+            }; // Creating New View for design as chip
 
             //Chip click event
             var tapGestureRecognizer = new TapGestureRecognizer();
             tapGestureRecognizer.Tapped += (s, e) =>
             {
-                var frameSender = (Frame)s;
-                var labelDemo = (Label)frameSender.Content;
-                if (!items.isSelected)
+                var frameSender = (Frame) s;
+                var labelDemo = (Label) frameSender.Content;
+                switch (items.IsSelected)
                 {
-                    view.BackgroundColor = (Color)color["Primary"];
-                    labelDemo.TextColor = (Color)color["White"];
-                    view.BorderColor = (Color)color["White"];
-                    items.isSelected = true;
-                }
-                else if (items.isSelected)
-                {
-                    view.BackgroundColor = (Color)color["White"];
-                    labelDemo.TextColor = (Color)color["Black"];
-                    view.BorderColor = (Color)color["LightBlack"];
-                    items.isSelected = false;
+                    case false:
+                        view.BackgroundColor = (Color) Color["Primary"];
+                        labelDemo.TextColor = (Color) Color["White"];
+                        view.BorderColor = (Color) Color["White"];
+                        items.IsSelected = true;
+                        break;
+                    case true:
+                        view.BackgroundColor = (Color) Color["White"];
+                        labelDemo.TextColor = (Color) Color["Black"];
+                        view.BorderColor = (Color) Color["LightBlack"];
+                        items.IsSelected = false;
+                        break;
                 }
             };
             view.GestureRecognizers.Add(tapGestureRecognizer);
 
             // creating new child that holds the value of item list and add in View
-            var label = new Label();
-            label.Text = ((Genre)items.Data).Name;
-            label.TextColor = (items.isSelected) ? (Color)color["White"] : (Color)color["Black"];
-            label.HorizontalOptions = LayoutOptions.Center;
-            label.VerticalOptions = LayoutOptions.Center;
-            label.FontSize = 16;
+            var label = new Label
+            {
+                Text = ((Genre) items.Data).Name,
+                TextColor = items.IsSelected ? (Color) Color["White"] : (Color) Color["Black"],
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.Center,
+                FontSize = 16
+            };
             view.Content = label;
             return view;
         }
-        #endregion
+
+        #endregion Functions For Create Chips
     }
 }

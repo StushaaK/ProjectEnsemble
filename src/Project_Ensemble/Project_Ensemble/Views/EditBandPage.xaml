@@ -1,9 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage
     x:Class="Project_Ensemble.Views.EditBandPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     xmlns:controls="clr-namespace:Project_Ensemble.Controls">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <Grid>
         <ScrollView>
@@ -13,13 +21,28 @@
                 Spacing="10"
                 VerticalOptions="FillAndExpand">
 
-
-
                 <ActivityIndicator
                     HorizontalOptions="Center"
                     IsRunning="{Binding IsBusy}"
                     IsVisible="{Binding IsBusy}"
                     VerticalOptions="Start" />
+
+                <StackLayout HorizontalOptions="Center">
+                    <xct:AvatarView
+                        HorizontalOptions="CenterAndExpand"
+                        Size="100"
+                        Source="{Binding ImageUrl}"
+                        Text="{Binding Band.Name}" />
+                    <Label
+                        Margin="0,5,0,0"
+                        FontSize="Body"
+                        HorizontalTextAlignment="Center"
+                        Text="Změnit fotku skupiny"
+                        TextColor="{StaticResource Primary}" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
 
                 <Label
                     FontAttributes="Bold"
@@ -32,16 +55,16 @@
                     Placeholder="Jméno"
                     Text="{Binding Band.Name}" />
 
-                <Entry
-                    MaxLength="100"
-                    Placeholder="Sídlící v"
-                    Text="{Binding Band.BasedAt}"
-                    VerticalOptions="Start" />
-                <Entry
-                    Placeholder="Obrázek (URL)"
-                    Text="{Binding Band.Image}"
-                    VerticalOptions="Start" />
-
+                <StackLayout>
+                    <Entry
+                        IsEnabled="False"
+                        MaxLength="100"
+                        Placeholder="Sídlící v"
+                        Text="{Binding BasedAt.Name}" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ChangeResidenceCommand}" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
 
                 <Label
                     Margin="0,20,0,0"
@@ -51,9 +74,15 @@
                     TextTransform="Uppercase" />
 
                 <controls:FlowLayout
-                    x:Name="flChipView"
+                    x:Name="FlChipView"
                     Spacing="5"
                     VerticalOptions="Start" />
+
+                <Editor
+                    AutoSize="TextChanges"
+                    MaxLength="255"
+                    Placeholder="O skupině"
+                    Text="{Binding Band.About}" />
 
 
                 <Button
@@ -69,5 +98,62 @@
                     WidthRequest="250" />
             </StackLayout>
         </ScrollView>
+
+        <!--  Backdrop  -->
+        <BoxView
+            x:Name="Backdrop"
+            InputTransparent="True"
+            Opacity="0"
+            Color="#4B000000">
+            <BoxView.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+            </BoxView.GestureRecognizers>
+        </BoxView>
+
+        <!--  Bottom Drawer  -->
+        <ContentView
+            x:Name="ToolbarWrapper"
+            TranslationY="260"
+            VerticalOptions="End">
+            <ContentView.GestureRecognizers>
+                <PanGestureRecognizer PanUpdated="PanGestureRecognizer_PanUpdated" />
+            </ContentView.GestureRecognizers>
+            <Frame
+                x:Name="BottomToolbar"
+                Padding="15,6"
+                BackgroundColor="White"
+                CornerRadius="20"
+                HeightRequest="190">
+                <StackLayout Padding="10" Orientation="Vertical">
+                    <BoxView
+                        BackgroundColor="LightGray"
+                        CornerRadius="2"
+                        HeightRequest="4"
+                        HorizontalOptions="Center"
+                        WidthRequest="35" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Text="Změnit fotku skupiny" />
+                    <TableView
+                        BackgroundColor="White"
+                        Intent="Menu"
+                        VerticalOptions="End">
+                        <TableSection>
+                            <TextCell
+                                Command="{Binding PickPhotoCommand}"
+                                Text="Nová fotka skupiny"
+                                TextColor="Black" />
+                            <TextCell
+                                Command="{Binding DeletePhotoCommand}"
+                                IsEnabled="{Binding ImageUrl, Converter={StaticResource IsNotNullOrEmptyConverter}}"
+                                Text="Odebrat fotku skupiny"
+                                TextColor="Red" />
+                        </TableSection>
+                    </TableView>
+                </StackLayout>
+            </Frame>
+        </ContentView>
     </Grid>
 </ContentPage>

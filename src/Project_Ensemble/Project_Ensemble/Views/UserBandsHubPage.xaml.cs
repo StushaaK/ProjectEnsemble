@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Project_Ensemble.Views
@@ -15,11 +9,8 @@ namespace Project_Ensemble.Views
         public UserBandsHubPage()
         {
             InitializeComponent();
-
-
-            this.Children.Add(new UserBandsPage() { Title = "Vaše skupiny" });
-            this.Children.Add(new InvitesPage() { Title = "Pozvánky" });
-
+            Children.Add(new UserBandsPage {Title = "Vaše skupiny"});
+            Children.Add(new InvitesPage {Title = "Pozvánky"});
         }
     }
 }

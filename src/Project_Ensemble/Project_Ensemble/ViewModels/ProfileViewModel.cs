@@ -1,37 +1,65 @@
-﻿using MvvmHelpers.Commands;
+﻿using System.Threading.Tasks;
+using MvvmHelpers.Commands;
+using Newtonsoft.Json;
 using Project_Ensemble.Models;
 using Project_Ensemble.Views;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Project_Ensemble.ViewModels
 {
-    class ProfileViewModel : BaseViewModel
+    internal class ProfileViewModel : BaseViewModel
     {
-        Musician user;
-        public AsyncCommand<Musician> EditCommand { get; }
-
-
-        public Musician User { get => user; set => SetProperty(ref user, value); }
+        private Band _selectedBand;
+        private Musician _user;
 
         public ProfileViewModel()
         {
             EditCommand = new AsyncCommand<Musician>(Edit);
+            EditSkillsCommand = new AsyncCommand<Musician>(Skills);
+            SelectedCommand = new AsyncCommand(Selected);
         }
 
-        async Task Edit(Musician musician)
+        public AsyncCommand<Musician> EditCommand { get; }
+        public AsyncCommand<Musician> EditSkillsCommand { get; }
+        public AsyncCommand SelectedCommand { get; }
+
+        public Musician User
+        {
+            get => _user;
+            set => SetProperty(ref _user, value);
+        }
+
+        public Band SelectedBand
+        {
+            get => _selectedBand;
+            set => SetProperty(ref _selectedBand, value);
+        }
+
+        private async Task Edit(Musician musician)
         {
             var route = $"{nameof(EditMusicianPage)}?MusicianId={User.Id}";
             await Shell.Current.GoToAsync(route);
         }
 
+        private async Task Skills(Musician musician)
+        {
+            var serializedSkills = JsonConvert.SerializeObject(User.Skills);
+            var route = $"{nameof(UserSkillsPage)}?UserSkills={serializedSkills}";
+            await Shell.Current.GoToAsync(route);
+        }
+
+        private async Task Selected()
+        {
+            if (SelectedBand == null) return;
+            var route = $"{nameof(BandDetailPage)}?BandId={SelectedBand.Id}";
+            await Shell.Current.GoToAsync(route);
+            SelectedBand = null;
+        }
+
         public async Task LoadUser(string userId)
         {
             IsBusy = true;
-            User = await App.Database.GetMusician(userId);
+            User = await App.Database.GetMusicianWithChildren(userId);
         }
     }
 }

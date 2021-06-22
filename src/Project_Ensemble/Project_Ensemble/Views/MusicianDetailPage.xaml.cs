@@ -1,9 +1,5 @@
-﻿using Project_Ensemble.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using Project_Ensemble.ViewModels;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -14,28 +10,35 @@ namespace Project_Ensemble.Views
     [QueryProperty(nameof(MusicianId), nameof(MusicianId))]
     public partial class MusicianDetailPage : ContentPage
     {
-        public string MusicianId { get; set; }
+        private readonly ProfileViewModel Vm;
+
         public MusicianDetailPage()
         {
             InitializeComponent();
-
-            EmailAddress.GestureRecognizers.Add(new TapGestureRecognizer
-            {
-                Command = new Command(() => OnEmailClicked()),
-            });
+            EmailAddress.GestureRecognizers.Add(
+                new TapGestureRecognizer {Command = new Command(() => OnEmailClicked())});
+            BindingContext = Vm = new ProfileViewModel();
         }
+
+        public string MusicianId { get; set; }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
-            BindingContext = await App.Database.GetMusician(MusicianId);
+            await Vm.LoadUser(MusicianId);
         }
 
-        private void OnEmailClicked()
+        private async void OnEmailClicked()
         {
-            Launcher.OpenAsync(new Uri($"mailto:{EmailAddress.Text}?subject=Dotaz | Project Ensemble"));
+            try
+            {
+                await Launcher.OpenAsync(new Uri($"mailto:{EmailAddress.Text}?subject=Dotaz | Project Ensemble"));
+            }
+            catch (Exception)
+            {
+                await Shell.Current.CurrentPage.DisplayAlert("Chyba",
+                    "Nemáte nastavenou žádnou aplikaci ke správě emailů.", "Ok");
+            }
         }
-
     }
 }

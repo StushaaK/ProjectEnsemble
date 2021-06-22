@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <ResourceDictionary
     x:Class="Project_Ensemble.Constants.ColorConstants"
     xmlns="http://xamarin.com/schemas/2014/forms"
@@ -11,5 +12,4 @@
     <Color x:Key="Accent">#F3237C</Color>
     <Color x:Key="Blue">#23E4F3</Color>
     <Color x:Key="Orange">#F39A23</Color>
-
 </ResourceDictionary>

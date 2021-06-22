@@ -1,11 +1,4 @@
-﻿using Project_Ensemble.Services;
-using Project_Ensemble.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using Project_Ensemble.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,22 +8,20 @@ namespace Project_Ensemble.Views
     [QueryProperty(nameof(BandId), nameof(BandId))]
     public partial class BandDetailPage : ContentPage
     {
-        public string BandId { get; set; }
-        private BandDetailViewModel vm { get; set; }
         public BandDetailPage()
         {
             InitializeComponent();
-            
+            BindingContext = Vm = new BandDetailViewModel();
         }
+
+        public string BandId { get; set; }
+        private BandDetailViewModel Vm { get; }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
             int.TryParse(BandId, out var result);
-
-            this.BindingContext = vm = new BandDetailViewModel();
-
-            await vm.LoadData(result);
+            await Vm.LoadData(result);
         }
     }
 }

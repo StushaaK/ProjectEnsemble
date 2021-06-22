@@ -1,21 +1,19 @@
-﻿using Project_Ensemble.Models;
+﻿using System;
+using System.Windows.Input;
+using Project_Ensemble.Models;
 using Project_Ensemble.Services;
 using Project_Ensemble.Views;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Project_Ensemble.ViewModels
 {
-    class RegisterViewModel : BaseViewModel
+    internal class RegisterViewModel : BaseViewModel
     {
-        private string firstname;
-        private string surname;
-        private string email;
-        private string password;
-        private string username;
+        private string _email;
+        private string _firstname;
+        private string _password;
+        private string _surname;
+        private string _username;
 
         public RegisterViewModel()
         {
@@ -23,9 +21,12 @@ namespace Project_Ensemble.ViewModels
             SignInCommand = new Command(OnSignIn);
         }
 
-        private async void OnSignIn(object obj)
+        public ICommand SignUpCommand { get; }
+        public ICommand SignInCommand { get; }
+
+        private static async void OnSignIn(object obj)
         {
-            await Xamarin.Forms.Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+            await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
         }
 
         private async void OnSignUp(object obj)
@@ -33,12 +34,10 @@ namespace Project_Ensemble.ViewModels
             try
             {
                 var authService = DependencyService.Resolve<IAuthenticationService>();
-
                 Username = $"{Firstname} {Surname}";
                 if (await authService.CreateUser(Username, Email, Password))
                 {
-
-                    Musician musician = new Musician
+                    var musician = new Musician
                     {
                         Id = authService.GetCurrentUserId(),
                         Firstname = Firstname,
@@ -48,9 +47,7 @@ namespace Project_Ensemble.ViewModels
                         TimeStamp = DateTime.Now
                     };
                     await App.Database.AddMusician(musician);
-
-
-                    await Xamarin.Forms.Shell.Current.GoToAsync($"//{nameof(CatalogPage)}");
+                    await Shell.Current.GoToAsync($"//{nameof(CatalogPage)}");
                 }
                 else
                 {
@@ -60,8 +57,7 @@ namespace Project_Ensemble.ViewModels
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-
-                await Xamarin.Forms.Shell.Current.DisplayAlert("Vytvoření uživatele", "Při vytváření uživatele nastala chyba", "OK");
+                await Shell.Current.DisplayAlert("Vytvoření uživatele", "Při vytváření uživatele nastala chyba", "OK");
             }
         }
 
@@ -69,36 +65,34 @@ namespace Project_Ensemble.ViewModels
 
         public string Firstname
         {
-            get => firstname;
-            set => SetProperty(ref firstname, value);
+            get => _firstname;
+            set => SetProperty(ref _firstname, value);
         }
 
         public string Surname
         {
-            get => surname;
-            set => SetProperty(ref surname, value);
+            get => _surname;
+            set => SetProperty(ref _surname, value);
         }
 
         public string Username
         {
-            get => username;
-            set => SetProperty(ref username, value);
+            get => _username;
+            set => SetProperty(ref _username, value);
         }
 
         public string Password
         {
-            get => password;
-            set => SetProperty(ref password, value);
+            get => _password;
+            set => SetProperty(ref _password, value);
         }
 
         public string Email
         {
-            get => email;
-            set => SetProperty(ref email, value);
+            get => _email;
+            set => SetProperty(ref _email, value);
         }
-        #endregion
 
-        public ICommand SignUpCommand { get; }
-        public ICommand SignInCommand { get; }
+        #endregion Properties
     }
 }

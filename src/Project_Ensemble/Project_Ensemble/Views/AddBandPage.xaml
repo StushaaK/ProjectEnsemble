@@ -1,11 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage
     x:Class="Project_Ensemble.Views.AddBandPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Project_Ensemble.Controls"
-    Title="Nová skupina">
-
+    xmlns:viewModels="clr-namespace:Project_Ensemble.ViewModels;assembly=Project_Ensemble"
+    Title="Nová skupina" x:DataType="viewModels:AddBandViewModel">
 
     <Grid>
         <ScrollView>
@@ -15,13 +16,11 @@
                 Spacing="10"
                 VerticalOptions="FillAndExpand">
 
-
-
                 <ActivityIndicator
                     HorizontalOptions="Center"
                     IsRunning="{Binding IsBusy}"
                     IsVisible="{Binding IsBusy}"
-                    VerticalOptions="Start" />
+                    VerticalOptions="Start" x:DataType="viewModels:AddBandViewModel" />
 
                 <Label
                     FontAttributes="Bold"
@@ -34,16 +33,16 @@
                     Placeholder="Jméno"
                     Text="{Binding Name}" />
 
-                <Entry
-                    MaxLength="100"
-                    Placeholder="Sídlící v"
-                    Text="{Binding BasedAt}"
-                    VerticalOptions="Start" />
-                <Entry
-                    Placeholder="Obrázek (URL)"
-                    Text="{Binding Image}"
-                    VerticalOptions="Start" />
-
+                <StackLayout>
+                    <Entry
+                        IsEnabled="False"
+                        MaxLength="100"
+                        Placeholder="Sídĺící v"
+                        Text="{Binding BasedAt.Name}" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ChangeResidenceCommand}" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
 
                 <Label
                     Margin="0,20,0,0"
@@ -53,10 +52,9 @@
                     TextTransform="Uppercase" />
 
                 <controls:FlowLayout
-                    x:Name="flChipView"
+                    x:Name="FlChipView"
                     Spacing="5"
                     VerticalOptions="Start" />
-
 
                 <Button
                     Margin="0,20,0,0"

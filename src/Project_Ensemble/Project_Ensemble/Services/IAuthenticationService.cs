@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace Project_Ensemble.Services
 {
@@ -13,5 +10,6 @@ namespace Project_Ensemble.Services
         Task<string> SignIn(string email, string password);
         Task ResetPassword(string email);
         string GetCurrentUserId();
+        Task<bool> DeleteUser(string password);
     }
 }

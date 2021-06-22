@@ -1,22 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <TabbedPage
     x:Class="Project_Ensemble.Views.CatalogPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-    xmlns:md="clr-namespace:MaterialDesign"
-    xmlns:viewmodels="clr-namespace:Project_Ensemble.ViewModels"
     xmlns:views="clr-namespace:Project_Ensemble.Views"
+    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
     Title="Ensemble"
-    android:TabbedPage.BarSelectedItemColor="{StaticResource Primary}"
     android:TabbedPage.ToolbarPlacement="Bottom"
     BarBackgroundColor="#FFFFFF"
+    SelectedTabColor="{StaticResource Primary}"
     BarTextColor="#1F1D1D">
     <!--  Pages can be added as references or inline  -->
 
     <views:MusicianListPage />
     <views:BandListPage />
-
-
-
 </TabbedPage>

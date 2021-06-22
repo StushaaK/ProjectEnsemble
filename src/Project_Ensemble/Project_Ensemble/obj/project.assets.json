@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     ".NETStandard,Version=v2.0": {
+      "FirebaseStorage.net/1.0.3": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/netstandard1.1/Firebase.Storage.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/Firebase.Storage.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -746,7 +759,7 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
-      "Xamarin.CommunityToolkit/1.1.0": {
+      "Xamarin.CommunityToolkit/1.2.0-pre2": {
         "type": "package",
         "dependencies": {
           "System.Reflection.Emit.Lightweight": "4.7.0",
@@ -775,7 +788,7 @@
           "lib/netstandard2.0/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/5.0.0.7220": {
+      "Xamarin.Forms/5.0.0.7298": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Xamarin.Forms.Core.dll": {},
@@ -791,10 +804,34 @@
           "buildTransitive/Xamarin.Forms.props": {},
           "buildTransitive/Xamarin.Forms.targets": {}
         }
+      },
+      "Xamarin.Forms.Visual.Material/5.0.0.7298": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "5.0.0.7298"
+        },
+        "compile": {
+          "lib/netstandard1.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/_._": {}
+        }
       }
     }
   },
   "libraries": {
+    "FirebaseStorage.net/1.0.3": {
+      "sha512": "SupDHNUwNqcVwEo/HdFEWAXveQe3fU16q4wrrCxUVwP0a77zaddKp7vo2sHIW56DAsJn/gUfjDK3w0MuBhvzjQ==",
+      "type": "package",
+      "path": "firebasestorage.net/1.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "firebasestorage.net.1.0.3.nupkg.sha512",
+        "firebasestorage.net.nuspec",
+        "lib/netstandard1.1/Firebase.Storage.dll"
+      ]
+    },
     "Microsoft.CSharp/4.0.1": {
       "sha512": "17h8b5mXa87XYKrrVqdgZ38JefSUqLChUQpXgSnpzsM0nDOhE40FTeNWOJ/YmySGV6tG6T8+hjz6vxbknHJr6A==",
       "type": "package",
@@ -3452,10 +3489,10 @@
         "system.xml.xdocument.nuspec"
       ]
     },
-    "Xamarin.CommunityToolkit/1.1.0": {
-      "sha512": "GJiaXaPLrM1qn1HYxDPKlECYAzX5CI6FKtv4NXCq8K7SJTscmFo79RcwZoj1o3de+4V0aiJAVZMCpbMIF/sZVA==",
+    "Xamarin.CommunityToolkit/1.2.0-pre2": {
+      "sha512": "BTyjRHokVWItfRGOVPmrzXw7PKNuevHzpiE5cXn6+cV6rx+VzdnGIMmmSfq41I7pTNs9UN2nNlFTOSXmqlhgZA==",
       "type": "package",
-      "path": "xamarin.communitytoolkit/1.1.0",
+      "path": "xamarin.communitytoolkit/1.2.0-pre2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3490,7 +3527,7 @@
         "lib/xamarintvos10/Xamarin.CommunityToolkit.xml",
         "lib/xamarinwatchos10/Xamarin.CommunityToolkit.dll",
         "lib/xamarinwatchos10/Xamarin.CommunityToolkit.xml",
-        "xamarin.communitytoolkit.1.1.0.nupkg.sha512",
+        "xamarin.communitytoolkit.1.2.0-pre2.nupkg.sha512",
         "xamarin.communitytoolkit.nuspec"
       ]
     },
@@ -3545,10 +3582,10 @@
         "xamarin.essentials.nuspec"
       ]
     },
-    "Xamarin.Forms/5.0.0.7220": {
-      "sha512": "XlAkcH/aKYxboln7fbcdWiRZk6hb454WoIniHSookdgbRC9O450u+Op6we+r483dx1/HwEQ0NvF0yb3hSEKBCg==",
+    "Xamarin.Forms/5.0.0.7298": {
+      "sha512": "gKqoRwpu119s90wSlaJ9IgWgvRtkFo1V50e/6EsGSgkUjdX8aZxeynknWBB7M21HSXd0d0suQ/3cjZORDirQGA==",
       "type": "package",
-      "path": "xamarin.forms/5.0.0.7220",
+      "path": "xamarin.forms/5.0.0.7298",
       "files": [
         ".nupkg.metadata",
         "Assets/xamarin_128x128.png",
@@ -3756,19 +3793,42 @@
         "lib/uap10.0.16299/Xamarin.Forms.Xaml.dll",
         "lib/uap10.0.16299/Xamarin.Forms.Xaml.pdb",
         "lib/uap10.0.16299/Xamarin.Forms.Xaml.xml",
-        "xamarin.forms.5.0.0.7220.nupkg.sha512",
+        "xamarin.forms.5.0.0.7298.nupkg.sha512",
         "xamarin.forms.nuspec"
+      ]
+    },
+    "Xamarin.Forms.Visual.Material/5.0.0.7298": {
+      "sha512": "yd3Frr+aDP6fT+DJrgvvJ8n5+1EDM1AFpKt5lz5vQyx/Zi3pOamE61znWc1NX3e3xuqWwKxk9sIbma5YTjpyUA==",
+      "type": "package",
+      "path": "xamarin.forms.visual.material/5.0.0.7298",
+      "files": [
+        ".nupkg.metadata",
+        "Assets/xamarin_128x128.png",
+        "build/MonoAndroid10/Xamarin.Forms.Visual.Material.targets",
+        "buildTransitive/MonoAndroid10/Xamarin.Forms.Visual.Material.targets",
+        "lib/MonoAndroid10.0/Xamarin.Forms.Material.dll",
+        "lib/MonoAndroid10.0/Xamarin.Forms.Material.pdb",
+        "lib/MonoAndroid10/_._",
+        "lib/Xamarin.iOS10/Xamarin.Forms.Material.dll",
+        "lib/Xamarin.iOS10/Xamarin.Forms.Material.pdb",
+        "lib/netstandard1.0/_._",
+        "lib/tizen40/Xamarin.Forms.Material.dll",
+        "lib/tizen40/Xamarin.Forms.Material.pdb",
+        "xamarin.forms.visual.material.5.0.0.7298.nupkg.sha512",
+        "xamarin.forms.visual.material.nuspec"
       ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
+      "FirebaseStorage.net >= 1.0.3",
       "NETStandard.Library >= 2.0.3",
       "Refractored.MvvmHelpers >= 1.6.2",
       "SQLiteNetExtensions.Async >= 2.1.0",
-      "Xamarin.CommunityToolkit >= 1.1.0",
+      "Xamarin.CommunityToolkit >= 1.2.0-pre2",
       "Xamarin.Essentials >= 1.6.1",
-      "Xamarin.Forms >= 5.0.0.7220",
+      "Xamarin.Forms >= 5.0.0.7298",
+      "Xamarin.Forms.Visual.Material >= 5.0.0.7298",
       "sqlite-net-pcl >= 1.7.335"
     ]
   },
@@ -3801,7 +3861,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "D:\\danie\\Downloads\\nuget\\nuget": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3820,6 +3879,10 @@
       "netstandard2.0": {
         "targetAlias": "netstandard2.0",
         "dependencies": {
+          "FirebaseStorage.net": {
+            "target": "Package",
+            "version": "[1.0.3, )"
+          },
           "NETStandard.Library": {
             "suppressParent": "All",
             "target": "Package",
@@ -3836,7 +3899,7 @@
           },
           "Xamarin.CommunityToolkit": {
             "target": "Package",
-            "version": "[1.1.0, )"
+            "version": "[1.2.0-pre2, )"
           },
           "Xamarin.Essentials": {
             "target": "Package",
@@ -3844,7 +3907,11 @@
           },
           "Xamarin.Forms": {
             "target": "Package",
-            "version": "[5.0.0.7220, )"
+            "version": "[5.0.0.7298, )"
+          },
+          "Xamarin.Forms.Visual.Material": {
+            "target": "Package",
+            "version": "[5.0.0.7298, )"
           },
           "sqlite-net-pcl": {
             "target": "Package",
@@ -3861,7 +3928,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   },

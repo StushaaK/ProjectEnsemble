@@ -1,24 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-
-using Xamarin.Forms;
-
-using Project_Ensemble.Models;
-using Project_Ensemble.Services;
-using MvvmHelpers;
-
-namespace Project_Ensemble.ViewModels
+﻿namespace Project_Ensemble.ViewModels
 {
     public class BaseViewModel : MvvmHelpers.BaseViewModel
     {
-
         // Nahrazeno MvvmHelpers.BaseViewModel
         /*
-        
-        
-        
+
         bool isBusy = false;
         public bool IsBusy
         {
@@ -47,6 +33,7 @@ namespace Project_Ensemble.ViewModels
         }
 
         #region INotifyPropertyChanged
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
@@ -56,6 +43,9 @@ namespace Project_Ensemble.ViewModels
 
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        #endregion */
+
+        #endregion INotifyPropertyChanged
+        }
+        }*/
     }
 }

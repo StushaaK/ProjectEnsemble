@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Project_Ensemble.Models
+﻿namespace Project_Ensemble.Models
 {
-    class SelectableItem
+    internal class SelectableItem
     {
-        public Object Data { get; set; }
-        public bool isSelected { get; set; }
+        public object Data { get; set; }
+        public bool IsSelected { get; set; }
     }
 }
