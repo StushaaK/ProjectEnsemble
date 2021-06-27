@@ -17,6 +17,7 @@ namespace Project_Ensemble.Services
         {
             GooglePlaceAutoCompleteResult results = null;
 
+            // Creates HTTPClient and uses it to call google maps api
             using (var httpClient = CreateClient())
             {
                 var response = await httpClient
@@ -36,6 +37,7 @@ namespace Project_Ensemble.Services
             return results;
         }
 
+        /// Gets the details (latitude, longitude...) of a place from it's id
         public async Task<GooglePlace> GetPlaceDetails(string placeId)
         {
             GooglePlace result = null;
@@ -54,6 +56,7 @@ namespace Project_Ensemble.Services
             return result;
         }
 
+        /// Creates new HTTP Client for Api calls
         private HttpClient CreateClient()
         {
             var httpClient = new HttpClient
@@ -67,6 +70,7 @@ namespace Project_Ensemble.Services
             return httpClient;
         }
 
+        /// Initializes the google maps api with specified api-key
         public static void Initialize(string googleMapsKey)
         {
             _googleMapsKey = googleMapsKey;

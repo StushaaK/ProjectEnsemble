@@ -14,7 +14,10 @@ namespace Project_Ensemble.Views
             BindingContext = Vm = new BandMembersViewModel();
         }
 
+        // Id of the band to display memebers from
         public string BandId { get; set; }
+
+        // Band memebers view model (Binding context)
         private BandMembersViewModel Vm { get; }
 
         protected override async void OnAppearing()

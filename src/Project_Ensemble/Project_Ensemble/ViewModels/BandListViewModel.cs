@@ -107,6 +107,8 @@ namespace Project_Ensemble.ViewModels
             }
             catch
             {
+                // If users GPS on the mobile is turned off
+                // Inform the user with the toas message
                 await Shell.Current.CurrentPage.DisplayToastAsync("Nemáte zapnutou geolokaci!");
             }
 
@@ -135,6 +137,8 @@ namespace Project_Ensemble.ViewModels
 
             catch (FeatureNotEnabledException)
             {
+                // If users GPS on the mobile is turned off
+                // Inform the user with the toas message
                 await Shell.Current.CurrentPage.DisplayToastAsync("Nemáte zapnutou geolokaci!");
             }
 

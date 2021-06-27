@@ -14,6 +14,12 @@ namespace Project_Ensemble.Services
     {
         private readonly SQLiteAsyncConnection _database;
 
+        /// <sumary>
+        ///     Cunstructor that creates database and all the tables in specified location
+        ///     with specified flags
+        /// </sumary>
+        /// <param name="dbPath"> Path to the file with database data </param>
+        /// <param name="flags"> Additional flags that the database should use </param>
         public DatabaseService(string dbPath, SQLiteOpenFlags flags)
         {
             _database = new SQLiteAsyncConnection(dbPath, flags);
@@ -27,6 +33,11 @@ namespace Project_Ensemble.Services
             _database.CreateTableAsync<Invitation>().Wait();
         }
 
+
+        /// <sumary>
+        ///     Fill the database with dummy data by calling corresponding methods    
+        /// </sumary>
+        /// <returns>Void</returns>
         public async Task FillWithDummyData()
         {
             await FillWithDummyMusicians();
@@ -34,6 +45,11 @@ namespace Project_Ensemble.Services
             await FillWithDummyBands();
         }
 
+
+        /// <summary>
+        ///     Fill newly created table with (Musicians) dummy data
+        /// </summary>
+        /// <returns>Async Task, that fills newly created table with (Musicians) dummy data</returns>        
         public Task FillWithDummyMusicians()
         {
             var musicians = new List<Musician>
@@ -83,9 +99,9 @@ namespace Project_Ensemble.Services
         }
 
         /// <summary>
-        ///     Naplní nově vytvořenou tabulku skupin Dummy daty
+        ///     Fill newly created table with (Bands) dummy data
         /// </summary>
-        /// <returns>Asynchronní task, který tabulku skupin Dummy daty</returns>
+        /// <returns>Async Task, that fills newly created table with (Bands) dummy data</returns>
         public Task FillWithDummyBands()
         {
             var dummyGenres = new List<Genre>
@@ -136,6 +152,10 @@ namespace Project_Ensemble.Services
             return _database.InsertAllWithChildrenAsync(bands);
         }
 
+         /// <summary>
+        ///     Fill newly created table with (Genres) dummy data
+        /// </summary>
+        /// <returns>Async Task, that fills newly created table with (Genres) dummy data</returns>
         public Task FillWithDummyGenres()
         {
             var genres = new List<Genre>
@@ -163,16 +183,31 @@ namespace Project_Ensemble.Services
             return _database.InsertAllAsync(genres);
         }
 
+        /// <summary>
+        ///     Adds musician to the database
+        /// </summary>
+        /// <param name="musician">Musician that should be added to the database</params>
+        /// <returns>Task, that adds specified musician to the databse table</returns>
         public Task AddMusician(Musician musician)
         {
             return _database.InsertAsync(musician);
         }
 
+        /// <summary>
+        ///     Adds band to the database
+        /// </summary>
+        /// <param name="band">Band that should be added to the database</params>
+        /// <returns>Task, that adds specified band to the database table</returns>
         public Task AddBand(Band band)
         {
             return _database.InsertAsync(band);
         }
 
+        /// <summary>
+        ///     Removes band from the database 
+        /// </summary>
+        /// <param name="band">Band that should be removed from the database</params>
+        /// <returns>Task, that removes specified band from the database table</returns>
         public Task RemoveBand(Band band)
         {
             return _database.DeleteAsync(band, true);

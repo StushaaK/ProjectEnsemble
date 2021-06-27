@@ -38,7 +38,7 @@ namespace Project_Ensemble.Views
             foreach (var item in _vm.ItemList) FlChipView.Children.Add(CreateRandomBoxView(item));
         }
 
-        #region Functions For Create Chips
+        #region Functions For Chip Creations
 
         private Frame CreateRandomBoxView(SelectableItem items)
         {

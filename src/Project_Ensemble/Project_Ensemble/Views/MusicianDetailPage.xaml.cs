@@ -20,6 +20,7 @@ namespace Project_Ensemble.Views
             BindingContext = Vm = new ProfileViewModel();
         }
 
+        // Id of the musician which details would be displayed
         public string MusicianId { get; set; }
 
         protected override async void OnAppearing()

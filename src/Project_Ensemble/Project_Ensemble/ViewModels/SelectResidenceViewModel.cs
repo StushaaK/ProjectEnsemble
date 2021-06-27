@@ -70,14 +70,29 @@ namespace Project_Ensemble.ViewModels
 
         public async Task GetPlacesByName(string placeText)
         {
-            var places = await _googleMapsApi.GetPlaces(placeText);
-            var placeResult = places.AutoCompletePlaces;
+            try {
+                var places = await _googleMapsApi.GetPlaces(placeText);
+                var placeResult = places.AutoCompletePlaces;
+            }
+            catch (Exception e)
+            {
+                placeResult = null;
+            }
+            
+            
             if (placeResult != null && placeResult.Count > 0) Places.ReplaceRange(placeResult);
         }
 
         public async Task GetPlacesDetail(GooglePlaceAutoCompletePrediction placeA)
         {
-            var place = await _googleMapsApi.GetPlaceDetails(placeA.PlaceId);
+            try {
+                var place = await _googleMapsApi.GetPlaceDetails(placeA.PlaceId);
+            }
+            catch (Exception e)
+            {
+                place = null;
+            }
+            
             if (place != null)
             {
                 _callApi = false;

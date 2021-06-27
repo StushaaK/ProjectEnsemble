@@ -16,6 +16,7 @@ namespace Project_Ensemble.Views
             BindingContext = _vm = new InviteMusicianViewModel();
         }
 
+        // Id of band to invite user to
         public string BandId { get; set; }
 
         protected override void OnAppearing()

@@ -14,6 +14,7 @@ namespace Project_Ensemble.Views
             InitializeComponent();
         }
 
+        // Double value representing percentage of skill mastery
         private double ProficiencyValue { get; set; }
 
         private void Cancel_OnClicked(object sender, EventArgs e)
