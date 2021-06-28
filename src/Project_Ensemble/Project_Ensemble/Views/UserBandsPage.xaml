@@ -6,7 +6,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-    xmlns:md="clr-namespace:Project_Ensemble;assembly=Project_Ensemble"
+    xmlns:constants="clr-namespace:Project_Ensemble.Constants;assembly=Project_Ensemble"
     x:Name="UserBandList"
     Title="Vaše skupiny">
 
@@ -45,7 +45,7 @@
                                     Text="Členové">
                                     <SwipeItem.IconImageSource>
                                         <FontImageSource FontFamily="md-or"
-                                                         Glyph="{x:Static md:MaterialDesignIcons.Group}" />
+                                                         Glyph="{x:Static constants:MaterialDesignIcons.Group}" />
                                     </SwipeItem.IconImageSource>
                                 </SwipeItem>
                             </SwipeView.LeftItems>
@@ -58,7 +58,7 @@
                                     Text="Smazat">
                                     <SwipeItem.IconImageSource>
                                         <FontImageSource FontFamily="md-or"
-                                                         Glyph="{x:Static md:MaterialDesignIcons.Delete}" />
+                                                         Glyph="{x:Static constants:MaterialDesignIcons.Delete}" />
                                     </SwipeItem.IconImageSource>
                                 </SwipeItem>
                                 <SwipeItem
@@ -69,7 +69,7 @@
                                     Text="Editovat">
                                     <SwipeItem.IconImageSource>
                                         <FontImageSource FontFamily="md-or"
-                                                         Glyph="{x:Static md:MaterialDesignIcons.Edit}" />
+                                                         Glyph="{x:Static constants:MaterialDesignIcons.Edit}" />
                                     </SwipeItem.IconImageSource>
                                 </SwipeItem>
                             </SwipeView.RightItems>
@@ -83,8 +83,9 @@
                                             Size="80"
                                             Source="{Binding Image}"
                                             Text="{Binding Name}"
-                                            VerticalOptions="Center"/>
-                                        <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Center" Margin="20,0,0,0">
+                                            VerticalOptions="Center" />
+                                        <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="Center"
+                                                     Margin="20,0,0,0">
                                             <Label
                                                 FontSize="Large"
                                                 Text="{Binding Name}"

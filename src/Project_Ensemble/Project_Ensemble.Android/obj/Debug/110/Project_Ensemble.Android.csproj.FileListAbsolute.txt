@@ -79,6 +79,8 @@ D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debu
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\FormsViewGroup.dll
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\FormsViewGroup.pdb
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\Java.Interop.dll
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\Microsoft.CSharp.dll
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\Microsoft.CSharp.pdb
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\Mono.Android.dll
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\Mono.Android.pdb
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\Mono.Security.dll
@@ -116,6 +118,8 @@ D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debu
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.dll
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Drawing.Common.dll
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Drawing.Common.pdb
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Dynamic.Runtime.dll
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Globalization.dll
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.IO.Compression.dll
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.IO.Compression.FileSystem.dll
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.IO.Compression.FileSystem.pdb
@@ -142,8 +146,13 @@ D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debu
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Runtime.Extensions.dll
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Runtime.Serialization.dll
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Runtime.Serialization.pdb
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Runtime.Serialization.Primitives.dll
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.ServiceModel.Internals.dll
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.ServiceModel.Internals.pdb
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Text.Encoding.dll
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Text.Encoding.Extensions.dll
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Text.RegularExpressions.dll
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Threading.dll
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Threading.Tasks.dll
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Transactions.dll
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Transactions.pdb
@@ -153,6 +162,8 @@ D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debu
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Xml.Linq.dll
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Xml.Linq.pdb
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Xml.pdb
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Xml.ReaderWriter.dll
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Xml.XDocument.dll
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\Xamarin.AndroidX.Activity.dll
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\Xamarin.AndroidX.Activity.pdb
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\Xamarin.AndroidX.Annotation.dll
@@ -367,6 +378,7 @@ D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debu
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\src\crc642e1c7a98bdb5c44a\ImageAvailableListener.java
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\src\crc642e1c7a98bdb5c44a\MediaElementRenderer.java
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\src\crc642e1c7a98bdb5c44a\PopupRenderer.java
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\src\crc642e1c7a98bdb5c44a\SemanticOrderViewRenderer.java
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\src\crc642e1c7a98bdb5c44a\SnackBar_SnackBarCallback.java
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\src\crc642e1c7a98bdb5c44a\ThumbFrameRenderer.java
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\src\crc6434af9c19aa01b597\GoogleApiClientConnectionCallbacksImpl.java
@@ -567,6 +579,7 @@ D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debu
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\src\crc6450e07d0e82e86181\AwaitableResultCallback_1.java
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\src\crc6450e07d0e82e86181\ResultCallback_1.java
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\src\crc64515ee83f00766c60\PlatformTouchEffect_AccessibilityListener.java
+D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\src\crc64515ee83f00766c60\SemanticEffectRouter_SemanticAccessibilityDelegate.java
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\src\crc64515ee83f00766c60\VisualFeedbackEffectRouter_FastRendererOnLayoutChangeListener.java
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\src\crc645b8ccbad6ecd7dce\SideMenuViewRenderer.java
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\src\crc64720bb2db43a66fe9\ButtonRenderer.java
@@ -758,16 +771,3 @@ D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debu
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\stamp\_GenerateJavaStubs.stamp
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\stamp\_GeneratePackageManagerJava.stamp
 D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\stamp\_ResolveLibraryProjectImports.stamp
-D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\src\crc642e1c7a98bdb5c44a\SemanticOrderViewRenderer.java
-D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\src\crc64515ee83f00766c60\SemanticEffectRouter_SemanticAccessibilityDelegate.java
-D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\Microsoft.CSharp.dll
-D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\Microsoft.CSharp.pdb
-D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Dynamic.Runtime.dll
-D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Globalization.dll
-D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Runtime.Serialization.Primitives.dll
-D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Text.Encoding.dll
-D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Text.Encoding.Extensions.dll
-D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Text.RegularExpressions.dll
-D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Threading.dll
-D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Xml.ReaderWriter.dll
-D:\projekty\skola\.NET\SP\src\Project_Ensemble\Project_Ensemble.Android\obj\Debug\110\android\assets\System.Xml.XDocument.dll

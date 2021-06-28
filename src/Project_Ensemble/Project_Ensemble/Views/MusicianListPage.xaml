@@ -6,12 +6,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     xmlns:helpers="clr-namespace:Project_Ensemble.Helpers"
-    xmlns:projectEnsemble="clr-namespace:Project_Ensemble;assembly=Project_Ensemble"
+    xmlns:constants="clr-namespace:Project_Ensemble.Constants;assembly=Project_Ensemble"
     x:Name="MusicianList"
     Title="Muzikanti">
 
     <ContentPage.IconImageSource>
-        <FontImageSource FontFamily="md-rr" Glyph="{x:Static projectEnsemble:MaterialDesignIcons.Person}" />
+        <FontImageSource FontFamily="md-rr" Glyph="{x:Static constants:MaterialDesignIcons.Person}" />
     </ContentPage.IconImageSource>
 
     <ContentPage.Resources>
@@ -31,89 +31,92 @@
         </Style>
         <ResourceDictionary>
             <helpers:InitialsConverter x:Key="initialsConverter" />
-            <xct:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter"/>
+            <xct:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    
 
-        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy, Mode=OneWay}">
-            <CollectionView
-                BackgroundColor="Transparent"
-                ItemSizingStrategy="MeasureAllItems"
-                ItemsLayout="VerticalList"
-                ItemsSource="{Binding Musicians}"
-                SelectedItem="{Binding SelectedMusician, Mode=TwoWay}"
-                SelectionChangedCommand="{Binding SelectedCommand}"
-                SelectionMode="Single">
-                <CollectionView.EmptyView>
-                    <StackLayout>
-                        <Label HorizontalOptions="Center" Text="Žádný hudebník v databázi" />
-                    </StackLayout>
-                </CollectionView.EmptyView>
-                <CollectionView.Header>
-                    <Frame Padding="5">
-                        <xct:Expander>
-                            <xct:Expander.Header>
-                                <Label FontSize="Medium" FontAttributes="Bold">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span FontFamily="md-rr" Text="{x:Static projectEnsemble:MaterialDesignIcons.ArrowDropDown}" FontSize="20"/>
-                                            <Span Text="Filtry"></Span>
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                            
-                            </xct:Expander.Header>
-                            <StackLayout>
-                                <Label Text="Seřadit podle:"></Label>
-                                <StackLayout RadioButtonGroup.GroupName="SortFilters" RadioButtonGroup.SelectedValue="{Binding SelectedFilter}">
-                                    <RadioButton Content="Názvu" Value="Name"/>
-                                    <RadioButton Content="Vzdálenosti" Value="Distance"/>
-                                    <RadioButton Content="Data přidání" IsChecked="True" Value="Date"/>
+    <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+        <CollectionView
+            BackgroundColor="Transparent"
+            ItemSizingStrategy="MeasureAllItems"
+            ItemsLayout="VerticalList"
+            ItemsSource="{Binding Musicians}"
+            SelectedItem="{Binding SelectedMusician, Mode=TwoWay}"
+            SelectionChangedCommand="{Binding SelectedCommand}"
+            SelectionMode="Single">
+            <CollectionView.EmptyView>
+                <StackLayout>
+                    <Label HorizontalOptions="Center" Text="Žádný hudebník v databázi" />
+                </StackLayout>
+            </CollectionView.EmptyView>
+            <CollectionView.Header>
+                <Frame Padding="5">
+                    <xct:Expander>
+                        <xct:Expander.Header>
+                            <Label FontSize="Medium" FontAttributes="Bold">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span FontFamily="md-rr"
+                                              Text="{x:Static constants:MaterialDesignIcons.ArrowDropDown}"
+                                              FontSize="20" />
+                                        <Span Text="Filtry" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                        </xct:Expander.Header>
+                        <StackLayout>
+                            <Label Text="Seřadit podle:" />
+                            <StackLayout RadioButtonGroup.GroupName="SortFilters"
+                                         RadioButtonGroup.SelectedValue="{Binding SelectedFilter}">
+                                <RadioButton Content="Názvu" Value="Name" />
+                                <RadioButton Content="Vzdálenosti" Value="Distance" />
+                                <RadioButton Content="Data přidání" IsChecked="True" Value="Date" />
+                            </StackLayout>
+                        </StackLayout>
+                    </xct:Expander>
+                </Frame>
+            </CollectionView.Header>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Frame CornerRadius="12" HasShadow="True">
+                            <StackLayout Orientation="Horizontal">
+                                <xct:AvatarView
+                                    Size="80"
+                                    Source="{Binding Avatar}"
+                                    Text="{Binding Path=., Converter={StaticResource initialsConverter}}"
+                                    VerticalOptions="Center" />
+                                <StackLayout Orientation="Vertical" Margin="20,0,0,0">
+                                    <StackLayout
+                                        Orientation="Horizontal"
+                                        VerticalOptions="Center">
+                                        <Label FontSize="Large" Text="{Binding Firstname}" />
+                                        <Label FontSize="Large" Text="{Binding Lastname}" />
+                                    </StackLayout>
+                                    <Grid
+                                        IsVisible="{Binding Residence, Converter={StaticResource IsNotNullOrEmptyConverter}}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="100" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="{Binding Residence.Name}" />
+                                        <Label Grid.Column="1" Text="{Binding Distance, StringFormat='({0:F2} km)'}" />
+                                    </Grid>
+                                    <Label
+                                        HorizontalOptions="Start"
+                                        IsVisible="{Binding IsSearchingForBand}"
+                                        Text="Hledá skupinu"
+                                        TextColor="YellowGreen" />
                                 </StackLayout>
                             </StackLayout>
-                        </xct:Expander>
-                    </Frame>
-                </CollectionView.Header>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Padding="10">
-                            <Frame CornerRadius="12" HasShadow="True">
-                                <StackLayout Orientation="Horizontal">
-                                        <xct:AvatarView
-                                            Size="80"
-                                            Source="{Binding Avatar}"
-                                            Text="{Binding Path=., Converter={StaticResource initialsConverter}}" VerticalOptions="Center">
-                                            </xct:AvatarView>
-                                        <StackLayout Orientation="Vertical" Margin="20,0,0,0">
-                                            <StackLayout
-                                                Orientation="Horizontal"
-                                                VerticalOptions="Center">
-                                                <Label FontSize="Large" Text="{Binding Firstname}" />
-                                                <Label FontSize="Large" Text="{Binding Lastname}" />
-                                            </StackLayout>
-                                            <Grid IsVisible="{Binding Residence, Converter={StaticResource IsNotNullOrEmptyConverter}}">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="100"/>
-                                                </Grid.ColumnDefinitions>
-                                                <Label Text="{Binding Residence.Name}" />
-                                                <Label Grid.Column="1"  Text="{Binding Distance, StringFormat='({0:F2} km)'}" />
-                                            </Grid>
-                                            <Label
-                                                HorizontalOptions="Start"
-                                                IsVisible="{Binding IsSearchingForBand}"
-                                                Text="Hledá skupinu"
-                                                TextColor="YellowGreen" />
-                                        </StackLayout>
-                                    </StackLayout>
-                            </Frame>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </RefreshView>
-    
 </ContentPage>

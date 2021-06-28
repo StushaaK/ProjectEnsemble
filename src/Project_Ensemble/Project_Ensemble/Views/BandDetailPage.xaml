@@ -5,8 +5,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-    xmlns:projectEnsemble="clr-namespace:Project_Ensemble;assembly=Project_Ensemble"
-    xmlns:models="clr-namespace:Project_Ensemble.Models;assembly=Project_Ensemble">
+    xmlns:models="clr-namespace:Project_Ensemble.Models;assembly=Project_Ensemble"
+    xmlns:constants="clr-namespace:Project_Ensemble.Constants;assembly=Project_Ensemble">
 
     <ContentPage.Resources>
         <Style TargetType="StackLayout">
@@ -36,7 +36,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <xct:AvatarView
                 CornerRadius="0"
@@ -79,7 +79,7 @@
                                 <Image.Source>
                                     <FontImageSource
                                         FontFamily="md-rr"
-                                        Glyph="{x:Static projectEnsemble:MaterialDesignIcons.Room}"
+                                        Glyph="{x:Static constants:MaterialDesignIcons.Room}"
                                         Color="{StaticResource Primary}" />
                                 </Image.Source>
                             </Image>
@@ -92,15 +92,18 @@
                         </StackLayout>
                     </StackLayout>
                     <StackLayout
-                        IsVisible="{Binding Band.Musicians, Converter={StaticResource ListIsNotNullOrEmptyConverter}}"  Margin="0,10,0,0">
+                        IsVisible="{Binding Band.Musicians, Converter={StaticResource ListIsNotNullOrEmptyConverter}}"
+                        Margin="0,10,0,0">
                         <Grid CompressedLayout.IsHeadless="True">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="40"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Image HorizontalOptions="Start">
                                 <Image.Source>
-                                    <FontImageSource FontFamily="md-rr" Glyph="{x:Static projectEnsemble:MaterialDesignIcons.Group}" Color="{StaticResource Primary}"></FontImageSource>
+                                    <FontImageSource FontFamily="md-rr"
+                                                     Glyph="{x:Static constants:MaterialDesignIcons.Group}"
+                                                     Color="{StaticResource Primary}" />
                                 </Image.Source>
                             </Image>
                             <Label FontSize="Caption"
@@ -108,25 +111,26 @@
                                    FontAttributes="Bold"
                                    TextColor="#2C3E50"
                                    Text="Členové skupiny" Grid.Column="1"
-                                   VerticalOptions="Center"/>
+                                   VerticalOptions="Center" />
                         </Grid>
                         <CollectionView
                             ItemsSource="{Binding Band.Musicians}"
                             SelectedItem="{Binding SelectedMusician, Mode=TwoWay}"
                             SelectionChangedCommand="{Binding SelectedCommand}"
                             SelectionMode="Single"
-                            HeightRequest="120"
-                            >
+                            HeightRequest="120">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout Orientation="Horizontal" x:DataType="models:Musician">
                                         <Label>
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="- "/>
-                                                    <Span Text="{Binding Firstname}" TextColor="{StaticResource Primary}"/>
-                                                    <Span Text=" "/>
-                                                    <Span Text="{Binding Lastname}" TextColor="{StaticResource Primary}"/>
+                                                    <Span Text="- " />
+                                                    <Span Text="{Binding Firstname}"
+                                                          TextColor="{StaticResource Primary}" />
+                                                    <Span Text=" " />
+                                                    <Span Text="{Binding Lastname}"
+                                                          TextColor="{StaticResource Primary}" />
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
@@ -154,12 +158,14 @@
                     </Grid.RowDefinitions>
                     <Grid CompressedLayout.IsHeadless="True">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="40"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Image HorizontalOptions="Start">
                             <Image.Source>
-                                <FontImageSource FontFamily="md-rr" Glyph="{x:Static projectEnsemble:MaterialDesignIcons.FormatQuote}" Color="{StaticResource Primary}"></FontImageSource>
+                                <FontImageSource FontFamily="md-rr"
+                                                 Glyph="{x:Static constants:MaterialDesignIcons.FormatQuote}"
+                                                 Color="{StaticResource Primary}" />
                             </Image.Source>
                         </Image>
                         <Label FontSize="Caption"
@@ -167,7 +173,7 @@
                                FontAttributes="Bold"
                                TextColor="#2C3E50"
                                Text="O skupině" Grid.Column="1"
-                               VerticalOptions="Center"/>
+                               VerticalOptions="Center" />
                     </Grid>
                     <Label
                         Grid.Row="1"
@@ -185,12 +191,14 @@
                 <StackLayout>
                     <Grid CompressedLayout.IsHeadless="True">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="40"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Image HorizontalOptions="Start">
                             <Image.Source>
-                                <FontImageSource FontFamily="md-rr" Glyph="{x:Static projectEnsemble:MaterialDesignIcons.More}" Color="{StaticResource Primary}"></FontImageSource>
+                                <FontImageSource FontFamily="md-rr"
+                                                 Glyph="{x:Static constants:MaterialDesignIcons.More}"
+                                                 Color="{StaticResource Primary}" />
                             </Image.Source>
                         </Image>
                         <Label FontSize="Caption"
@@ -198,22 +206,21 @@
                                FontAttributes="Bold"
                                TextColor="#2C3E50"
                                Text="Další informace" Grid.Column="1"
-                               VerticalOptions="Center"/>
+                               VerticalOptions="Center" />
                     </Grid>
                     <Grid CompressedLayout.IsHeadless="True">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="70"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Label FontSize="Caption"
                                FontAttributes="Bold"
                                TextColor="#2C3E50"
-                               Text="Vytvořena: " Grid.Column="0"
-                        />
-                        <Label Grid.Column="1" Text="{Binding Band.TimeStamp, StringFormat='{0:dd.MM.yyyy}'}"/>
+                               Text="Vytvořena: " Grid.Column="0" />
+                        <Label Grid.Column="1" Text="{Binding Band.TimeStamp, StringFormat='{0:dd.MM.yyyy}'}" />
                     </Grid>
                 </StackLayout>
-                
+
             </Frame>
         </Grid>
     </ScrollView>

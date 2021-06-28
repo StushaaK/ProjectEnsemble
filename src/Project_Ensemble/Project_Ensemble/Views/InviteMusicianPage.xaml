@@ -5,29 +5,28 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="Project_Ensemble.Views.InviteMusicianPage">
 
-<ContentPage.Resources>
-    <ResourceDictionary>
-        <xct:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter"/>
-        <xct:IsNullOrEmptyConverter x:Key="IsNullOrEmptyConverter"/>
-    </ResourceDictionary>
-</ContentPage.Resources>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter" />
+            <xct:IsNullOrEmptyConverter x:Key="IsNullOrEmptyConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.Content>
         <StackLayout>
-            <SearchBar Placeholder="Hledat muzikanta" Text="{Binding SearchQuery}"/>
+            <SearchBar Placeholder="Hledat muzikanta" Text="{Binding SearchQuery}" />
             <CollectionView ItemsSource="{Binding AvailableUsers}"
                             SelectionMode="Single"
-                            SelectedItem="{Binding SelectedUser, Mode=TwoWay}"
-                            >
+                            SelectedItem="{Binding SelectedUser, Mode=TwoWay}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="10">
                             <Label>
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="{Binding Firstname}"/>
-                                        <Span Text=" "/>
-                                        <Span Text="{Binding Lastname}"/>
+                                        <Span Text="{Binding Firstname}" />
+                                        <Span Text=" " />
+                                        <Span Text="{Binding Lastname}" />
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
@@ -35,7 +34,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-             <Frame
+            <Frame
                 Margin="10"
                 Padding="15"
                 HorizontalOptions="FillAndExpand"
@@ -53,13 +52,12 @@
                         Text="Žádný uživatel" />
                     <Label
                         FontSize="15"
-                        IsVisible="{Binding SelectedUser, Converter={StaticResource IsNotNullOrEmptyConverter}}"
-                         >
+                        IsVisible="{Binding SelectedUser, Converter={StaticResource IsNotNullOrEmptyConverter}}">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="{Binding SelectedUser.Firstname}"/>
-                                <Span Text=" "/>
-                                <Span Text="{Binding SelectedUser.Lastname}"/>
+                                <Span Text="{Binding SelectedUser.Firstname}" />
+                                <Span Text=" " />
+                                <Span Text="{Binding SelectedUser.Lastname}" />
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>

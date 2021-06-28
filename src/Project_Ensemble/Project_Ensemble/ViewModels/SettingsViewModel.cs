@@ -26,11 +26,19 @@ namespace Project_Ensemble.ViewModels
             }
 
             var authenticationService = DependencyService.Resolve<IAuthenticationService>();
-            var musicianToDelete =
-                await App.Database.GetMusicianWithChildren(authenticationService.GetCurrentUserId());
-            await App.Database.DeleteWithManyToManyRecords(musicianToDelete);
-            await authenticationService.DeleteUser(result.ToString());
-            await Shell.Current.GoToAsync("//LoginPage");
+            try
+            {
+                await authenticationService.DeleteUser(result.ToString());
+                var musicianToDelete =
+                    await App.Database.GetMusicianWithChildren(authenticationService.GetCurrentUserId());
+                await App.Database.DeleteWithManyToManyRecords(musicianToDelete);
+                await Shell.Current.GoToAsync("//LoginPage");
+            }
+            catch
+            {
+                await Shell.Current.CurrentPage.DisplayAlert("Chyba!",
+                    "Během odstraňování uživatele nastala chyba. Ujistěte se, že jste zadali správné heslo!", "Ok");
+            }
         }
     }
 }

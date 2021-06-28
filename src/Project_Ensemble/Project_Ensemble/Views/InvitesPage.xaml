@@ -4,7 +4,7 @@
     x:Class="Project_Ensemble.Views.InvitesPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:md="clr-namespace:Project_Ensemble;assembly=Project_Ensemble"
+    xmlns:constants="clr-namespace:Project_Ensemble.Constants;assembly=Project_Ensemble"
     Title="Pozvánky"
     x:Name="InvitationsPage">
     <ContentPage.Content>
@@ -21,48 +21,50 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="30"/>
-                                <ColumnDefinition Width="30"/>
-                            </Grid.ColumnDefinitions>
-                            <Label>
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="Byl jste pozván do skupiny "/>
-                                        <Span Text="{Binding Band.Name}" TextColor="{StaticResource Primary}"/>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <ImageButton
-                                Command="{Binding Source={x:Reference InvitationsPage},Path=BindingContext.AcceptInvitationCommand}"
-                                CommandParameter="{Binding .}"
-                                Grid.Column="1"
-                                VerticalOptions="Center"
-                                HorizontalOptions="Center"
-                                WidthRequest="25"
-                                BackgroundColor="White"
-                            >
-                                <ImageButton.Source>
-                                    <FontImageSource FontFamily="md-rr" Glyph="{x:Static md:MaterialDesignIcons.CheckCircle}" Color="LimeGreen"></FontImageSource>
-                                </ImageButton.Source>
-                            </ImageButton>
-                            <ImageButton
-                                Command="{Binding Source={x:Reference InvitationsPage}, Path=BindingContext.DenyInvitationCommand}"
-                                CommandParameter="{Binding .}"
-                                Grid.Column="2"
-                                VerticalOptions="Center"
-                                HorizontalOptions="Center"
-                                WidthRequest="25"
-                                BackgroundColor="White"
-                            >
-                                <ImageButton.Source>
-                                    <FontImageSource FontFamily="md-rr" Glyph="{x:Static md:MaterialDesignIcons.Cancel}" Color="IndianRed"></FontImageSource>
-                                </ImageButton.Source>
-                            </ImageButton>
-                            
-                        </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="30" />
+                                </Grid.ColumnDefinitions>
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Byl jste pozván do skupiny " />
+                                            <Span Text="{Binding Band.Name}" TextColor="{StaticResource Primary}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <ImageButton
+                                    Command="{Binding Source={x:Reference InvitationsPage},Path=BindingContext.AcceptInvitationCommand}"
+                                    CommandParameter="{Binding .}"
+                                    Grid.Column="1"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    WidthRequest="25"
+                                    BackgroundColor="White">
+                                    <ImageButton.Source>
+                                        <FontImageSource FontFamily="md-rr"
+                                                         Glyph="{x:Static constants:MaterialDesignIcons.CheckCircle}"
+                                                         Color="LimeGreen" />
+                                    </ImageButton.Source>
+                                </ImageButton>
+                                <ImageButton
+                                    Command="{Binding Source={x:Reference InvitationsPage}, Path=BindingContext.DenyInvitationCommand}"
+                                    CommandParameter="{Binding .}"
+                                    Grid.Column="2"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    WidthRequest="25"
+                                    BackgroundColor="White">
+                                    <ImageButton.Source>
+                                        <FontImageSource FontFamily="md-rr"
+                                                         Glyph="{x:Static constants:MaterialDesignIcons.Cancel}"
+                                                         Color="IndianRed" />
+                                    </ImageButton.Source>
+                                </ImageButton>
+
+                            </Grid>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

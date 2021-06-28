@@ -7,16 +7,20 @@
            Size="300,250"
            Visual="Material">
     <StackLayout Padding="12">
-        <Label Text="Zadejte informace o dovednosti"  Margin="0,0,0,16"></Label>
-        <Label Text="Dovednost (název)" FontSize="Caption"></Label>
-        <Entry Placeholder="Dovednost" x:Name ="name" Margin="0,-10,0,0" MaxLength="25"></Entry>
-        <Label Text="Dovednostní úroveň" FontSize="Caption"></Label>
-        <Slider  Maximum="1" Minimum="0.01" x:Name ="slider"  ValueChanged="OnSliderValueChanged" MinimumTrackColor="{StaticResource Primary}" MaximumTrackColor="LightGray"></Slider>
-        <Label Text="Umím dovednost na 1%" x:Name="sliderValue"></Label>
+        <Label Text="Zadejte informace o dovednosti" Margin="0,0,0,16" />
+        <Label Text="Dovednost (název)" FontSize="Caption" />
+        <Entry Placeholder="Dovednost" x:Name="name" Margin="0,-10,0,0" MaxLength="25" />
+        <Label Text="Dovednostní úroveň" FontSize="Caption" />
+        <Slider Maximum="1" Minimum="0.01" x:Name="slider" ValueChanged="OnSliderValueChanged"
+                MinimumTrackColor="{StaticResource Primary}" MaximumTrackColor="LightGray" />
+        <Label Text="Umím dovednost na 1%" x:Name="sliderValue" />
         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
-            <Button Text="Zrušit" Clicked="Cancel_OnClicked" HorizontalOptions="StartAndExpand"  WidthRequest="100" HeightRequest="40" FontSize="10" BackgroundColor="LightGray" CornerRadius="20"/>
-            <Button Text="Přidat" BackgroundColor="{StaticResource Primary}" TextColor="White" Clicked="Confirm_OnClicked" HorizontalOptions="EndAndExpand" WidthRequest="100" HeightRequest="40" FontSize="10" CornerRadius="20"/>
+            <Button Text="Zrušit" Clicked="Cancel_OnClicked" HorizontalOptions="StartAndExpand" WidthRequest="100"
+                    HeightRequest="40" FontSize="10" BackgroundColor="LightGray" CornerRadius="20" />
+            <Button Text="Přidat" BackgroundColor="{StaticResource Primary}" TextColor="White"
+                    Clicked="Confirm_OnClicked" HorizontalOptions="EndAndExpand" WidthRequest="100" HeightRequest="40"
+                    FontSize="10" CornerRadius="20" />
         </StackLayout>
-        
+
     </StackLayout>
 </xct:Popup>

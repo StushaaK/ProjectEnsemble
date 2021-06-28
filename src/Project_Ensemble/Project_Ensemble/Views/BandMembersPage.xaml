@@ -6,8 +6,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     xmlns:helpers="clr-namespace:Project_Ensemble.Helpers"
-    xmlns:md="clr-namespace:Project_Ensemble;assembly=Project_Ensemble"
     xmlns:models="clr-namespace:Project_Ensemble.Models;assembly=Project_Ensemble"
+    xmlns:constants="clr-namespace:Project_Ensemble.Constants;assembly=Project_Ensemble"
     x:Name="BandMembersP"
     Title="Správa členů">
 
@@ -87,7 +87,7 @@
                                         HorizontalOptions="End"
                                         x:DataType="models:Musician"
                                         IsVisible="{Binding Id, Converter={StaticResource UserIdConverter}}"
-                                        Text="{x:Static md:MaterialDesignIcons.Clear}"
+                                        Text="{x:Static constants:MaterialDesignIcons.Clear}"
                                         Command="{Binding Source={x:Reference BandMembersP}, Path=BindingContext.RemoveMemberCommand}"
                                         CommandParameter="{Binding .}"
                                         TextColor="Red"

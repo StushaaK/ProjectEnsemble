@@ -4,6 +4,7 @@ using MvvmHelpers;
 using MvvmHelpers.Commands;
 using Project_Ensemble.Models;
 using Project_Ensemble.Services;
+using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
 
 namespace Project_Ensemble.ViewModels
@@ -58,6 +59,7 @@ namespace Project_Ensemble.ViewModels
 
             await App.Database.AddInvitation(invitation);
             await Shell.Current.GoToAsync("..");
+            await Shell.Current.CurrentPage.DisplayToastAsync("Muzikant pozván!");
         }
 
         private async Task SearchDatabase(string value)

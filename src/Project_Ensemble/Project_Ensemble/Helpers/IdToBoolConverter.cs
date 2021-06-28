@@ -5,6 +5,10 @@ using Xamarin.Forms;
 
 namespace Project_Ensemble.Helpers
 {
+    /// <summary>
+    ///     Converts id of the musician to the bool
+    ///     return true if the musician is equal to the current user, otherwise false
+    /// </summary>
     public class IdToBoolConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

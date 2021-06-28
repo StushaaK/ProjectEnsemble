@@ -3,6 +3,9 @@ using Xamarin.Forms;
 
 namespace Project_Ensemble.Controls
 {
+    /// <summary>
+    ///     Custom datepicker that supports null value
+    /// </summary>
     internal class NullableDatePicker : DatePicker
     {
         public static readonly BindableProperty NullableDateProperty = BindableProperty.Create("NullableDate",

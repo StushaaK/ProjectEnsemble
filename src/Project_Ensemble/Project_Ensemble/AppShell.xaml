@@ -5,7 +5,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Project_Ensemble.Views"
-    xmlns:md="clr-namespace:Project_Ensemble;assembly=Project_Ensemble"
+    xmlns:constants="clr-namespace:Project_Ensemble.Constants;assembly=Project_Ensemble"
     Title="Project_Ensemble"
     Visual="Material">
 
@@ -80,7 +80,7 @@
         <FlyoutItem.Icon>
             <FontImageSource
                 FontFamily="md-rr"
-                Glyph="{x:Static md:MaterialDesignIcons.Home}"
+                Glyph="{x:Static constants:MaterialDesignIcons.Home}"
                 Color="#33000000" />
         </FlyoutItem.Icon>
         <ShellContent ContentTemplate="{DataTemplate local:CatalogPage}" Route="CatalogPage" />
@@ -89,7 +89,7 @@
         <FlyoutItem.Icon>
             <FontImageSource
                 FontFamily="md-rr"
-                Glyph="{x:Static md:MaterialDesignIcons.AccountCircle}"
+                Glyph="{x:Static constants:MaterialDesignIcons.AccountCircle}"
                 Color="#33000000" />
         </FlyoutItem.Icon>
         <ShellContent ContentTemplate="{DataTemplate local:ProfilePage}" Route="ProfilePage" />
@@ -98,7 +98,7 @@
         <FlyoutItem.Icon>
             <FontImageSource
                 FontFamily="md-rr"
-                Glyph="{x:Static md:MaterialDesignIcons.LibraryMusic}"
+                Glyph="{x:Static constants:MaterialDesignIcons.LibraryMusic}"
                 Color="#33000000" />
         </FlyoutItem.Icon>
         <ShellContent ContentTemplate="{DataTemplate local:UserBandsHubPage}" Route="UserBandsHubPage" />
@@ -107,7 +107,7 @@
         <FlyoutItem.Icon>
             <FontImageSource
                 FontFamily="md-rr"
-                Glyph="{x:Static md:MaterialDesignIcons.Explore}"
+                Glyph="{x:Static constants:MaterialDesignIcons.Explore}"
                 Color="#33000000" />
         </FlyoutItem.Icon>
         <ShellContent ContentTemplate="{DataTemplate local:DiscoverPage}" Route="DiscoverPage" />
@@ -116,7 +116,7 @@
         <FlyoutItem.Icon>
             <FontImageSource
                 FontFamily="md-rr"
-                Glyph="{x:Static md:MaterialDesignIcons.Settings}"
+                Glyph="{x:Static constants:MaterialDesignIcons.Settings}"
                 Color="#33000000" />
         </FlyoutItem.Icon>
         <ShellContent ContentTemplate="{DataTemplate local:SettingsPage}" Route="SettingsPage" />
@@ -125,7 +125,7 @@
         <FlyoutItem.Icon>
             <FontImageSource
                 FontFamily="md-rr"
-                Glyph="{x:Static md:MaterialDesignIcons.InfoOutline}"
+                Glyph="{x:Static constants:MaterialDesignIcons.InfoOutline}"
                 Color="#33000000" />
         </FlyoutItem.Icon>
         <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" Route="AboutPage" />
@@ -142,7 +142,7 @@
         <MenuItem.IconImageSource>
             <FontImageSource
                 FontFamily="md-r"
-                Glyph="{x:Static md:MaterialDesignIcons.Logout}"
+                Glyph="{x:Static constants:MaterialDesignIcons.Logout}"
                 Color="#33000000" />
         </MenuItem.IconImageSource>
     </MenuItem>

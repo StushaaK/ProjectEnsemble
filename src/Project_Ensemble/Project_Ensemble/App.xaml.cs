@@ -5,7 +5,7 @@ namespace Project_Ensemble
 {
     public partial class App : Application
     {
-        private static DatabaseService database;
+        private static DatabaseService _database;
 
         public App()
         {
@@ -19,8 +19,8 @@ namespace Project_Ensemble
         {
             get
             {
-                if (database == null) database = new DatabaseService(Configuration.DatabasePath, Configuration.Flags);
-                return database;
+                if (_database == null) _database = new DatabaseService(Configuration.DatabasePath, Configuration.Flags);
+                return _database;
             }
         }
 

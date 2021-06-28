@@ -3,6 +3,13 @@ using Xamarin.Forms;
 
 namespace Project_Ensemble.Controls
 {
+    /// <summary>
+    ///     Custom layout that works like HTML/CSS flow layout
+    ///     Items inside layout "flows" next to each other from the left to the right
+    ///     if there is no space left for the next item in the current row
+    ///     new row is created and remaining items are pushed on the new row
+    ///     The spacing between the items can be specified
+    /// </summary>
     public class FlowLayout : Layout<View>
     {
         public static BindableProperty SpacingProperty =

@@ -5,12 +5,12 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-    xmlns:md="clr-namespace:Project_Ensemble;assembly=Project_Ensemble"
+    xmlns:constants="clr-namespace:Project_Ensemble.Constants;assembly=Project_Ensemble"
     x:Name="BandList"
     Title="Skupiny">
 
     <ContentPage.IconImageSource>
-        <FontImageSource FontFamily="md-rr" Glyph="{x:Static md:MaterialDesignIcons.Groups}" />
+        <FontImageSource FontFamily="md-rr" Glyph="{x:Static constants:MaterialDesignIcons.Groups}" />
     </ContentPage.IconImageSource>
 
     <ContentPage.Resources>
@@ -29,7 +29,7 @@
             </Setter>
         </Style>
         <ResourceDictionary>
-            <xct:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter"/>
+            <xct:IsNotNullOrEmptyConverter x:Key="IsNotNullOrEmptyConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -56,19 +56,22 @@
                                 <Label FontSize="Medium" FontAttributes="Bold">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span FontFamily="md-rr" Text="{x:Static md:MaterialDesignIcons.ArrowDropDown}" FontSize="20"/>
-                                            <Span Text="Filtry"></Span>
+                                            <Span FontFamily="md-rr"
+                                                  Text="{x:Static constants:MaterialDesignIcons.ArrowDropDown}"
+                                                  FontSize="20" />
+                                            <Span Text="Filtry" />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-                            
+
                             </xct:Expander.Header>
                             <StackLayout>
-                                <Label Text="Seřadit podle:"></Label>
-                                <StackLayout RadioButtonGroup.GroupName="SortFilters" RadioButtonGroup.SelectedValue="{Binding SelectedFilter}">
-                                    <RadioButton Content="Názvu" Value="Name"/>
-                                    <RadioButton Content="Vzdálenosti" Value="Distance"/>
-                                    <RadioButton Content="Data přidání" IsChecked="True" Value="Date"/>
+                                <Label Text="Seřadit podle:" />
+                                <StackLayout RadioButtonGroup.GroupName="SortFilters"
+                                             RadioButtonGroup.SelectedValue="{Binding SelectedFilter}">
+                                    <RadioButton Content="Názvu" Value="Name" />
+                                    <RadioButton Content="Vzdálenosti" Value="Distance" />
+                                    <RadioButton Content="Data přidání" IsChecked="True" Value="Date" />
                                 </StackLayout>
                             </StackLayout>
                         </xct:Expander>
@@ -90,13 +93,15 @@
                                         <Label FontSize="Large" Text="{Binding Name}" />
                                         <Grid>
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="100"/>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="100" />
                                             </Grid.ColumnDefinitions>
                                             <Label Text="{Binding BasedAt.Name}" />
-                                            <Label Grid.Column="1" IsVisible="{Binding Distance, Converter={StaticResource IsNotNullOrEmptyConverter}}" Text="{Binding Distance, StringFormat='({0:F2} km)'}" />
+                                            <Label Grid.Column="1"
+                                                   IsVisible="{Binding Distance, Converter={StaticResource IsNotNullOrEmptyConverter}}"
+                                                   Text="{Binding Distance, StringFormat='({0:F2} km)'}" />
                                         </Grid>
-                                        
+
                                     </StackLayout>
                                 </StackLayout>
                             </Frame>

@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace Project_Ensemble.Models
 {
+    /// <summary>
+    ///     Model representing result of Google Place autocomplete api call result (Google Maps API)
+    /// </summary>
     public class GooglePlaceAutoCompletePrediction
     {
         [JsonProperty("description")] public string Description { get; set; }

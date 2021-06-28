@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
@@ -70,35 +72,35 @@ namespace Project_Ensemble.ViewModels
 
         public async Task GetPlacesByName(string placeText)
         {
-            try {
+            try
+            {
                 var places = await _googleMapsApi.GetPlaces(placeText);
                 var placeResult = places.AutoCompletePlaces;
+                if (placeResult != null && placeResult.Count > 0) Places.ReplaceRange(placeResult);
             }
             catch (Exception e)
             {
-                placeResult = null;
+                Debug.WriteLine(e);
             }
-            
-            
-            if (placeResult != null && placeResult.Count > 0) Places.ReplaceRange(placeResult);
         }
 
         public async Task GetPlacesDetail(GooglePlaceAutoCompletePrediction placeA)
         {
-            try {
+            try
+            {
                 var place = await _googleMapsApi.GetPlaceDetails(placeA.PlaceId);
+                if (place != null)
+                {
+                    _callApi = false;
+                    ResidenceText = place.Name;
+                    SelectedPlace = new Place
+                        {Name = place.Name, Latitude = place.Latitude, Longitude = place.Longitude};
+                    _callApi = true;
+                }
             }
             catch (Exception e)
             {
-                place = null;
-            }
-            
-            if (place != null)
-            {
-                _callApi = false;
-                ResidenceText = place.Name;
-                SelectedPlace = new Place {Name = place.Name, Latitude = place.Latitude, Longitude = place.Longitude};
-                _callApi = true;
+                Debug.WriteLine(e);
             }
         }
 

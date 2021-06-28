@@ -17,12 +17,12 @@ namespace Project_Ensemble.Views {
     public partial class DiscoverPage : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.PlacesSearchBar.PlacesBar search_bar;
+        private global::Xamarin.Forms.ContentPage Discover;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(DiscoverPage));
-            search_bar = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.PlacesSearchBar.PlacesBar>(this, "search_bar");
+            Discover = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ContentPage>(this, "Discover");
         }
     }
 }

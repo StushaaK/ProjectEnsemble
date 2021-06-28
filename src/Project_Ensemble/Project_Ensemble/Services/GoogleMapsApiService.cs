@@ -8,6 +8,9 @@ using Project_Ensemble.Models;
 
 namespace Project_Ensemble.Services
 {
+    /// <summary>
+    ///     Service that communicates with the GoogleMaps Api ('https://developers.google.com/maps')
+    /// </summary>
     public class GoogleMapsApiService : IGoogleMapsApiService
     {
         private const string ApiBaseAddress = "https://maps.googleapis.com/maps/";
@@ -37,7 +40,11 @@ namespace Project_Ensemble.Services
             return results;
         }
 
-        /// Gets the details (latitude, longitude...) of a place from it's id
+        /// <summary>
+        ///     Gets the details (latitude, longitude...) of a place from it's id
+        /// </summary>
+        /// <param name="placeId">Id of the place that should be returned with the details</param>
+        /// <returns>Place with details</returns>
         public async Task<GooglePlace> GetPlaceDetails(string placeId)
         {
             GooglePlace result = null;
@@ -56,7 +63,10 @@ namespace Project_Ensemble.Services
             return result;
         }
 
-        /// Creates new HTTP Client for Api calls
+        /// <summary>
+        ///     Creates new HTTP Client for Api calls
+        /// </summary>
+        /// <returns>Newly created Http-client for web communication</returns>
         private HttpClient CreateClient()
         {
             var httpClient = new HttpClient
@@ -70,7 +80,13 @@ namespace Project_Ensemble.Services
             return httpClient;
         }
 
-        /// Initializes the google maps api with specified api-key
+        /// <summary>
+        ///     Initializes the google maps api with specified api-key
+        /// </summary>
+        /// <param name="googleMapsKey">
+        ///     Google maps api key
+        ///     ('https://developers.google.com/maps/documentation/places/web-service/get-api-key')
+        /// </param>
         public static void Initialize(string googleMapsKey)
         {
             _googleMapsKey = googleMapsKey;

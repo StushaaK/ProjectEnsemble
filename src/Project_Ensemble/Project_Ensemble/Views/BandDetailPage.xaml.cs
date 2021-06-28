@@ -16,6 +16,7 @@ namespace Project_Ensemble.Views
 
         // If of the band to display
         public string BandId { get; set; }
+
         // Band detail view model (Binding context)
         private BandDetailViewModel Vm { get; }
 

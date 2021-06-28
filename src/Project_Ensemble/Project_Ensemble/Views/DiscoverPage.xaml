@@ -7,8 +7,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-    xmlns:models="clr-namespace:Project_Ensemble.Models;assembly=Project_Ensemble"
-    xmlns:controls="clr-namespace:Project_Ensemble.Controls;assembly=Project_Ensemble"
     xmlns:helpers="clr-namespace:Project_Ensemble.Helpers;assembly=Project_Ensemble"
     xmlns:viewModels="clr-namespace:Project_Ensemble.ViewModels;assembly=Project_Ensemble"
     Title="Objevujte"
@@ -16,7 +14,7 @@
     x:Name="Discover">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <helpers:DiscoverTypeConverter x:Key="DiscoverTypeConverter"/>
+            <helpers:DiscoverTypeConverter x:Key="DiscoverTypeConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -24,32 +22,38 @@
         <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy, Mode=OneWay}">
             <StackLayout>
                 <Frame Padding="5">
-                    <SearchBar Placeholder="Hledat" Text="{Binding SearchQuery}" x:DataType="viewModels:DiscoverViewModel" />
+                    <SearchBar Placeholder="Hledat" Text="{Binding SearchQuery}"
+                               x:DataType="viewModels:DiscoverViewModel" />
                 </Frame>
-            
-            <CollectionView ItemsSource="{Binding DiscoverList}">
+
+                <CollectionView ItemsSource="{Binding DiscoverList}">
                     <CollectionView.ItemsLayout>
-                        <GridItemsLayout Orientation="Vertical" Span="3" HorizontalItemSpacing="0"/>
+                        <GridItemsLayout Orientation="Vertical" Span="3" HorizontalItemSpacing="0" />
                     </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
+                    <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
                                 <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={x:Reference Discover}, Path=BindingContext.ShowDetailCommand}" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={x:Reference Discover}, Path=BindingContext.ShowDetailCommand}"
+                                        CommandParameter="{Binding .}" />
                                 </Grid.GestureRecognizers>
-                                
-                                <xct:AvatarView Text="{Binding Title}" Source="{Binding Image}" Size="140" FontSize="12" CornerRadius="0"></xct:AvatarView>
-                                <Label Text="{Binding Type, Converter={StaticResource DiscoverTypeConverter}}" FontFamily="md-rr" Grid.Row="0" VerticalOptions="End" HorizontalOptions="End" Margin="0,0,5,5" TextColor="Accent"/>
+
+                                <xct:AvatarView Text="{Binding Title}" Source="{Binding Image}" Size="140"
+                                                FontSize="12" CornerRadius="0" />
+                                <Label Text="{Binding Type, Converter={StaticResource DiscoverTypeConverter}}"
+                                       FontFamily="md-rr" Grid.Row="0" VerticalOptions="End" HorizontalOptions="End"
+                                       Margin="0,0,5,5" TextColor="Accent" />
                             </Grid>
-                            
+
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
-                    
+
                 </CollectionView>
 
-            </StackLayout>  
-                
-            
+            </StackLayout>
+
+
         </RefreshView>
     </ContentPage.Content>
 </ContentPage>
